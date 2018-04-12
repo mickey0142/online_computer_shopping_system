@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  *
@@ -26,7 +27,8 @@ public class Orders implements java.io.Serializable{
 
     public Orders()
     {
-        
+        status = "";// set default status in here
+        productList = new ArrayList<Products>();
     }
 
     public Orders(String id, String paymentProof, String status, double totalPrice, String orderDate, String customerId)
@@ -37,6 +39,7 @@ public class Orders implements java.io.Serializable{
         this.totalPrice = totalPrice;
         this.orderDate = orderDate;
         this.customerId = customerId;
+        productList = new ArrayList<Products>();
     }
 
     public String getId() {
@@ -91,18 +94,23 @@ public class Orders implements java.io.Serializable{
         this.customerId = customerId;
     }
     
+    public void setConnection(Connection conn)
+    {
+        this.conn = conn;
+    }
+    
     public void addItem(String id)
     {
         try
         {
             Statement stmt = conn.createStatement();
-            String sql = "select * from product where id = '" + id + "'";
+            String sql = "select * from products where productId = '" + id + "'";
             ResultSet rs = stmt.executeQuery(sql);
             while(rs.next())
             {
                 Products pd = new Products();
                 pd.setId(id);
-                pd.setName(rs.getString("name"));
+                pd.setName(rs.getString("productName"));
                 pd.setDescription(rs.getString("description"));
                 pd.setPrice(rs.getDouble("price"));
                 if (id.startsWith("01"))// check from id if that product have compatibility

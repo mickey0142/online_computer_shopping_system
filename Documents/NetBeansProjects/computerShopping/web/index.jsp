@@ -15,7 +15,7 @@
         <title>Shopping</title>
     </head>
     <body>
-        <a href="login.jsp">login</a> | <a href="register.jsp">register</a> <br>
+        <a href="login.jsp">login</a> | <a href="register.jsp">register</a> | <a href="LogoutServlet">logout</a> <br>
         <shortcut:select productId="%"></shortcut:select>
     </body>
 </html>

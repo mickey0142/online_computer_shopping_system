@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Orders;
 import model.Users;
 
 /**
@@ -103,6 +104,10 @@ public class LoginServlet extends HttpServlet {
                         user.setId(rs.getString("employeeId"));
                     }
                     session.setAttribute("userInfo", user);
+                    Orders order = new Orders();
+                    order.setCustomerId(user.getId());
+                    order.setConnection(conn);
+                    session.setAttribute("order", order);
                     response.sendRedirect("index.jsp");
                 }
                 else

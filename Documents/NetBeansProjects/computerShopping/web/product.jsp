@@ -26,19 +26,20 @@
             <c:if test="${i.instock <= 0}">
                 Out of Stock !!
             </c:if>
-            <jsp:useBean id="productData" scope="page" class="model.Products"/>
-            <c:set target="productData" property="id" value="${i.productId}"/>
-            <c:set target="productData" property="name" value="${i.productName}"/>
-            <c:set target="productData" property="id" value="${i.Description}"/>
-            <c:set target="productData" property="id" value="${i.price}"/>
             <!-- check if to query for more data if product is not normal type -->
             <c:if test="${i.instock > 0}">
-                <a href="addToCart?=${productData}">
+                <a href="addToCart.in?productId=${i.productId}">
                     <div style="display: inline-block; width: 100px; height: 100px; background-color: lightblue">
                         add to cart
                     </div>
                 </a>
             </c:if>
         </c:forEach>
+        <br>
+        <div style="display: inline-block; width: 200px; background-color: green;">
+            <c:forEach var="i" items="${sessionScope.order.getProductList()}">
+                ${i.getName()}<br>
+            </c:forEach>
+        </div>
     </body>
 </html>
