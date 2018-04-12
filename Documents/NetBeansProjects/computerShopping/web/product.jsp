@@ -14,6 +14,7 @@
         <title>product</title>
     </head>
     <body>
+        <%@include file="menu.jsp" %><br>
         <h1>Product !</h1>
         <sql:query dataSource="mysql" var="product">
             select * from products where productId = "${param.id}"
@@ -36,10 +37,6 @@
             </c:if>
         </c:forEach>
         <br>
-        <div style="display: inline-block; width: 200px; background-color: green;">
-            <c:forEach var="i" items="${sessionScope.order.getProductList()}">
-                ${i.getName()}<br>
-            </c:forEach>
-        </div>
+        <%@include file="showCart.jsp" %>
     </body>
 </html>

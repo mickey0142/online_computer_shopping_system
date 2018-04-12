@@ -9,7 +9,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
@@ -122,6 +123,13 @@ public class Orders implements java.io.Serializable{
                     pd.setPowerConsumption(rs.getDouble("power_consumption"));
                 }
                 productList.add(pd);
+                Collections.sort(productList, new Comparator<Products>() {
+                    @Override
+                    public int compare(final Products o1, final Products o2)
+                    {
+                        return o1.getId().compareTo(o2.getId());
+                    }
+                });
             }
         }
         catch(Exception e)

@@ -13,6 +13,7 @@
     </head>
     <body>
         <h1>Login</h1>
+        <%@include file="menu.jsp" %><br>
         ${sessionScope.message}
         <form action="LoginServlet" method="POST">
             Username : <input type="text" name="username" value="" size="20" /><br>

@@ -15,7 +15,8 @@
         <title>Shopping</title>
     </head>
     <body>
-        <a href="login.jsp">login</a> | <a href="register.jsp">register</a> | <a href="LogoutServlet">logout</a> <br>
+        <%@include file="menu.jsp" %><br>
         <shortcut:select productId="%"></shortcut:select>
+        <%@include file="showCart.jsp" %>
     </body>
 </html>
