@@ -21,7 +21,7 @@ public class Orders implements java.io.Serializable{
     private String paymentProof;
     private String status;
     private double totalPrice;
-    private ArrayList<Products> productList;
+    private ArrayList<ProductLists> productList;
     private String orderDate;
     private String customerId;
     private Connection conn;
@@ -29,7 +29,7 @@ public class Orders implements java.io.Serializable{
     public Orders()
     {
         status = "";// set default status in here
-        productList = new ArrayList<Products>();
+        productList = new ArrayList<ProductLists>();
     }
 
     public Orders(String id, String paymentProof, String status, double totalPrice, String orderDate, String customerId)
@@ -40,7 +40,7 @@ public class Orders implements java.io.Serializable{
         this.totalPrice = totalPrice;
         this.orderDate = orderDate;
         this.customerId = customerId;
-        productList = new ArrayList<Products>();
+        productList = new ArrayList<ProductLists>();
     }
 
     public String getId() {
@@ -75,7 +75,7 @@ public class Orders implements java.io.Serializable{
         this.totalPrice = totalPrice;
     }
 
-    public ArrayList<Products> getProductList() {
+    public ArrayList<ProductLists> getProductList() {
         return productList;
     }
 
@@ -122,14 +122,34 @@ public class Orders implements java.io.Serializable{
                 {
                     pd.setPowerConsumption(rs.getDouble("power_consumption"));
                 }
-                productList.add(pd);
-                Collections.sort(productList, new Comparator<Products>() {
-                    @Override
-                    public int compare(final Products o1, final Products o2)
+                boolean duplicate = false;
+                for (ProductLists p : productList)
+                {
+                    if (p.getProduct().getName().equals(pd.getName()))
                     {
-                        return o1.getId().compareTo(o2.getId());
+                        p.setQuantity(p.getQuantity() + 1);
+                        duplicate = true;
+                        break;
+                    }
+                }
+                if (!duplicate)
+                {
+                    ProductLists pl = new ProductLists();
+                    pl.setProduct(pd);
+                    pl.setQuantity(1);
+                    productList.add(pl);
+                }
+                Collections.sort(productList, new Comparator<ProductLists>() {
+                    @Override
+                    public int compare(final ProductLists o1, final ProductLists o2)
+                    {
+                        return o1.getProduct().getId().compareTo(o2.getProduct().getId());
                     }
                 });
+                for (ProductLists p : productList)
+                {
+                    System.out.println(p.getProduct().getName());
+                }
             }
         }
         catch(Exception e)
@@ -140,9 +160,9 @@ public class Orders implements java.io.Serializable{
     
     public void removeItem(String name)
     {
-        for (Products p : productList)
+        for (ProductLists p : productList)
         {
-            if (p.getName().equals(name))
+            if (p.getProduct().getName().equals(name))
             {
                 productList.remove(p);
                 break;

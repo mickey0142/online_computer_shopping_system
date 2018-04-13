@@ -4,6 +4,7 @@
     Author     : Mickey
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,8 +17,8 @@
             Your cart<br>
             <c:set var="totalPrice" scope="page" value="0"/>
             <c:forEach var="i" items="${sessionScope.order.getProductList()}">
-                ${i.getName()} ${i.getPrice()}<br>
-                <c:set var="totalPrice" scope="page" value="${totalPrice + i.getPrice()}"/>
+                ${i.getProduct().getId()} ${i.getProduct().getName()} ${i.getQuantity()}<br>
+                <c:set var="totalPrice" scope="page" value="${totalPrice + i.getProduct().getPrice() * i.getQuantity()}"/>
             </c:forEach>
             total : ${totalPrice}
         </div>

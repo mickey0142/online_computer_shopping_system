@@ -7,21 +7,27 @@ package process;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Products;
 import model.Orders;
+import model.Products;
 
 /**
  *
  * @author Mickey
  */
-@WebServlet(name = "addToCart", urlPatterns = {"/addToCart.in"})
-public class addToCart extends HttpServlet {
+@WebServlet(name = "ConfirmPurchase", urlPatterns = {"/ConfirmPurchase.in"})
+public class ConfirmPurchase extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,6 +38,15 @@ public class addToCart extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    private Connection conn;
+
+    @Override
+    public void init()
+    {
+        conn = (Connection) getServletContext().getAttribute("connection");
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -39,9 +54,33 @@ public class addToCart extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
             Orders order = (Orders) session.getAttribute("order");
-            String id = request.getParameter("productId");
-            order.addItem(id);
-            response.sendRedirect("product.jsp?id=" + request.getParameter("productId"));
+            try
+            {
+                String sql = "insert into orders (status, totalPrice, customerId, orderDate) values ('not paid', ? , ?, ?), (null, null,null,null)";
+                PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                ps.setDouble(1, order.getTotalPrice());
+                ps.setInt(2, Integer.parseInt(order.getCustomerId()));
+                java.sql.Date sqlDate = new Date(Calendar.getInstance().getTime().getTime());
+                ps.setDate(3, sqlDate);
+                if (ps.executeUpdate() < 0)
+                {
+                    System.out.println("insert order error");
+                }
+                ResultSet rs = ps.getGeneratedKeys();
+                
+                // orderId is work as a primary key to insert data in orderdetails
+                // this will work if number of row affected is equal to orderId
+                int orderId = -1;
+                if (rs.next())
+                {
+                    orderId = rs.getInt(1);
+                }
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+            response.sendRedirect("manageCart.jsp");
         }
     }
 

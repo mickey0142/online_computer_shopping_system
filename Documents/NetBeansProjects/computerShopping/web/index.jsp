@@ -17,6 +17,8 @@
     <body>
         <%@include file="menu.jsp" %><br>
         <shortcut:select productId="%"></shortcut:select>
-        <%@include file="showCart.jsp" %>
+        <c:if test="${sessionScope.loginFlag}">
+            <%@include file="showCart.jsp" %>
+        </c:if>
     </body>
 </html>

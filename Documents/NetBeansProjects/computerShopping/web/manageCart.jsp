@@ -26,7 +26,15 @@
                     <c:set var="index" value="${index + 1}"/>
                 </c:forEach>
                 total : ${totalPrice}
+                <jsp:useBean id="order" scope="session" class="model.Orders"/>
+                <jsp:setProperty name="order" property="totalPrice" value="${totalPrice}"/>
             </form>
         </div>
+            <br>
+        <a href="ConfirmPurchase.in">
+            <div style="display: inline-block; width: 100px; background-color: coral;">
+                Confirm Purchase
+            </div>
+        </a>
     </body>
 </html>

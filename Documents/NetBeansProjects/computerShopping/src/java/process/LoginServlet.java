@@ -97,7 +97,7 @@ public class LoginServlet extends HttpServlet {
                     user.setAddress(rs.getString("address"));
                     if (user.getUserType().equals("customer"))
                     {
-                        user.setId(rs.getString("customerId"));
+                        user.setId(Integer.toString(rs.getInt("customerId")));
                     }
                     else
                     {

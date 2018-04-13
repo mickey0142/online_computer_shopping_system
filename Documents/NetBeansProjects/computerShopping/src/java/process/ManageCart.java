@@ -40,13 +40,18 @@ public class ManageCart extends HttpServlet {
             Orders order = (Orders) session.getAttribute("order");
             String name = null;
             int count = 0;
-            while (name == null)
+            boolean remove = false;
+            while (name == null && count < order.getProductList().size())
             {
                 name = request.getParameter("button"+count);
                 if (name == null)count += 1;
+                else remove = true;
             }
-            order.getProductList().remove(count);
-            response.sendRedirect("manageCart.jsp");
+            if (remove)
+            {
+                order.getProductList().remove(count);
+                response.sendRedirect("manageCart.jsp");
+            }
         }
     }
 
