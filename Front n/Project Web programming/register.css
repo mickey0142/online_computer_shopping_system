@@ -1,0 +1,112 @@
+body{
+    font-family: 'Pridi', serif;
+    font-family: 'IBM Plex Sans', sans-serif;
+    background-color: white;
+    margin: 15px;
+}
+.top{
+    position: relative;
+    background-color: #ffffff;
+    height: 83.5px;
+    padding-top: 20px;
+    line-height: 50px;
+    overflow: hidden;
+}
+.fixed-top{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+}
+.fixed-top2{
+    z-index: 1030;
+}
+.fixed-top2{
+    border-top: 1px solid #ddd;
+    position: fixed;
+    top: 73px;
+    right: 0;
+    left: 0;
+}
+
+img.resize{
+    width: 50%;
+    height: 50%;
+}
+i.fa-user-circle, i.fa-shopping-cart{
+    font-size: 2em;
+}
+a.usernameLogin{
+    color: #000;
+}
+a, a:link{
+    text-decoration: none;
+}
+.bg-faded{
+    background-color: #f7f7f7;
+}
+li{
+    list-style: none;
+}
+.title-h{
+    background: #0093f0;
+    color: #ffffff;
+    padding: 0px 15px;
+    font-weight: bold;
+}
+.mt-1{
+    margin-top: .25rem !important;
+}
+.title-h .seeAll{
+    border: 2px solid #fff;
+    border-radius: 5px;
+    color: #ffffff;
+    background: transparent;
+    cursor: pointer;
+    padding: 0px 15px;
+    font-size: 14px;
+}
+section{
+    display: block;
+}
+.row{
+    margin-left: -15px;
+    margin-right: -15px;
+}
+.item-prod{
+    border: 1px dashed #777;
+}
+.navbar-toggleable-md{
+    flex-direction: row;
+}
+.text-left{
+    text-align: left !important;
+}
+.fa{
+    display: inline-block;
+    font-size: inherit;
+    text-rendering: auto;
+}
+.box{
+    position: relative;
+    margin: auto;
+    width: 450px;
+    top: 200px;
+    border: 5px solid;
+    padding: 10px;
+    box-shadow: 0px 0px 10px 10px #eeeeee;
+}
+.userPass{
+    margin-left: 20%;
+}
+hr{
+    margin-left: 320px;
+    margin-right: 320px;
+}
+#fName{
+    margin-left: 20%;
+}
+#lName{
+    margin-left: 11.5%;
+}
