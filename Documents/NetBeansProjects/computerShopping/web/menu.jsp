@@ -15,10 +15,10 @@
     <body>
         <a href="index.jsp">index</a> | 
         <c:if test="${!sessionScope.loginFlag || sessionScope.loginFlag == null}">
-        <a href="login.jsp">login</a> | <a href="register.jsp">register</a> 
+            <a href="login.jsp">login</a> | <a href="register.jsp">register</a> 
         </c:if>
         <c:if test="${sessionScope.loginFlag}">
-            <a href="manageCart.jsp">manage cart</a> | <a href="LogoutServlet">logout</a>
+            <a href="orderHistory.jsp">order history</a> | <a href="manageCart.jsp">manage cart</a> | <a href="LogoutServlet">logout</a>
         </c:if>
     </body>
 </html>

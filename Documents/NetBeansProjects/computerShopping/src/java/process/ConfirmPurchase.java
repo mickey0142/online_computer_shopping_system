@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Orders;
+import model.ProductLists;
 import model.Products;
 
 /**
@@ -56,7 +57,7 @@ public class ConfirmPurchase extends HttpServlet {
             Orders order = (Orders) session.getAttribute("order");
             try
             {
-                String sql = "insert into orders (status, totalPrice, customerId, orderDate) values ('not paid', ? , ?, ?), (null, null,null,null)";
+                String sql = "insert into orders (status, totalPrice, customerId, orderDate) values ('not paid', ? , ?, ?)";
                 PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 ps.setDouble(1, order.getTotalPrice());
                 ps.setInt(2, Integer.parseInt(order.getCustomerId()));
@@ -75,6 +76,21 @@ public class ConfirmPurchase extends HttpServlet {
                 {
                     orderId = rs.getInt(1);
                 }
+                for (ProductLists i : order.getProductList())
+                {
+                    sql = "insert into orderdetails values (?, ?, ?, ?)";
+                    ps = conn.prepareCall(sql);
+                    ps.setInt(1, orderId);
+                    ps.setString(2, i.getProduct().getId());
+                    ps.setInt(3, i.getQuantity());
+                    ps.setDouble(4, i.getProduct().getPrice() * i.getQuantity());
+                    if (ps.executeUpdate() < 0)
+                    {
+                        System.out.println("insert order details error");
+                    }
+                }
+                order.getProductList().clear();
+                order.setTotalPrice(0);
             }
             catch(Exception e)
             {

@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>manageCart</title>
     </head>
     <body>
         <%@include file="menu.jsp" %>
@@ -21,8 +21,8 @@
             <c:set var="index" value="0"/>
             <form action="ManageCart.in" method="POST">
                 <c:forEach var="i" items="${sessionScope.order.getProductList()}">
-                    ${i.getId()} ${i.getName()} ${i.getPrice()} <input type="submit" value="remove" name="button${index}" /><br>
-                    <c:set var="totalPrice" scope="page" value="${totalPrice + i.getPrice()}"/>
+                    ${i.getProduct().getId()} ${i.getProduct().getName()} ${i.getQuantity()}<input type="submit" value="remove" name="button${index}" /><br>
+                    <c:set var="totalPrice" scope="page" value="${totalPrice + i.getProduct().getPrice() * i.getQuantity()}"/>
                     <c:set var="index" value="${index + 1}"/>
                 </c:forEach>
                 total : ${totalPrice}
