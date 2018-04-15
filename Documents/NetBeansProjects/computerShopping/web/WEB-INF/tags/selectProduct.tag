@@ -11,11 +11,13 @@
 
 <%-- The list of normal or fragment attributes can be specified here: --%>
 <%@attribute name="productId"%>
+<%@attribute name="search"%>
 
 <%-- any content can be specified here e.g.: --%>
 <sql:query dataSource="mysql" var="product">
-    select * from products where productId like "${productId}%"
+    select * from products where productId like "${productId}%" and productName like "%${search}%"
 </sql:query>
+    <% System.out.println(search); %>
 <c:forEach var="i" items="${product.rows}">
     <shortcut:show data="${i}"></shortcut:show>
 </c:forEach>
