@@ -86,7 +86,7 @@
                     <a href="index.jsp" class="btn btn-primary btn-md cart-link" role="button">
                         <i class="fas fa-angle-left"></i>เลือกสินค้าต่อ
                     </a>
-                    <a href="ConfirmPurchase.in" class="btn btn-primary btn-md cart-link" role="button">
+                    <a href="confirmPurchase.jsp" class="btn btn-primary btn-md cart-link" role="button">
                         ชำระสินค้า<i class="fas fa-angle-right"></i>
                     </a>
                 </div>
