@@ -59,52 +59,52 @@ public class RegisterServlet extends HttpServlet {
             if (firstname.equals(""))
             {
                 success = false;
-                errorMessage += "First name can't be empty<br>";
+                errorMessage += "First name can't be empty" + "\\n";
             }
             if (lastname.equals(""))
             {
                 success = false;
-                errorMessage += "Last name can't be empty<br>";
+                errorMessage += "Last name can't be empty" + "\\n";
             }
             if (username.equals(""))
             {
                 success = false;
-                errorMessage += "Username can't be empty<br>";
+                errorMessage += "Username can't be empty" + "\\n";
             }
             if (username.startsWith("emp"))
             {
                 success = false;
-                errorMessage += "username can't start with emp<br>";
+                errorMessage += "username can't start with emp" + "\\n";
             }
             if (password.equals(""))
             {
                 success = false;
-                errorMessage += "password can't be empty<br>";
+                errorMessage += "password can't be empty" + "\\n";
             }
             if (phone == null)
             {
                 success = false;
-                errorMessage += "phone can't be empty<br>";
+                errorMessage += "phone can't be empty" + "\\n";
             }
             if (email == null)
             {
                 success = false;
-                errorMessage += "email can't be empty<br>";
+                errorMessage += "email can't be empty" + "\\n";
             }
             if (address.equals(""))
             {
                 success = false;
-                errorMessage += "address can't be empty<br>";
+                errorMessage += "address can't be empty" + "\\n";
             }
             if (phone.length() != 10)
             {
                 success = false;
-                errorMessage += "Phone number invalid<br>";
+                errorMessage += "Phone number invalid" + "\\n";
             }
             if (!(email.contains("@") && email.contains(".com")))
             {
                 success = false;
-                errorMessage += "Email invalid<br>";
+                errorMessage += "Email invalid" + "\\n";
             }
             if (success)
             {

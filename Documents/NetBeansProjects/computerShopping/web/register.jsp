@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,9 +13,13 @@
         <title>register</title>
     </head>
     <body>
+        <c:if test="${sessionScope.message != ''}">
+            <script>
+                alert("${sessionScope.message}");
+            </script>
+        </c:if>
         <h1>Register</h1>
         <%@include file="menu.jsp" %><br>
-        ${sessionScope.message}
         <form action="RegisterServlet" method="POST">
             first name : <input type="text" name="firstname" value="" size="30" /><br>
             last name : <input type="text" name="lastname" value="" size="30" /><br>
@@ -25,6 +30,6 @@
             address : <input type="text" name="address" value="" size="30" /><br>
             <input type="submit" value="register" />
         </form>
-        <% session.setAttribute("message", ""); %>
+        <% session.setAttribute("message", "");%>
     </body>
 </html>

@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -18,6 +19,11 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
     </head>
     <body>
+        <c:if test="${sessionScope.message != '' and sessionScope.message != null}">
+            <script>
+                alert("${sessionScope.message}");
+            </script>
+        </c:if>
         <section class="hidden-md-down header-box">
             <nav class="navbar navbar-toggleable-md navbar-light bg-faded fixed-top">
                 <div class="container">
@@ -78,7 +84,6 @@
                     <form action="LoginServlet" method="POST">
                         <div class="userPass">
                             <h1>เข้าสู่ระบบ</h1><br>
-                            <h4>${sessionScope.message}</h4>
                             Username: <input type="text" placeholder="Username" name="username" value=""><br><br>
                             Password: <input type="password" placeholder="Password" name="password" value=""><br><br>
                             <button type="submit" value="login">เข้าสู่ระบบ</button>

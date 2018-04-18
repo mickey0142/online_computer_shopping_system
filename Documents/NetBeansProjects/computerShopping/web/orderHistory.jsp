@@ -17,10 +17,18 @@
         <%@include file="menu.jsp" %>
         <h1>Order history</h1>
         <sql:query dataSource="mysql" var="data">
-            select * from orders join orderdetails using (orderId) where customerId = ${sessionScope.userInfo.getId()}
+            select * from orders where customerId = ${sessionScope.userInfo.getId()}
         </sql:query>
         <c:forEach var="i" items="${data.rows}">
-            orderid : ${i.orderId} paymentproof : ${i.paymentProof} status : ${i.status} totalprice : ${i.totalPrice} orderdate : ${i.orderDate}<br>
+            <h2>orderid : ${i.orderId} <br>
+            paymentproof : ${i.paymentProof} status : ${i.status} totalprice : ${i.totalPrice} orderdate : ${i.orderDate}</h2>
+            <sql:query dataSource="mysql" var="detail">
+                select * from orderdetails where orderId = ${i.orderId}
+            </sql:query>
+            <c:forEach var="j" items="${detail.rows}">
+                Product Id : ${j.productId} Quantity : ${j.quantity} price : ${j.price}<br>
+            </c:forEach>
+            <br><br>
         </c:forEach>
     </body>
 </html>
