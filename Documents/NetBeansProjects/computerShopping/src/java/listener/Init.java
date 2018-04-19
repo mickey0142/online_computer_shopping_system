@@ -26,7 +26,7 @@ public class Init implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         try
         {
-            conn = getMysql().getConnection();
+            conn = getComshopdb().getConnection();
             sce.getServletContext().setAttribute("connection", conn);
         }
         catch(Exception e)
@@ -47,8 +47,9 @@ public class Init implements ServletContextListener {
         }
     }
 
-    private DataSource getMysql() throws NamingException {
+    private DataSource getComshopdb() throws NamingException {
         Context c = new InitialContext();
-        return (DataSource) c.lookup("java:comp/env/mysql");
+        return (DataSource) c.lookup("java:comp/env/comshopdb");
     }
+
 }

@@ -16,7 +16,7 @@
     <body>
         <%@include file="menu.jsp" %><br>
         <h1>Product !</h1>
-        <sql:query dataSource="mysql" var="product">
+        <sql:query dataSource="comshopdb" var="product">
             select * from products where productId = "${param.id}"
         </sql:query>
         <c:forEach var="i" items="${product.rows}">

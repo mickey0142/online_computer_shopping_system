@@ -13,7 +13,7 @@
         <title>register</title>
     </head>
     <body>
-        <c:if test="${sessionScope.message != ''}">
+        <c:if test="${sessionScope.message != '' and sessionScope.message != null}">
             <script>
                 alert("${sessionScope.message}");
             </script>

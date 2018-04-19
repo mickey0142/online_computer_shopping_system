@@ -16,13 +16,13 @@
     <body>
         <%@include file="menu.jsp" %>
         <h1>Order history</h1>
-        <sql:query dataSource="mysql" var="data">
+        <sql:query dataSource="comshopdb" var="data">
             select * from orders where customerId = ${sessionScope.userInfo.getId()}
         </sql:query>
         <c:forEach var="i" items="${data.rows}">
             <h2>orderid : ${i.orderId} <br>
             paymentproof : ${i.paymentProof} status : ${i.status} totalprice : ${i.totalPrice} orderdate : ${i.orderDate}</h2>
-            <sql:query dataSource="mysql" var="detail">
+            <sql:query dataSource="comshopdb" var="detail">
                 select * from orderdetails where orderId = ${i.orderId}
             </sql:query>
             <c:forEach var="j" items="${detail.rows}">

@@ -15,7 +15,7 @@
     </head>
     <body>
         <h1>manage order</h1>
-        <sql:query dataSource="mysql" var="orderData">
+        <sql:query dataSource="comshopdb" var="orderData">
             select * from orders order by orderDate
         </sql:query>
         <table>

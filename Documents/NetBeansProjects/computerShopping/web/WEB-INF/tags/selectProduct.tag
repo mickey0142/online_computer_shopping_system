@@ -14,7 +14,7 @@
 <%@attribute name="search"%>
 
 <%-- any content can be specified here e.g.: --%>
-<sql:query dataSource="mysql" var="product">
+<sql:query dataSource="comshopdb" var="product">
     select * from products where productId like "${productId}%" and productName like "%${search}%"
 </sql:query>
     <% System.out.println(search); %>
