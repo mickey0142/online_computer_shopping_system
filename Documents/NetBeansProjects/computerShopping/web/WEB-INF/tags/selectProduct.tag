@@ -17,7 +17,6 @@
 <sql:query dataSource="comshopdb" var="product">
     select * from products where productId like "${productId}%" and productName like "%${search}%"
 </sql:query>
-    <% System.out.println(search); %>
 <c:forEach var="i" items="${product.rows}">
     <shortcut:show data="${i}"></shortcut:show>
 </c:forEach>

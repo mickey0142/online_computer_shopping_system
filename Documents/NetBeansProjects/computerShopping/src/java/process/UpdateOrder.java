@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Orders;
 
 /**
  *
@@ -50,18 +51,11 @@ public class UpdateOrder extends HttpServlet {
             String status = request.getParameter("status");
             int orderId = (int) session.getAttribute("orderId");
             String orderIds = Integer.toString(orderId);
-            try
-            {
-                String sql = "update orders set status = ? where orderId = ?";
-                PreparedStatement ps = conn.prepareStatement(sql);
-                ps.setString(1, status);
-                ps.setInt(2, orderId);
-                ps.executeUpdate();
-            }
-            catch(Exception e)
-            {
-                e.printStackTrace();
-            }
+            Orders order = new Orders();
+            order.setId(orderIds);
+            order.setStatus(status);
+            order.setConnection(conn);
+            order.updateDB();
             response.sendRedirect("orderDetail.jsp?orderId=" + orderIds);
         }
     }

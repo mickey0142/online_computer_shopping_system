@@ -17,8 +17,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Customers;
+import model.Employees;
 import model.Orders;
-import model.Users;
 
 /**
  *
@@ -53,34 +54,39 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = request.getSession();
             String username = request.getParameter("username");
             String password = request.getParameter("password");
-            Users user = new Users();
+            Customers cus = new Customers();
+            Employees emp = new Employees();
+            String userType = "";
             try
             {
                 String sql = "";
                 if (username.startsWith("emp01"))
                 {
                     sql = "select * from employees where username = ? and password = ?";
+                    userType = "employee";
                 }
                 else if (username.startsWith("emp02"))
                 {
                     sql = "select * from accountingemp where username = ? and password = ?";
+                    userType = "employee";
                 }
                 else
                 {
                     sql = "select * from customers where username = ? and password = ?";
+                    userType = "customer";
                 }
                 PreparedStatement ps = conn.prepareStatement(sql);
                 if (username.startsWith("emp01"))
                 {
-                    user.setUserType("employee");
+                    emp.setEmployeeType("employee");
                 }
                 else if (username.startsWith("emp02"))
                 {
-                    user.setUserType("accounting");
+                    emp.setEmployeeType("accounting");
                 }
                 else
                 {
-                    user.setUserType("customer");
+                    //
                 }
                 ps.setString(1, username);
                 ps.setString(2, password);
@@ -88,26 +94,27 @@ public class LoginServlet extends HttpServlet {
                 if (rs.next())
                 {
                     session.setAttribute("loginFlag", true);
-                    user.setUsername(rs.getString("username"));
-                    user.setPassword(rs.getString("password"));
-                    user.setFirstname(rs.getString("firstname"));
-                    user.setLastname(rs.getString("lastname"));
-                    user.setPhoneNumber(rs.getString("phone"));
-                    user.setEmail(rs.getString("email"));
-                    user.setAddress(rs.getString("address"));
-                    if (user.getUserType().equals("customer"))
+                    if(userType.equals("customer"))
                     {
-                        user.setId(Integer.toString(rs.getInt("customerId")));
+                        cus.setUsername(rs.getString("username"));
+                        cus.setPassword(rs.getString("password"));
+                        cus.setFirstname(rs.getString("firstname"));
+                        cus.setLastname(rs.getString("lastname"));
+                        cus.setPhoneNumber(rs.getString("phone"));
+                        cus.setEmail(rs.getString("email"));
+                        cus.setAddress(rs.getString("address"));
+                        cus.setId(Integer.toString(rs.getInt("customerId")));
+                        session.setAttribute("userInfo", cus);
+                        Orders order = new Orders();
+                        order.setCustomerId(cus.getId());
+                        order.setConnection(conn);
+                        session.setAttribute("order", order);
                     }
                     else
                     {
-                        user.setId(rs.getString("employeeId"));
+                        emp.setId(rs.getString("employeeId"));
+                        session.setAttribute("userInfo", emp);
                     }
-                    session.setAttribute("userInfo", user);
-                    Orders order = new Orders();
-                    order.setCustomerId(user.getId());
-                    order.setConnection(conn);
-                    session.setAttribute("order", order);
                     response.sendRedirect("index.jsp");
                 }
                 else

@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.ProductType1;
+import model.ProductType2;
+import model.Products;
 
 /**
  *
@@ -58,6 +61,36 @@ public class ManageProduct extends HttpServlet {
             powerConsumption = Double.parseDouble(temp);
             else powerConsumption = -1;
             String compatibility = request.getParameter("compatibility");
+            
+            if (compatibility != null || !compatibility.equals(""))
+            {
+                ProductType2 pt2 = new ProductType2();
+                pt2.setId(productId);
+                pt2.setName(productName);
+                pt2.setDescription(description);
+                pt2.setPrice(price);
+                pt2.setPowerConsumption(powerConsumption);
+                pt2.setCompatibility(compatibility);
+            }
+            else if (powerConsumption != 1)
+            {
+                ProductType1 pt1 = new ProductType1();
+                pt1.setId(productId);
+                pt1.setName(productName);
+                pt1.setDescription(description);
+                pt1.setPrice(price);
+                pt1.setPowerConsumption(powerConsumption);
+                pt1.updateDB(inStock, conn);
+            }
+            else
+            {
+                Products product = new Products();
+                product.setId(productId);
+                product.setName(productName);
+                product.setDescription(description);
+                product.setPrice(price);
+                product.updateDB(inStock, conn);
+            }
             try
             {
                 String sql = "update products set productName = ?, description = ?, inStock = ?, price = ? where productId = ?";
@@ -68,7 +101,7 @@ public class ManageProduct extends HttpServlet {
                 ps.setDouble(4, price);
                 ps.setString(5, productId);
                 ps.executeUpdate();
-                if (compatibility != null)
+                if (compatibility != null || !compatibility.equals(""))
                 {
                     sql = "update producttype2 set powerConsumption = ?, compatibility = ? where productId = ?";
                     ps = conn.prepareStatement(sql);

@@ -10,42 +10,17 @@ package model;
  * @author Mickey
  */
 public class Users implements java.io.Serializable{
-    private String id;
-    private String firstname;
-    private String lastname;
-    private String username;
-    private String password;
-    private String phoneNumber;
-    private String email;
-    private String address;
-    private String userType;
+    protected String id;
+    protected String firstname;
+    protected String lastname;
+    protected String username;
+    protected String password;
+    protected String phoneNumber;
+    protected String email;
     
     public Users()
     {
         
-    }
-
-    public Users(String id, String firstname, String lastname, String username, String password, String phoneNumber, String email, String userType) {
-        this.id = id;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.username = username;
-        this.password = password;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.userType = userType;
-    }
-
-    public Users(String id, String firstname, String lastname, String username, String password, String phoneNumber, String email, String address, String userType) {
-        this.id = id;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.username = username;
-        this.password = password;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.address = address;
-        this.userType = userType;
     }
 
     public String getId() {
@@ -103,22 +78,4 @@ public class Users implements java.io.Serializable{
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getUserType() {
-        return userType;
-    }
-
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
-    
-    
 }

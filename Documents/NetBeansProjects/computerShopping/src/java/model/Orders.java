@@ -6,9 +6,12 @@
 package model;
 
 import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -100,7 +103,7 @@ public class Orders implements java.io.Serializable{
         this.conn = conn;
     }
     
-    public void addItem(String id)
+    public void addItem(String id)// change how all of this work with product type
     {
         try
         {
@@ -114,14 +117,6 @@ public class Orders implements java.io.Serializable{
                 pd.setName(rs.getString("productName"));
                 pd.setDescription(rs.getString("description"));
                 pd.setPrice(rs.getDouble("price"));
-                if (id.startsWith("01"))// check from id if that product have compatibility
-                {
-                    pd.setCompatibility(rs.getString("compatibility"));
-                }
-                if (id.startsWith("02"))// check from id if that product have power consumption
-                {
-                    pd.setPowerConsumption(rs.getDouble("power_consumption"));
-                }
                 boolean duplicate = false;
                 for (ProductLists p : productList)
                 {
@@ -146,10 +141,6 @@ public class Orders implements java.io.Serializable{
                         return o1.getProduct().getId().compareTo(o2.getProduct().getId());
                     }
                 });
-                for (ProductLists p : productList)
-                {
-                    System.out.println(p.getProduct().getName());
-                }
             }
         }
         catch(Exception e)
@@ -167,6 +158,71 @@ public class Orders implements java.io.Serializable{
                 productList.remove(p);
                 break;
             }
+        }
+    }
+    
+    public void addToDB(String type)
+    {
+        try
+            {
+            String sql = "insert into orders (status, totalPrice, customerId, orderDate) values (?, ? , ?, ?)";
+            PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            if (type.equals("bank"))
+            {
+                ps.setString(1, "not paid");
+            }
+            else if (type.equals("credit"))
+            {
+                ps.setString(1, "paid");
+            }
+            ps.setDouble(2, totalPrice);
+            ps.setInt(3, Integer.parseInt(customerId));
+            java.sql.Date sqlDate = new Date(Calendar.getInstance().getTime().getTime());
+            ps.setDate(4, sqlDate);
+            if (ps.executeUpdate() < 0) {
+                System.out.println("insert order error");
+            }
+            ResultSet rs = ps.getGeneratedKeys();
+
+            // orderId is work as a primary key to insert data in orderdetails
+            // this will work if number of row affected is equal to orderId
+            int orderId = -1;
+            if (rs.next())
+            {
+                orderId = rs.getInt(1);
+            }
+            for (ProductLists i : productList)
+            {
+                sql = "insert into orderdetails values (?, ?, ?, ?)";
+                ps = conn.prepareStatement(sql);
+                ps.setInt(1, orderId);
+                ps.setString(2, i.getProduct().getId());
+                ps.setInt(3, i.getQuantity());
+                ps.setDouble(4, i.getProduct().getPrice() * i.getQuantity());
+                if (ps.executeUpdate() < 0) {
+                    System.out.println("insert order details error");
+                }
+            }
+            productList.clear();
+            totalPrice = 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void updateDB()
+    {
+        try
+        {
+            String sql = "update orders set status = ? where orderId = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, status);
+            ps.setInt(2, Integer.parseInt(id));
+            ps.executeUpdate();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
         }
     }
 }

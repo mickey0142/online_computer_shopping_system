@@ -9,12 +9,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Customers;
 
 /**
  *
@@ -108,30 +110,25 @@ public class RegisterServlet extends HttpServlet {
             }
             if (success)
             {
-                try
+                Customers cus = new Customers();
+                cus.setFirstname(firstname);
+                cus.setLastname(lastname);
+                cus.setUsername(username);
+                cus.setPassword(password);
+                cus.setPhoneNumber(phone);
+                cus.setEmail(email);
+                cus.setAddress(address);
+                String result = cus.addToDB(conn);
+                System.out.println(result);
+                if (result.equals("success"))
                 {
-                    String sql = "insert into customers (firstname, lastname, username, password, phone, email, address) values (?, ?, ?, ?, ?, ?, ?)";
-                    PreparedStatement ps = conn.prepareStatement(sql);
-                    ps.setString(1, firstname);
-                    ps.setString(2, lastname);
-                    ps.setString(3, username);
-                    ps.setString(4, password);
-                    ps.setString(5, phone);
-                    ps.setString(6, email);
-                    ps.setString(7, address);
-                    if (ps.executeUpdate() < 0)
-                    {
-                        System.out.println("insert error");
-                    }
-                    else
-                    {
-                        session.setAttribute("message", "Register Success!");
-                        response.sendRedirect("register.jsp");
-                    }
+                    session.setAttribute("message", "Register Success!");
+                    response.sendRedirect("register.jsp");
                 }
-                catch (Exception e)
+                else if (result.equals("duplicatedUsername"))
                 {
-                    e.printStackTrace();
+                    session.setAttribute("message", "Username is already exists");
+                    response.sendRedirect("register.jsp");
                 }
             }
             else

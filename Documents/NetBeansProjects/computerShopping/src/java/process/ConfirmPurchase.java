@@ -56,47 +56,8 @@ public class ConfirmPurchase extends HttpServlet {
             HttpSession session = request.getSession();
             Orders order = (Orders) session.getAttribute("order");
             // add insert differentation for credit payment and bank payment later !!
-            try
-            {
-                String sql = "insert into orders (status, totalPrice, customerId, orderDate) values ('not paid', ? , ?, ?)";
-                PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                ps.setDouble(1, order.getTotalPrice());
-                ps.setInt(2, Integer.parseInt(order.getCustomerId()));
-                java.sql.Date sqlDate = new Date(Calendar.getInstance().getTime().getTime());
-                ps.setDate(3, sqlDate);
-                if (ps.executeUpdate() < 0)
-                {
-                    System.out.println("insert order error");
-                }
-                ResultSet rs = ps.getGeneratedKeys();
-                
-                // orderId is work as a primary key to insert data in orderdetails
-                // this will work if number of row affected is equal to orderId
-                int orderId = -1;
-                if (rs.next())
-                {
-                    orderId = rs.getInt(1);
-                }
-                for (ProductLists i : order.getProductList())
-                {
-                    sql = "insert into orderdetails values (?, ?, ?, ?)";
-                    ps = conn.prepareCall(sql);
-                    ps.setInt(1, orderId);
-                    ps.setString(2, i.getProduct().getId());
-                    ps.setInt(3, i.getQuantity());
-                    ps.setDouble(4, i.getProduct().getPrice() * i.getQuantity());
-                    if (ps.executeUpdate() < 0)
-                    {
-                        System.out.println("insert order details error");
-                    }
-                }
-                order.getProductList().clear();
-                order.setTotalPrice(0);
-            }
-            catch(Exception e)
-            {
-                e.printStackTrace();
-            }
+            String paymentType = (String) session.getAttribute("paymentType");
+            order.addToDB(paymentType);
             response.sendRedirect("manageCart.jsp");
         }
     }

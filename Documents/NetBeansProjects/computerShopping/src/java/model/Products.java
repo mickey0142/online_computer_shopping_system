@@ -5,18 +5,19 @@
  */
 package model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
 /**
  *
  * @author Mickey
  */
 public class Products implements java.io.Serializable{
 
-    private String id;
-    private String name;
-    private String description;
-    private double price;
-    private String compatibility;
-    private double powerConsumption;
+    protected String id;
+    protected String name;
+    protected String description;
+    protected double price;
 
     public Products() {
 
@@ -27,23 +28,6 @@ public class Products implements java.io.Serializable{
         this.name = name;
         this.description = description;
         this.price = price;
-    }
-
-    public Products(String id, String name, String description, double price, double powerConsumption) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.powerConsumption = powerConsumption;
-    }
-
-    public Products(String id, String name, String description, double price, String compatibility, double powerConsumption) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.compatibility = compatibility;
-        this.powerConsumption = powerConsumption;
     }
 
     public String getId() {
@@ -77,20 +61,23 @@ public class Products implements java.io.Serializable{
     public void setPrice(double price) {
         this.price = price;
     }
-
-    public String getCompatibility() {
-        return compatibility;
-    }
-
-    public void setCompatibility(String compatibility) {
-        this.compatibility = compatibility;
-    }
-
-    public double getPowerConsumption() {
-        return powerConsumption;
-    }
-
-    public void setPowerConsumption(double powerConsumption) {
-        this.powerConsumption = powerConsumption;
+    
+    public void updateDB(int inStock, Connection conn)
+    {
+        try
+        {
+            String sql = "update products set productName = ?, description = ?, inStock = ?, price = ? where productId = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setString(2, description);
+            ps.setInt(3, inStock);
+            ps.setDouble(4, price);
+            ps.setString(5, id);
+            ps.executeUpdate();
+        }
+        catch (Exception e) 
+        {
+            e.printStackTrace();
+        }
     }
 }
