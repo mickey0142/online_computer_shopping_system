@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package process;
+package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,8 +23,8 @@ import model.Products;
  *
  * @author Mickey
  */
-@WebServlet(name = "ManageProduct", urlPatterns = {"/ManageProduct.emp"})
-public class ManageProduct extends HttpServlet {
+@WebServlet(name = "UpdateProduct", urlPatterns = {"/UpdateProduct.emp"})
+public class UpdateProduct extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -62,7 +62,7 @@ public class ManageProduct extends HttpServlet {
             else powerConsumption = -1;
             String compatibility = request.getParameter("compatibility");
             
-            if (compatibility != null || !compatibility.equals(""))
+            if (compatibility != null)
             {
                 ProductType2 pt2 = new ProductType2();
                 pt2.setId(productId);
@@ -71,6 +71,7 @@ public class ManageProduct extends HttpServlet {
                 pt2.setPrice(price);
                 pt2.setPowerConsumption(powerConsumption);
                 pt2.setCompatibility(compatibility);
+                pt2.updateDB(inStock, conn);
             }
             else if (powerConsumption != 1)
             {
@@ -101,7 +102,7 @@ public class ManageProduct extends HttpServlet {
                 ps.setDouble(4, price);
                 ps.setString(5, productId);
                 ps.executeUpdate();
-                if (compatibility != null || !compatibility.equals(""))
+                if (compatibility != null)
                 {
                     sql = "update producttype2 set powerConsumption = ?, compatibility = ? where productId = ?";
                     ps = conn.prepareStatement(sql);
@@ -122,7 +123,7 @@ public class ManageProduct extends HttpServlet {
             {
                 e.printStackTrace();
             }
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("manageProduct.jsp");
         }
     }
 

@@ -62,4 +62,31 @@ public class ProductType2 extends Products{
             e.printStackTrace();
         }
     }
+    
+    @Override
+    public void addToDB(int inStock, Connection conn)
+    {
+        try
+        {
+            String sql = "insert into products values (?, ?, ?, ?, ?, ?)";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, id);
+            ps.setString(2, name);
+            ps.setString(3, description);
+            ps.setInt(4, inStock);
+            ps.setDouble(5, price);
+            ps.setString(6, "type2");
+            ps.executeUpdate();
+            sql = "insert into producttype2 values (?, ?, ?)";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, id);
+            ps.setDouble(2, powerConsumption);
+            ps.setString(3, compatibility);
+            ps.executeUpdate();
+        }
+        catch (Exception e) 
+        {
+            e.printStackTrace();
+        }
+    }
 }

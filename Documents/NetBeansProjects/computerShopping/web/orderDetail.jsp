@@ -14,6 +14,7 @@
         <title>order detail</title>
     </head>
     <body>
+        <a href="manageOrder.jsp">manage order</a> | <a href="manageProduct.jsp">manage product</a> | <a href="LogoutServlet">log out</a>
         <h1>order detail</h1>
         <sql:query dataSource="comshopdb" var="orderData">
             select * from orders join customers using(customerId) where orderId = ${param.orderId}
@@ -23,7 +24,7 @@
         </sql:query>
         <c:forEach var="i"  items="${orderData.rows}">
             order Id : ${i.orderId}<br>
-            payment Proof : ${i.paymentProof}<br>
+            payment Proof : <img src="ShowPicture?id=${i.orderId}"/><br>
             Status : ${i.status}<br>
             Total Price : ${i.totalPrice}<br>
             Customer Id : ${i.customerId}<br>
@@ -37,6 +38,7 @@
                     <option>not paid</option>
                     <option>paid</option>
                     <option>shipping</option>
+                    <option>cancelled</option>
                 </select>
                 <c:set scope="session" var="orderId" value="${i.orderId}" />
                 <input type="submit" value="update" />

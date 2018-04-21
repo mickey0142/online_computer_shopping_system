@@ -1,4 +1,4 @@
-package process;
+package controller;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -60,12 +60,12 @@ public class LoginServlet extends HttpServlet {
             try
             {
                 String sql = "";
-                if (username.startsWith("emp01"))
+                if (username.startsWith("emp02") || username.startsWith("emp03"))
                 {
                     sql = "select * from employees where username = ? and password = ?";
                     userType = "employee";
                 }
-                else if (username.startsWith("emp02"))
+                else if (username.startsWith("emp01"))
                 {
                     sql = "select * from accountingemp where username = ? and password = ?";
                     userType = "employee";
@@ -109,13 +109,14 @@ public class LoginServlet extends HttpServlet {
                         order.setCustomerId(cus.getId());
                         order.setConnection(conn);
                         session.setAttribute("order", order);
+                        response.sendRedirect("index.jsp");
                     }
                     else
                     {
                         emp.setId(rs.getString("employeeId"));
                         session.setAttribute("userInfo", emp);
+                        response.sendRedirect("empindex.jsp");
                     }
-                    response.sendRedirect("index.jsp");
                 }
                 else
                 {

@@ -3,32 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package process;
+package controller;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.sql.Blob;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Orders;
-import model.ProductLists;
-import model.Products;
 
 /**
  *
  * @author Mickey
  */
-@WebServlet(name = "ConfirmPurchase", urlPatterns = {"/ConfirmPurchase.in"})
-public class ConfirmPurchase extends HttpServlet {
+@WebServlet(name = "ShowPicture", urlPatterns = {"/ShowPicture"})
+public class ShowPicture extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,26 +35,60 @@ public class ConfirmPurchase extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     
+    
     private Connection conn;
-
+    
     @Override
     public void init()
     {
-        conn = (Connection) getServletContext().getAttribute("connection");
+        try
+        {
+            conn = (Connection) getServletContext().getAttribute("connection");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        
             /* TODO output your page here. You may use following sample code. */
-            HttpSession session = request.getSession();
-            Orders order = (Orders) session.getAttribute("order");
-            // add insert differentation for credit payment and bank payment later !!
-            String paymentType = (String) session.getAttribute("paymentType");
-            order.addToDB(paymentType);
-            response.sendRedirect("manageCart.jsp");
-        }
+            int id = Integer.parseInt(request.getParameter("id"));
+            String sql = "select paymentProof from orders where orderId = ?";
+            try
+            {
+                Blob image;
+                byte[] imgData = null;
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setInt(1, id);
+                ResultSet rs = ps.executeQuery();
+                if(rs.next())
+                {
+                    image = rs.getBlob("paymentProof");
+                    if (image == null)
+                    {
+                        throw new NullPointerException();
+                    }
+                    imgData = image.getBytes(1, (int) image.length());
+                }
+                response.setContentType("image/jpeg");
+                OutputStream output = response.getOutputStream();
+                output.write(imgData);
+                output.flush();
+                output.close();
+            }
+            catch(NullPointerException e)
+            {
+                System.out.println("from ShowPicture.java : picture not found");
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

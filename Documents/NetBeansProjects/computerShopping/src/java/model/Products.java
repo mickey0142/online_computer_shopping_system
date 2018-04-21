@@ -80,4 +80,24 @@ public class Products implements java.io.Serializable{
             e.printStackTrace();
         }
     }
+    
+    public void addToDB(int inStock, Connection conn)
+    {
+        try
+        {
+            String sql = "insert into products values (?, ?, ?, ?, ?, ?)";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, id);
+            ps.setString(2, name);
+            ps.setString(3, description);
+            ps.setInt(4, inStock);
+            ps.setDouble(5, price);
+            ps.setString(6, "normal");
+            ps.executeUpdate();
+        }
+        catch (Exception e) 
+        {
+            e.printStackTrace();
+        }
+    }
 }

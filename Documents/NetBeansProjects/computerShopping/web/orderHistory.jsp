@@ -20,15 +20,31 @@
             select * from orders where customerId = ${sessionScope.userInfo.getId()}
         </sql:query>
         <c:forEach var="i" items="${data.rows}">
-            <h2>orderid : ${i.orderId} <br>
-            paymentproof : ${i.paymentProof} status : ${i.status} totalprice : ${i.totalPrice} orderdate : ${i.orderDate}</h2>
-            <sql:query dataSource="comshopdb" var="detail">
-                select * from orderdetails where orderId = ${i.orderId}
-            </sql:query>
-            <c:forEach var="j" items="${detail.rows}">
-                Product Id : ${j.productId} Quantity : ${j.quantity} price : ${j.price}<br>
-            </c:forEach>
-            <br><br>
+            <div style="border: 1px solid black">
+                <h2>orderid : ${i.orderId} <br>
+                    payment proof : <img src="ShowPicture?id=${i.orderId}"/> status : ${i.status} totalprice : ${i.totalPrice} orderdate : ${i.orderDate}</h2>
+                <sql:query dataSource="comshopdb" var="detail">
+                    select * from orderdetails where orderId = ${i.orderId}
+                </sql:query>
+                <table>
+                    <tr>
+                        <th>Product Id</th><th>Product Name</th><th>Quantity</th><th>Price</th>
+                    </tr>
+                    <c:forEach var="j" items="${detail.rows}">
+                        <tr>
+                            <td>${j.productId}</td><td>${j.productName}</td><td>${j.quantity}</td><td>${j.price}</td>
+                        </tr>
+                    </c:forEach>
+                </table>
+                <c:set scope="session" value="orderHistory.jsp" var="back"/>
+                <form action="InsertPicture?id=${i.orderId}" method="POST" enctype="multipart/form-data">
+                    file : <input type="file" name="picture" />
+                    <input type="submit" value="upload" />
+                </form>
+                <form action="CancelOrder.in?id=${i.orderId}" method="POST">
+                    <input type="submit" value="cancel order" />
+                </form>
+            </div>
         </c:forEach>
     </body>
 </html>

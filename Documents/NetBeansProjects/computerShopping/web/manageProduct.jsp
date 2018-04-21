@@ -1,6 +1,6 @@
 <%-- 
     Document   : manageProduct
-    Created on : Apr 15, 2018, 3:26:09 PM
+    Created on : Apr 21, 2018, 4:42:19 PM
     Author     : Mickey
 --%>
 
@@ -14,36 +14,21 @@
         <title>Manage Product</title>
     </head>
     <body>
-        <sql:query dataSource="comshopdb" var="product">
-            select * from products where productId = '${param.name}'
-        </sql:query>
+        <a href="manageOrder.jsp">manage order</a> | <a href="manageProduct.jsp">manage product</a> | <a href="LogoutServlet">log out</a>
         <h1>Manage Product</h1>
-        <c:forEach var="i" items="${product.rows}">
-            <form action="ManageProduct.emp" method="POST">
-                Product id : <input type="text" name="productId" value="${i.productName}" readonly="readonly" /><br>
-                Product Name : <input type="text" name="productName" value="" /><br>
-                Description : <input type="text" name="Description" value="" /><br>
-                In Stock : <input type="text" name="inStock" value="" /><br>
-                Price : <input type="text" name="price" value="" /><br>
-                <c:if test="${i.productType == 'type1'}">
-                    <sql:query dataSource="comshopdb" var="producttype1">
-                        select * from producttype1 where productId = '${i.productId}'
-                    </sql:query>
-                    <c:forEach var="j" items="${producttype1.rows}">
-                        Power Consumption : <input type="text" name="powerConsumption" value="" /><br>
-                    </c:forEach>
-                </c:if>
-                <c:if test="${i.productType == 'type2'}">
-                    <sql:query dataSource="comshopdb" var="producttype2">
-                        select * from producttype2 where productId = '${i.productId}'
-                    </sql:query>
-                    <c:forEach var="j" items="${producttype2.rows}">
-                        Power Consumption : <input type="text" name="powerConsumption" value="" /><br>
-                        Compatibility : <input type="text" name="compatibility" value="" /><br>
-                    </c:forEach>
-                </c:if>
-                <input type="submit" value="update" />
-            </form>
-        </c:forEach>
+        <sql:query dataSource="comshopdb" var="product">
+            select * from products
+        </sql:query>
+        <table>
+            <tr>
+                <th>Product Id</th><th>Product Name</th><th>Price</th><th>In Stock</th><th>update</th>
+            </tr>
+            <c:forEach var="i" items="${product.rows}">
+                <tr>
+                    <td>${i.productId}</td><td>${i.productName}</td><td>${i.inStock}</td><td>${i.price}</td><td><a href="updateProduct.jsp?name=${i.productId}">update</a></td>
+                </tr>
+            </c:forEach>
+        </table>
+        <a href="addProduct.jsp">add product</a>
     </body>
 </html>

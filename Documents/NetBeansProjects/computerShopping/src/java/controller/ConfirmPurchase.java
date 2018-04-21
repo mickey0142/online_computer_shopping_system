@@ -3,26 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package process;
+package controller;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
+import javax.servlet.http.HttpSession;
+import model.Orders;
+import model.ProductLists;
+import model.Products;
 
 /**
  *
  * @author Mickey
  */
-@WebServlet(name = "InsertPicture", urlPatterns = {"/InsertPicture"})
-public class InsertPicture extends HttpServlet {
+@WebServlet(name = "ConfirmPurchase", urlPatterns = {"/ConfirmPurchase.in"})
+public class ConfirmPurchase extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,18 +41,11 @@ public class InsertPicture extends HttpServlet {
      */
     
     private Connection conn;
-    
+
     @Override
     public void init()
     {
-        try
-        {
-            conn = (Connection) getServletContext().getAttribute("connection");
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
+        conn = (Connection) getServletContext().getAttribute("connection");
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -54,33 +53,12 @@ public class InsertPicture extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            InputStream input = null;
-            Part filePart = request.getPart("picture");
-            if (filePart != null)
-            {
-                // prints out some information for debugging
-                System.out.println(filePart.getName());
-                System.out.println(filePart.getSize());
-                System.out.println(filePart.getContentType());
-
-                // obtains input stream of the upload file
-                input = filePart.getInputStream();
-            }
-            try
-            {
-                String sql = "insert into testpicture values ('1', ?)";// change this to picture table later
-                PreparedStatement ps = conn.prepareStatement(sql);
-                ps.setBlob(1, input);
-                if (ps.executeUpdate() < 0)
-                {
-                    System.out.println("insert error");
-                }
-            }
-            catch(Exception e)
-            {
-                e.printStackTrace();
-            }
-            response.sendRedirect("picture.jsp");// change this later
+            HttpSession session = request.getSession();
+            Orders order = (Orders) session.getAttribute("order");
+            // add insert differentation for credit payment and bank payment later !!
+            String paymentType = (String) session.getAttribute("paymentType");
+            order.addToDB(paymentType);
+            response.sendRedirect("manageCart.jsp");
         }
     }
 

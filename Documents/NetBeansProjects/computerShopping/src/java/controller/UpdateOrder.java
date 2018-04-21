@@ -3,25 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package process;
+package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Products;
 import model.Orders;
 
 /**
  *
  * @author Mickey
  */
-@WebServlet(name = "addToCart", urlPatterns = {"/addToCart.in"})
-public class addToCart extends HttpServlet {
+@WebServlet(name = "UpdateOrder", urlPatterns = {"/UpdateOrder.emp"})
+public class UpdateOrder extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,16 +33,30 @@ public class addToCart extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    private Connection conn;
+
+    @Override
+    public void init()
+    {
+        conn = (Connection) getServletContext().getAttribute("connection");
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
-            Orders order = (Orders) session.getAttribute("order");
-            String id = request.getParameter("productId");
-            order.addItem(id);
-            response.sendRedirect("product.jsp?id=" + request.getParameter("productId"));
+            String status = request.getParameter("status");
+            int orderId = (int) session.getAttribute("orderId");
+            String orderIds = Integer.toString(orderId);
+            Orders order = new Orders();
+            order.setId(orderIds);
+            order.setStatus(status);
+            order.setConnection(conn);
+            order.updateDB();
+            response.sendRedirect("orderDetail.jsp?orderId=" + orderIds);
         }
     }
 

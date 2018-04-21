@@ -3,24 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package process;
+package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Orders;
+import model.ProductType1;
+import model.ProductType2;
+import model.Products;
 
 /**
  *
  * @author Mickey
  */
-@WebServlet(name = "ManageCart", urlPatterns = {"/ManageCart.in"})
-public class ManageCart extends HttpServlet {
+@WebServlet(name = "AddProduct", urlPatterns = {"/AddProduct.emp"})
+public class AddProduct extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,27 +34,65 @@ public class ManageCart extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    private Connection conn;
+
+    @Override
+    public void init()
+    {
+        conn = (Connection) getServletContext().getAttribute("connection");
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
-            Orders order = (Orders) session.getAttribute("order");
-            String name = null;
-            int count = 0;
-            boolean remove = false;
-            while (name == null && count < order.getProductList().size())
+            String productId = request.getParameter("productId");
+            String productName = request.getParameter("productName");
+            String description = request.getParameter("description");
+            int inStock = Integer.parseInt(request.getParameter("inStock"));
+            double price = Double.parseDouble(request.getParameter("price"));
+            String temp = request.getParameter("powerConsumption");
+            double powerConsumption;
+            String compatibility = request.getParameter("compatibility");
+            if (temp != null && !temp.equals(""))
             {
-                name = request.getParameter("button"+count);
-                if (name == null)count += 1;
-                else remove = true;
+                powerConsumption = Double.parseDouble(temp);
             }
-            if (remove)
+            else powerConsumption = -1;
+            if (compatibility != null && !compatibility.equals(""))
             {
-                order.getProductList().remove(count);
-                response.sendRedirect("manageCart.jsp");
+                ProductType2 pt2 = new ProductType2();
+                pt2.setId(productId);
+                pt2.setName(productName);
+                pt2.setDescription(description);
+                pt2.setPrice(price);
+                pt2.setPowerConsumption(powerConsumption);
+                pt2.setCompatibility(compatibility);
+                pt2.addToDB(inStock, conn);
             }
+            else if (powerConsumption != -1)
+            {
+                ProductType1 pt1 = new ProductType1();
+                pt1.setId(productId);
+                pt1.setName(productName);
+                pt1.setDescription(description);
+                pt1.setPrice(price);
+                pt1.setPowerConsumption(powerConsumption);
+                pt1.addToDB(inStock, conn);
+            }
+            else
+            {
+                Products product = new Products();
+                product.setId(productId);
+                product.setName(productName);
+                product.setDescription(description);
+                product.setPrice(price);
+                product.addToDB(inStock, conn);
+            }
+            response.sendRedirect("manageProduct.jsp");
         }
     }
 

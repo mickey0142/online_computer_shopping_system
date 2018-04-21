@@ -3,27 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package process;
+package controller;
 
 import java.io.IOException;
-import java.io.OutputStream;
+import java.io.InputStream;
 import java.io.PrintWriter;
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author Mickey
  */
-@WebServlet(name = "showImage", urlPatterns = {"/showImage"})
-public class ShowPicture extends HttpServlet {
+@WebServlet(name = "InsertPicture", urlPatterns = {"/InsertPicture"})
+@javax.servlet.annotation.MultipartConfig
+public class InsertPicture extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,7 +35,6 @@ public class ShowPicture extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     
     private Connection conn;
     
@@ -56,31 +56,37 @@ public class ShowPicture extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String id = request.getParameter("id");
-            String sql = "select picture from testpicture where id = ?";
+            HttpSession session = request.getSession();
+            InputStream input = null;
+            Part filePart = request.getPart("picture");
+            if (filePart != null)
+            {
+                // prints out some information for debugging
+                System.out.println(filePart.getName());
+                System.out.println(filePart.getSize());
+                System.out.println(filePart.getContentType());
+
+                // obtains input stream of the upload file
+                input = filePart.getInputStream();
+            }
             try
             {
-                Blob image;
-                byte[] imgData = null;
+                String sql = "update orders set paymentProof = ? where orderId = ?";
                 PreparedStatement ps = conn.prepareStatement(sql);
-                ps.setString(1, id);
-                ResultSet rs = ps.executeQuery();
-                if(rs.next())
+                int id = Integer.parseInt(request.getParameter("id"));
+                System.out.println(id);
+                ps.setBlob(1, input);
+                ps.setInt(2, id);
+                if (ps.executeUpdate() < 0)
                 {
-//                    System.out.println("eieieieieieieieieieieieieieieieieiei");
-                    image = rs.getBlob("picture");
-                    imgData = image.getBytes(1, (int) image.length());
+                    System.out.println("insert error");
                 }
-                response.setContentType("image/jpeg");
-                OutputStream output = response.getOutputStream();
-                output.write(imgData);
-                output.flush();
-                output.close();
             }
             catch(Exception e)
             {
                 e.printStackTrace();
             }
+            response.sendRedirect((String) session.getAttribute("back"));
         }
     }
 
