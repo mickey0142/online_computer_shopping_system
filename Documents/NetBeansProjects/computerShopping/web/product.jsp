@@ -29,7 +29,7 @@
             </c:if>
             <!-- check if to query for more data if product is not normal type -->
             <c:if test="${i.instock > 0}">
-                <a href="addToCart.in?productId=${i.productId}">
+                <a href="AddToCart.in?productId=${i.productId}">
                     <div style="display: inline-block; width: 100px; height: 100px; background-color: lightblue">
                         add to cart
                     </div>

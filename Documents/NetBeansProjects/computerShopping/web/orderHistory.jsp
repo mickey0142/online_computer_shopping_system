@@ -38,11 +38,11 @@
                 </table>
                 <c:set scope="session" value="orderHistory.jsp" var="back"/>
                 <form action="InsertPicture?id=${i.orderId}" method="POST" enctype="multipart/form-data">
-                    file : <input type="file" name="picture" />
-                    <input type="submit" value="upload" />
+                    file : <input type="file" name="picture" <c:if test="${i.status != 'not paid'}">disabled="disabled"</c:if> />
+                    <input type="submit" value="upload" <c:if test="${i.status != 'not paid'}">disabled="disabled"</c:if>/>
                 </form>
                 <form action="CancelOrder.in?id=${i.orderId}" method="POST">
-                    <input type="submit" value="cancel order" />
+                    <input type="submit" value="cancel order" <c:if test="${i.status == 'cancelled'}">disabled="disabled"</c:if> />
                 </form>
             </div>
         </c:forEach>

@@ -103,20 +103,41 @@ public class Orders implements java.io.Serializable{
         this.conn = conn;
     }
     
-    public void addItem(String id)// change how all of this work with product type
+    public void addItem(String id)
     {
         try
         {
             Statement stmt = conn.createStatement();
             String sql = "select * from products where productId = '" + id + "'";
             ResultSet rs = stmt.executeQuery(sql);
-            while(rs.next())
+            double powerConsumption = -1;
+            String compatibility = null;
+            if(rs.next())
             {
                 Products pd = new Products();
                 pd.setId(id);
                 pd.setName(rs.getString("productName"));
                 pd.setDescription(rs.getString("description"));
                 pd.setPrice(rs.getDouble("price"));
+                if (id.startsWith("01") || id.startsWith("02") || id.startsWith("03"))
+                {
+                    sql = "select * from producttype2 where productId = '" + id + "'";
+                    rs = stmt.executeQuery(sql);
+                    if(rs.next())
+                    {
+                        powerConsumption = rs.getDouble("powerConsumption");
+                        compatibility = rs.getString("compatibility");
+                    }
+                }
+                if (id.startsWith("04") || id.startsWith("05") || id.startsWith("06"))
+                {
+                    sql = "select * from producttype1 where productId = '" + id + "'";
+                    rs = stmt.executeQuery(sql);
+                    if(rs.next())
+                    {
+                        powerConsumption = rs.getDouble("powerConsumption");
+                    }
+                }
                 boolean duplicate = false;
                 for (ProductLists p : productList)
                 {
@@ -132,6 +153,14 @@ public class Orders implements java.io.Serializable{
                     ProductLists pl = new ProductLists();
                     pl.setProduct(pd);
                     pl.setQuantity(1);
+                    if (powerConsumption != -1)
+                    {
+                        pl.setPowerConsumption(powerConsumption);
+                    }
+                    if (compatibility != null)
+                    {
+                        pl.setCompatibility(compatibility);
+                    }
                     productList.add(pl);
                 }
                 Collections.sort(productList, new Comparator<ProductLists>() {
@@ -193,6 +222,7 @@ public class Orders implements java.io.Serializable{
             }
             for (ProductLists i : productList)
             {
+                // insert data into order details
                 sql = "insert into orderdetails values (?, ?, ?, ?)";
                 ps = conn.prepareStatement(sql);
                 ps.setInt(1, orderId);
@@ -202,6 +232,12 @@ public class Orders implements java.io.Serializable{
                 if (ps.executeUpdate() < 0) {
                     System.out.println("insert order details error");
                 }
+                // decrease instock in products
+                sql = "update products set inStock = inStock - ? where productId = ?";
+                ps = conn.prepareStatement(sql);
+                ps.setInt(1, i.getQuantity());
+                ps.setString(2, i.getProduct().getId());
+                ps.executeUpdate();
             }
             productList.clear();
             totalPrice = 0;
@@ -219,6 +255,18 @@ public class Orders implements java.io.Serializable{
             ps.setString(1, status);
             ps.setInt(2, Integer.parseInt(id));
             ps.executeUpdate();
+            sql = "select * from orderdetails where orderId = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, Integer.parseInt(id));
+            ResultSet rs = ps.executeQuery();
+            while (rs.next())
+            {
+                sql = "update products set inStock = inStock + ? where productId = ?";
+                ps = conn.prepareStatement(sql);
+                ps.setInt(1, rs.getInt("quantity"));
+                ps.setString(2, rs.getString("productId"));
+                ps.executeUpdate();
+            }
         }
         catch (Exception e)
         {

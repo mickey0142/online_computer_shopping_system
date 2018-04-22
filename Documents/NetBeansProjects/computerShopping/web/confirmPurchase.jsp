@@ -13,6 +13,11 @@
         <title>Confirm Purchase</title>
     </head>
     <body>
+        <c:if test="${sessionScope.message != '' and sessionScope.message != null}">
+            <script>
+                alert("${sessionScope.message}");
+            </script>
+        </c:if>
         <h1>confirm purchase</h1>
         เลือกประเภทการชำระเงิน <br>
         <c:if test="${empty param.paytype}">
@@ -33,7 +38,10 @@
         <c:if test="${param.paytype == 'credit'}">
             บัตรเครดิต<br>
             <form action="ConfirmPurchase.in" method="POST">
-                หมายเลขบัตร : <input type="text" name="creditCardId" value="" /><br>
+                หมายเลขบัตร : <input type="text" name="cardNumber" value="" /><br>
+                ชื่อผู้ถือบัตร : <input type="text" name="cardName" value="" /><br>
+                วันหมดอายุ : <input type="text" name="expireDate" value="" /><br>
+                CVV : <input type="text" name="cvv" value="" /><br>
                 <c:set scope="session" var="paymentType" value="credit"/>
                 <input type="submit" value="ยืนยันการสั่งซื้อ" />
             </form>
@@ -46,7 +54,8 @@
                 <input type="submit" value="ยืนยันการสั่งซื้อ" />
             </form>
         </c:if>
-
+        <% session.setAttribute("message", "");%>
+        
         <!--javascript-->
         <script>
             function submitForm()
