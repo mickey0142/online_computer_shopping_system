@@ -20,8 +20,8 @@ import model.Orders;
  *
  * @author Mickey
  */
-@WebServlet(name = "addToCart", urlPatterns = {"/addToCart.in"})
-public class addToCart extends HttpServlet {
+@WebServlet(name = "AddToCart", urlPatterns = {"/AddToCart.in"})
+public class AddToCart extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
