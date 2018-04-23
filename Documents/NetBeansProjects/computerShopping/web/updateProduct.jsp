@@ -22,7 +22,7 @@
             <form action="UpdateProduct.emp" method="POST">
                 Product id : <input type="text" name="productId" value="${i.productId}" readonly="readonly" /><br>
                 Product Name : <input type="text" name="productName" value="${i.productName}" /><br>
-                Description : <input type="text" name="Description" value="${i.description}" /><br>
+                Description : <textarea name="description" rows="8" cols="50">${i.description}</textarea><br>
                 In Stock : <input type="text" name="inStock" value="${i.inStock}" /><br>
                 Price : <input type="text" name="price" value="${i.price}" /><br>
                 <c:if test="${i.productType == 'type1'}">

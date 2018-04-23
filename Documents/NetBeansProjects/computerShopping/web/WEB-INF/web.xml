@@ -4,6 +4,14 @@
         <filter-name>LoginFilter</filter-name>
         <filter-class>filter.LoginFilter</filter-class>
     </filter>
+    <filter>
+        <filter-name>EmpFilter</filter-name>
+        <filter-class>filter.EmpFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>EmpFilter</filter-name>
+        <url-pattern>*.emp</url-pattern>
+    </filter-mapping>
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
         <url-pattern>*.in</url-pattern>

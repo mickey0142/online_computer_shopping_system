@@ -115,6 +115,8 @@ public class LoginServlet extends HttpServlet {
                     {
                         emp.setId(rs.getString("employeeId"));
                         session.setAttribute("userInfo", emp);
+                        session.setAttribute("isEmp", "yes");
+                        // employee go to page after login here
                         response.sendRedirect("empindex.jsp");
                     }
                 }

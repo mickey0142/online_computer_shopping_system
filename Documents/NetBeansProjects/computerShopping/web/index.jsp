@@ -21,6 +21,12 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
     </head>
     <body>
+        <c:if test="${sessionScope.message != '' and sessionScope.message != null}">
+            <script>
+                alert("${sessionScope.message}");
+            </script>
+        </c:if>
+        <% session.setAttribute("message", "");%>
         <c:if test="${sessionScope.productTypeId == null}">
             <c:set scope="session" var="productTypeId" value="%"/>
         </c:if>
@@ -34,8 +40,38 @@
         </form>
         
         <form action="SetSessionValue?attributeName=productTypeId" method="POST" id="productTypeForm">
-            <div onclick="submitForm('01')">
+            <div onclick="submitForm('%')" style="background-color: lightgray; margin-top: 5px; width: 100px;">
+                all
+            </div>
+            <div onclick="submitForm('01')" style="background-color: lightgray; margin-top: 5px; width: 100px;">
                 mainboard
+            </div>
+            <div onclick="submitForm('02')" style="background-color: lightgray; margin-top: 5px; width: 100px;">
+                cpu
+            </div>
+            <div onclick="submitForm('03')" style="background-color: lightgray; margin-top: 5px; width: 100px;">
+                ram
+            </div>
+            <div onclick="submitForm('04')" style="background-color: lightgray; margin-top: 5px; width: 100px;">
+                power supply
+            </div>
+            <div onclick="submitForm('05')" style="background-color: lightgray; margin-top: 5px; width: 100px;">
+                graphic card
+            </div>
+            <div onclick="submitForm('06')" style="background-color: lightgray; margin-top: 5px; width: 100px;">
+                harddisk
+            </div>
+            <div onclick="submitForm('07')" style="background-color: lightgray; margin-top: 5px; width: 100px;">
+                monitor
+            </div>
+            <div onclick="submitForm('08')" style="background-color: lightgray; margin-top: 5px; width: 100px;">
+                keyboard
+            </div>
+            <div onclick="submitForm('09')" style="background-color: lightgray; margin-top: 5px; width: 100px;">
+                mouse
+            </div>
+            <div onclick="submitForm('10')" style="background-color: lightgray; margin-top: 5px; width: 100px;">
+                case
             </div>
             <input type="hidden" value="${sessionScope.productTypeId}" id="productType" name="productTypeId"/>
         </form>

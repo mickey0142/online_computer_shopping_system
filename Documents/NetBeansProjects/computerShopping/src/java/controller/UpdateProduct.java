@@ -50,6 +50,7 @@ public class UpdateProduct extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
+            request.setCharacterEncoding("UTF-8");
             String productId = request.getParameter("productId");
             String productName = request.getParameter("productName");
             String description = request.getParameter("description");

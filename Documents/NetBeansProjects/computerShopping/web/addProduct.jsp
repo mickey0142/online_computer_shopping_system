@@ -17,7 +17,7 @@
         <form action="AddProduct.emp" method="POST">
             Product Id : <input type="text" name="productId" value="" /><br>
             Product Name : <input type="text" name="productName" value="" /><br>
-            Description : <input type="text" name="description" value="" /><br>
+            Description : <textarea name="description" rows="8" cols="50"></textarea><br>
             In Stock : <input type="text" name="inStock" value="" /><br>
             Price : <input type="text" name="price" value="" /><br>
             Power Consumption : <input type="text" name="powerConsumption" value="" /><br>
