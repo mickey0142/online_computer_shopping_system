@@ -17,6 +17,7 @@
         <sql:query dataSource="comshopdb" var="product">
             select * from products where productId = '${param.name}'
         </sql:query>
+        <%@include file="menu.jsp" %>
         <h1>Update Product</h1>
         <c:forEach var="i" items="${product.rows}">
             <form action="UpdateProduct.emp" method="POST">

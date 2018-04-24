@@ -38,6 +38,7 @@ public class AddToCart extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
+            request.setCharacterEncoding("UTF-8");
             Orders order = (Orders) session.getAttribute("order");
             String id = request.getParameter("productId");
             order.addItem(id);

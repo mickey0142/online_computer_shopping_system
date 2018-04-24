@@ -48,6 +48,7 @@ public class RegisterServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
+            request.setCharacterEncoding("UTF-8");
             String firstname = request.getParameter("firstname");
             String lastname = request.getParameter("lastname");
             String username = request.getParameter("username");

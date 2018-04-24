@@ -52,6 +52,7 @@ public class LoginServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
+            request.setCharacterEncoding("UTF-8");
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             Customers cus = new Customers();
@@ -78,15 +79,15 @@ public class LoginServlet extends HttpServlet {
                 PreparedStatement ps = conn.prepareStatement(sql);
                 if (username.startsWith("emp01"))
                 {
-                    emp.setEmployeeType("employee");
+                    emp.setEmployeeType("accounting");
                 }
                 else if (username.startsWith("emp02"))
                 {
-                    emp.setEmployeeType("accounting");
+                    emp.setEmployeeType("assemble");
                 }
-                else
+                else if (username.startsWith("emp03"))
                 {
-                    //
+                    emp.setEmployeeType("warehouse");
                 }
                 ps.setString(1, username);
                 ps.setString(2, password);
@@ -117,7 +118,7 @@ public class LoginServlet extends HttpServlet {
                         session.setAttribute("userInfo", emp);
                         session.setAttribute("isEmp", "yes");
                         // employee go to page after login here
-                        response.sendRedirect("empindex.jsp");
+                        response.sendRedirect("index.jsp");
                     }
                 }
                 else

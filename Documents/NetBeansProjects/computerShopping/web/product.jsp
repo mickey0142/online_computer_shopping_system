@@ -28,7 +28,7 @@
                 Out of Stock !!
             </c:if>
             <!-- check if to query for more data if product is not normal type -->
-            <c:if test="${i.instock > 0}">
+            <c:if test="${i.instock > 0 and sessionScope.isEmp == null}">
                 <a href="AddToCart.in?productId=${i.productId}">
                     <div style="display: inline-block; width: 100px; height: 100px; background-color: lightblue">
                         add to cart
@@ -37,6 +37,8 @@
             </c:if>
         </c:forEach>
         <br>
-        <%@include file="showCart.jsp" %>
+        <c:if test="${sessionScope.isEmp == null}">
+            <%@include file="showCart.jsp" %>
+        </c:if>
     </body>
 </html>

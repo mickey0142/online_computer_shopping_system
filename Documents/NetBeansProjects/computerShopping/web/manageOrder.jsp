@@ -14,7 +14,7 @@
         <title>manage order</title>
     </head>
     <body>
-        <a href="manageOrder.jsp">manage order</a> | <a href="manageProduct.jsp">manage product</a> | <a href="LogoutServlet">log out</a>
+        <%@include file="menu.jsp" %>
         <h1>manage order</h1>
         <sql:query dataSource="comshopdb" var="orderData">
             select * from orders order by orderDate

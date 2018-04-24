@@ -36,6 +36,7 @@ public class SetSessionValue extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
+            request.setCharacterEncoding("UTF-8");
             String attributeName = request.getParameter("attributeName");
             System.out.println(attributeName.equals("productType"));
             String value = request.getParameter(attributeName);

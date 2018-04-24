@@ -12,7 +12,7 @@
         <title>Add Product</title>
     </head>
     <body>
-        <a href="manageOrder.jsp">manage order</a> | <a href="manageProduct.jsp">manage product</a> | <a href="LogoutServlet">log out</a>
+        <%@include file="menu.jsp" %>
         <h1>Add Product</h1>
         <form action="AddProduct.emp" method="POST">
             Product Id : <input type="text" name="productId" value="" /><br>

@@ -49,6 +49,7 @@ public class ConfirmPurchase extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
+            request.setCharacterEncoding("UTF-8");
             Orders order = (Orders) session.getAttribute("order");
             // add insert differentation for credit payment and bank payment later !!
             String paymentType = (String) session.getAttribute("paymentType");

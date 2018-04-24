@@ -48,6 +48,7 @@ public class UpdateOrder extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
+            request.setCharacterEncoding("UTF-8");
             String status = request.getParameter("status");
             int orderId = (int) session.getAttribute("orderId");
             String orderIds = Integer.toString(orderId);

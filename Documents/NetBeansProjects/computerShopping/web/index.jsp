@@ -77,7 +77,7 @@
         </form>
         
         <shortcut:select productId="${sessionScope.productTypeId}" search="${param.searchName}"></shortcut:select>
-        <c:if test="${sessionScope.loginFlag}">
+        <c:if test="${sessionScope.loginFlag and sessionScope.isEmp == null}">
             <%@include file="showCart.jsp" %>
         </c:if>
         

@@ -37,6 +37,7 @@ public class ManageCart extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
+            request.setCharacterEncoding("UTF-8");
             Orders order = (Orders) session.getAttribute("order");
             String name = null;
             int count = 0;
