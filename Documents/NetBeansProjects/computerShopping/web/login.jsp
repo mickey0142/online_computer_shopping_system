@@ -88,7 +88,7 @@
                             Password: <input type="password" placeholder="Password" name="password" value=""><br><br>
                             <button type="submit" value="login">เข้าสู่ระบบ</button>
                             <hr>
-                            <a href="rememberPass.html" id="remember">ลืมรหัสผ่าน</a>
+                            <a href="rememberPass.html" id="remember">ลืมรหัสผ่าน</a>${applicationScope.datasourceName}
                             <% session.setAttribute("message", "");%>
                         </div>
                     </form>

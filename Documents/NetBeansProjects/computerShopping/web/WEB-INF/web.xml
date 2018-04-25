@@ -42,4 +42,11 @@
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>
     </resource-ref>
+    <resource-ref>
+        <description>jdbc:mysql://tomcat.it.kmitl.ac.th:3306/webpro_22_test?zeroDateTimeBehavior=convertToNull&amp;autoReconnect=true&amp;useUnicode=yes&amp;characterEncoding=utf8</description>
+        <res-ref-name>realdb</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+    </resource-ref>
 </web-app>

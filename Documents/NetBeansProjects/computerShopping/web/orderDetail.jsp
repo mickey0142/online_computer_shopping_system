@@ -16,10 +16,10 @@
     <body>
         <%@include file="menu.jsp" %>
         <h1>order detail</h1>
-        <sql:query dataSource="comshopdb" var="orderData">
+        <sql:query dataSource="${applicationScope.datasourceName}" var="orderData">
             select * from orders join customers using(customerId) where orderId = ${param.orderId}
         </sql:query>
-        <sql:query dataSource="comshopdb" var="orderDetail">
+        <sql:query dataSource="${applicationScope.datasourceName}" var="orderDetail">
             select * from orders join orderdetails using(orderId) join products using(productId) where orderId = ${param.orderId}
         </sql:query>
         <c:forEach var="i"  items="${orderData.rows}">

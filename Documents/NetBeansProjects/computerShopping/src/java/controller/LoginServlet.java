@@ -6,6 +6,7 @@ package controller;
  * and open the template in the editor.
  */
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -126,6 +127,12 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("message", "Invalid login !");
                     response.sendRedirect("login.jsp");
                 }
+            }
+            catch(EOFException e)
+            {
+                out.println("something went wrong. please try again");
+                out.println("<a href='index.jsp'>back to index</a>");
+                e.printStackTrace();
             }
             catch(Exception e)
             {

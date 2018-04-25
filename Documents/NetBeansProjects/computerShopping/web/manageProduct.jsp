@@ -16,7 +16,7 @@
     <body>
         <%@include file="menu.jsp" %>
         <h1>Manage Product</h1>
-        <sql:query dataSource="comshopdb" var="product">
+        <sql:query dataSource="${applicationScope.datasourceName}" var="product">
             select * from products
         </sql:query>
         <table>

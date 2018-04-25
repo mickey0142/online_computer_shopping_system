@@ -16,7 +16,7 @@
     <body>
         <%@include file="menu.jsp" %>
         <h1>manage order</h1>
-        <sql:query dataSource="comshopdb" var="orderData">
+        <sql:query dataSource="${applicationScope.datasourceName}" var="orderData">
             select * from orders order by orderDate
         </sql:query>
         <table>

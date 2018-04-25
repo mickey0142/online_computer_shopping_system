@@ -26,8 +26,19 @@ public class Init implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         try
         {
-            conn = getComshopdb().getConnection();
+            boolean realdb = true;
+            if(!realdb)
+            {
+                conn = getComshopdb().getConnection();
+                sce.getServletContext().setAttribute("datasourceName", "comshopdb");
+            }
+            else 
+            {
+                conn = getRealdb().getConnection();
+                sce.getServletContext().setAttribute("datasourceName", "realdb");
+            }
             sce.getServletContext().setAttribute("connection", conn);
+            
         }
         catch(Exception e)
         {
@@ -52,4 +63,8 @@ public class Init implements ServletContextListener {
         return (DataSource) c.lookup("java:comp/env/comshopdb");
     }
 
+    private DataSource getRealdb() throws NamingException {
+        Context c = new InitialContext();
+        return (DataSource) c.lookup("java:comp/env/realdb");
+    }
 }

@@ -14,7 +14,7 @@
 <%@attribute name="search"%>
 
 <%-- any content can be specified here e.g.: --%>
-<sql:query dataSource="comshopdb" var="product">
+<sql:query dataSource="${applicationScope.datasourceName}" var="product">
     select * from products where productId like "${productId}%" and productName like "%${search}%"
 </sql:query>
 <c:forEach var="i" items="${product.rows}">

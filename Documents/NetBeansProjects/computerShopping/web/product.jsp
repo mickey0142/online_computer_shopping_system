@@ -16,7 +16,7 @@
     <body>
         <%@include file="menu.jsp" %><br>
         <h1>Product !</h1>
-        <sql:query dataSource="comshopdb" var="product">
+        <sql:query dataSource="${applicationScope.datasourceName}" var="product">
             select * from products where productId = "${param.id}"
         </sql:query>
         <c:forEach var="i" items="${product.rows}">
@@ -37,7 +37,7 @@
             </c:if>
         </c:forEach>
         <br>
-        <c:if test="${sessionScope.isEmp == null}">
+        <c:if test="${sessionScope.isEmp == null and sessionScope.loginFlag}">
             <%@include file="showCart.jsp" %>
         </c:if>
     </body>

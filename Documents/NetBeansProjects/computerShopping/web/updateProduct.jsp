@@ -14,7 +14,7 @@
         <title>Manage Product</title>
     </head>
     <body>
-        <sql:query dataSource="comshopdb" var="product">
+        <sql:query dataSource="${applicationScope.datasourceName}" var="product">
             select * from products where productId = '${param.name}'
         </sql:query>
         <%@include file="menu.jsp" %>
@@ -27,7 +27,7 @@
                 In Stock : <input type="text" name="inStock" value="${i.inStock}" /><br>
                 Price : <input type="text" name="price" value="${i.price}" /><br>
                 <c:if test="${i.productType == 'type1'}">
-                    <sql:query dataSource="comshopdb" var="producttype1">
+                    <sql:query dataSource="${applicationScope.datasourceName}" var="producttype1">
                         select * from producttype1 where productId = '${i.productId}'
                     </sql:query>
                     <c:forEach var="j" items="${producttype1.rows}">
@@ -35,7 +35,7 @@
                     </c:forEach>
                 </c:if>
                 <c:if test="${i.productType == 'type2'}">
-                    <sql:query dataSource="comshopdb" var="producttype2">
+                    <sql:query dataSource="${applicationScope.datasourceName}" var="producttype2">
                         select * from producttype2 where productId = '${i.productId}'
                     </sql:query>
                     <c:forEach var="j" items="${producttype2.rows}">
