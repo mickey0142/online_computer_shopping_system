@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ติดตามสถานะสินค้า</title>
-    <link rel="stylesheet" href="statusProduct.css">
+    <title>ติดตามสินค้า</title>
+    <link rel="stylesheet" href="followProduct.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Pridi" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
-
 </head>
 <body>
 <section class="hidden-md-down header-box">
@@ -19,9 +18,9 @@
             </div>
             <div class="col-6 searching">
                 <div class="easy-autocomplete" style="width: 540px">
-                    <input class="form-control mr-sm-2 searchTerm" type="search" placeholder="ค้นหาสินค้าที่คุณต้องการ..." aria-label="Search">
-                    <button type="submit" class="searchButton"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    <input class="form-control mr-sm-2" type="search" placeholder="ค้นหาสินค้าที่คุณต้องการ..." aria-label="Search">
                 </div>
+                <i class="fa fa-search" aria-hidden="true"></i>
             </div>
             <div class="col etc">
                 <div class="row">
@@ -68,12 +67,12 @@
         </div>
     </nav>
 </section>
-<div class="container cart-navigation" id="body" style="margin-top: 104px">
+<div class="container cart-navigation" id="body" style="margin-top: 144px">
     <div class="row margin-cart">
         <div class="col-md">
             <div class="panel panel-defualt">
                 <div class="panel-heading text-left cart-navigation2">
-                    <span>รายการสินค้า</span>
+                    <span>สินค้าในตะกร้า</span>
                 </div>
             </div>
             <div class="table-response">
@@ -81,16 +80,13 @@
                     <thead>
                     <tr>
                         <th class="text-center">รูปสินค้า</th>
-                        <th class="text-center">รหัสสินค้า</th>
                         <th class="text-center">ชื่อสินค้า</th>
-                        <th class="text-center">สถานะสินค้า</th>
+                        <th class="text-center">ราคา</th>
+                        <th class="text-center">จำนวน</th>
+                        <th class="text-center">ลบ</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <th class="text-center">a</th>
-                    <th class="text-center">a</th>
-                    <th class="text-center">a</th>
-                    <th class="text-center">a</th>
                     </tbody>
                 </table>
             </div>

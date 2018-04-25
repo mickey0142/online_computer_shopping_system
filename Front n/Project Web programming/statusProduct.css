@@ -1,8 +1,9 @@
 body{
     font-family: 'Pridi', serif;
     font-family: 'IBM Plex Sans', sans-serif;
-    background-color: white;
+    background-color: blue;
     margin: 15px;
+    overflow: auto;
 }
 .top{
     position: relative;
@@ -12,7 +13,6 @@ body{
     line-height: 50px;
     overflow: hidden;
 }
-
 img.resize{
     width: 50%;
     height: 50%;
@@ -28,9 +28,6 @@ a, a:link{
 }
 .bg-faded{
     background-color: #f7f7f7;
-}
-li{
-    list-style: none;
 }
 .title-h{
     background: #0093f0;

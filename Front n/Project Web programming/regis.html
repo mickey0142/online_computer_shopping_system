@@ -5,59 +5,69 @@
     <title>สมัครสมาชิก</title>
     <link rel="stylesheet" type="text/css" href="register.css">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Pridi" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
+
 </head>
 <body>
 <section class="hidden-md-down header-box">
-    <nav class="navbar navbar-toggleable-md navbar-light bg-faded fixed-top">
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded ">
         <div class="container">
-            <div class="col-3 loGo">
+            <div class="col-2 loGo">
                 <a href="index.html"><img src="pic/logo.png" alt="This is logo for web" class="resize"></a>
             </div>
             <div class="col-6 searching">
-                <input class="form-control mr-sm-2" type="search" placeholder="ค้นหาสินค้าที่คุณต้องการ..." aria-label="Search">
+                <div class="easy-autocomplete" style="width: 540px">
+                    <input class="form-control mr-sm-2 searchTerm" type="search" placeholder="ค้นหาสินค้าที่คุณต้องการ..." aria-label="Search">
+                    <button type="submit" class="searchButton"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </div>
             </div>
             <div class="col etc">
                 <div class="row">
                     <div class="col-4 text-right">
-                        <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                        <a href="cart.html" id="goCart"><i class="fas fa-shopping-cart" aria-hidden="true"></i></a>
                     </div>
                     <div class="col nav-item dropdown">
-                        <button class="dropdown-toggle" type="button" data-toggle="dropdown">
+                        <button class="dropdown-toggle dropbtn" type="button" data-toggle="dropdown" onclick="clickUsername()">
                             <i class="fas fa-user-circle" style="vertical-align: middle; color: #000;" aria-hidden="true"></i>Username
                             <span class="caret"></span>
                         </button>
-                        <div class="dropdown-menu">
-                            <li><a href="#" class="dropdown-item">Login</a></li >
-                            <li><a href="#" class="dropdown-item">Register</a></li>
+                        <div class="dropdown-menu" id="myDropdown">
+                            <a href="Login.html" class="dropdown-item">Login</a>
+                            <a href="regis.html" class="dropdown-item">Register</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </nav>
-    <nav class="navbar navbar-toggleable-md navbar-light bg-faded fixed-top2">
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded ">
         <div class="container pl-0 pr-0">
             <!--<div class="collapse navbar-collapse">-->
             <!--<ul class="navbar-nav nav-fill w-100">-->
             <li class="nav-item text-left">
                 <a href="#">
-                    สินค้า
+                    หน้าหลัก
                 </a>
             </li>
             <li class="nav-item text-left">
-                <a href="#">วิธีสั่งซื้อ/ชำระเงิน</a>
+                <a href="#" target="_self" class="link_top">ประเภทสินค้า <i class="fas fa-caret-down"></i></a>
             </li>
             <li class="nav-item text-left">
-                <a href="#">แจ้งวิธีการชำระเงิน</a>
+                <a href="#" target="_self" class="link_top">วิธีสั่งซื้อ/ชำระเงิน <i class="fas fa-caret-down"></i></a>
             </li>
             <li class="nav-item text-left">
-                <a href="#">เช็คสถานะการสั่งซื้อ/จัดส่ง</a>
+                <a href="#">แจ้งการชำระเงิน</a>
+            </li>
+            <li class="nav-item text-left">
+                <a href="#">เช็คสถานะการสั่งซื้อ/จัดส่ง </a>
             </li>
             <li class="nav-item text-left">
                 <a href="#">ติดต่อเรา</a>
             </li>
             </ul>
-            <!--</div>-->
+        </div>
         </div>
     </nav>
 </section>
@@ -66,16 +76,24 @@
     <div class="box">
         <div class="register_box">
             <h1>สมัครสมาชิก</h1><br>
-            ชื่อ: <input type="text" name="fname" placeholder="ชื่อจริง..." id="fName"><br><br>
-            นามสกุล: <input type="text" name="lname" placeholder="นามสกุล..." id="lName"><br><br>
-            เบอร์โทรศัพท์: <input type="text" name="address" placeholder="เบอร์โทรศัพท์..." id="phone"><br><br>
-            อีเมล์: <input type="text" name="lname" placeholder="e-mail..." id="email"><br><br>ชื่อผู้ใช้งาน: <input type="text" name="username" placeholder="username..."><br><br>
-            รหัสผ่าน: <input type="password" name="password" placeholder="password..." id="pass"><br><br>
-            <select name="sex" id="sex">
-                <option value="male">ชาย</option>
-                <option value="female">หญิง</option>
-            </select><br><br>
-            ที่อยู่จัดส่งสินค้า: <input type="text" name="address" placeholder="ที่อยู่จัดส่งสินค้า..." id="address">
+            ชื่อ: <input type="text" name="fname" placeholder="ชื่อจริง" id="fName"><br><br>
+            นามสกุล: <input type="text" name="lname" placeholder="นามสกุล" id="lName"><br><br>
+            เบอร์โทรศัพท์: <input type="text" name="address" placeholder="เบอร์โทรศัพท์" id="phone"><br><br>
+            อีเมล์: <input type="text" name="lname" placeholder="อีเมล์" id="email"><br><br>
+            ชื่อผู้ใช้งาน: <input type="text" name="username" placeholder="รหัสผ่าน" id="user"><br><br>
+            รหัสผ่าน: <input type="password" name="password" placeholder="รหัสผ่าน" id="pass"><br><br>
+            ยืนยันรหัสผ่าน: <input type="password" name="confirmPassword" placeholder="ยืนยันรหัสผ่าน" id="conPass"><br><br>
+            เพศ:
+                <input type="radio" name="sex" value="male" class="sex"> ชาย </input>
+                <input type="radio" name="seex" value="female" class="sex"> หญิง </input>
+            <br><br>
+            ที่อยู่จัดส่งสินค้า: <br>
+            <textarea name="address" id="address" cols="50" rows="7" placeholder="ที่อยู่จัดส่งสินค้า"></textarea>
+            <br>
+            <br>
+            <a href="index.html" class="btn btn-primary btn-md cart-link" role="button">
+                <i class="fas fa-angle-left"></i>ยืนยันการสมัคร
+            </a>
         </div>
     </div>
 </div>

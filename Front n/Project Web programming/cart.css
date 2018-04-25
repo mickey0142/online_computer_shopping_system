@@ -1,3 +1,48 @@
+body{
+    font-family: 'Pridi', serif;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+.menu-product .navbar-nav:hover{
+    color: #3385ff;
+}
+
+.bg-faded{
+    background-color: #f7f7f7;
+}
+.easy-autocomplete{
+    width: 100%;
+    position: relative;
+}
+.searchTerm{
+    float: left;
+    width: 100%;
+    border: 3px solid #00B4CC;
+    padding: 5px;
+    border-radius: 5px;
+    outline: none;
+    color: #9DBFAF;
+}
+
+.searchTerm:focus{
+    color: #00B4CC;
+}
+.searchButton {
+    position: absolute;
+    right: -50px;
+    width: 40px;
+    height: 36px;
+    border: 1px solid #00B4CC;
+    background: #00B4CC;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+}
+img.resize{
+    width: 50%;
+    height: 50%;
+}
 .cart-navigation{
     font-size: 14px;
     color: #000;
@@ -9,6 +54,15 @@
 .row{
     margin-right: -15px;
     margin-left: -15px;
+}
+.nav-item a{
+    color: #666;
+}
+.nav-item a:hover{
+    color: rgba(0,0,0,.5);
+}
+li{
+    list-style: none;
 }
 div{
     display: block;

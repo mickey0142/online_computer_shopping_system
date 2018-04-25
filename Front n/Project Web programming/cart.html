@@ -10,6 +10,71 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
 </head>
 <body>
+<section class="hidden-md-down header-box">
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded ">
+        <div class="container">
+            <div class="col-3 loGo">
+                <a href="index.html"><img src="pic/logo.png" alt="This is logo for web" class="resize"></a>
+            </div>
+            <div class="col-6 searching">
+                <div class="easy-autocomplete" style="width: 540px">
+                    <input class="form-control mr-sm-2 searchTerm" type="search" placeholder="ค้นหาสินค้าที่คุณต้องการ..." aria-label="Search">
+                    <button type="submit" class="searchButton"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div class="col etc">
+                <div class="row">
+                    <div class="col-4 text-right">
+                        <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                    </div>
+                    <div class="col nav-item dropdown">
+                        <button class="dropdown-toggle dropbtn" type="button" data-toggle="dropdown" onclick="clickUsername()">
+                            <i class="fas fa-user-circle" style="vertical-align: middle; color: #000;" aria-hidden="true"></i>Username
+                            <span class="caret"></span>
+                        </button>
+                        <div class="dropdown-menu" id="myDropdown">
+                            <a href="Login.html" class="dropdown-item">Login</a>
+                            <a href="regis.html" class="dropdown-item">Register</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded ">
+        <div class="container pl-0 pr-0">
+            <!--<div class="collapse navbar-collapse">-->
+            <!--<ul class="navbar-nav nav-fill w-100">-->
+            <li class="nav-item text-left">
+                <a href="#">
+                    หน้าหลัก
+                </a>
+            </li>
+            <li class="nav-item text-left">
+                <a href="#" target="_self" class="link_top">ประเภทสินค้า <i class="fas fa-caret-down"></i></a>
+                <div class="dropdown-menu" id="type">
+                    <a href="#" class="dropdown-item">aa</a>
+                    <a href="#" class="dropdown-item">aaa</a>
+                </div>
+            </li>
+            <li class="nav-item text-left">
+                <a href="#" target="_self" class="link_top">วิธีสั่งซื้อ/ชำระเงิน</a>
+            </li>
+            <li class="nav-item text-left">
+                <a href="#">แจ้งวิธีการชำระเงิน</a>
+            </li>
+            <li class="nav-item text-left">
+                <a href="#">เช็คสถานะการสั่งซื้อ/จัดส่ง</a>
+            </li>
+            <li class="nav-item text-left">
+                <a href="#">ติดต่อเรา</a>
+            </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+</section>
+
 <div class="container cart-navigation" id="body" style="margin-top: 144px">
     <div class="row margin-cart">
         <div class="col-md-8">
@@ -56,10 +121,10 @@
     </div>
     <div class="row margin-cart">
         <div class="col-md-8 text-right">
-            <a href="#" class="btn btn-primary btn-md cart-link" role="button">
+            <a href="index.html" class="btn btn-primary btn-md cart-link" role="button">
                 <i class="fas fa-angle-left"></i>เลือกสินค้าต่อ
             </a>
-            <a href="#" class="btn btn-primary btn-md cart-link" role="button">
+            <a href="pay.html" class="btn btn-primary btn-md cart-link" role="button">
                 ชำระสินค้า<i class="fas fa-angle-right"></i>
             </a>
         </div>
