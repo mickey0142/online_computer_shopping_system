@@ -5,11 +5,90 @@
     <!--เปลี่ยนชื่อตามชื่อสินค้า-->
     <title>รายละเอียดสินค้า</title>
     <link rel="stylesheet" href="detailProduct.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Pridi" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 </head>
 <body>
+<section class="hidden-md-down header-box">
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded ">
+        <div class="container">
+            <div class="col-2 loGo">
+                <a href="index.html"><img src="pic/logo.png" alt="This is logo for web" class="resize"></a>
+            </div>
+            <div class="col-6 searching">
+                <div class="easy-autocomplete" style="width: 540px">
+                    <input class="form-control mr-sm-2 searchTerm" type="search" placeholder="ค้นหาสินค้าที่คุณต้องการ..." aria-label="Search">
+                    <button type="submit" class="searchButton"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div class="col etc">
+                <div class="row">
+                    <div class="col-4 text-right">
+                        <a href="cart.html" id="goCart"><i class="fas fa-shopping-cart" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="col nav-item dropdown">
+                        <button class="btn dropdown-toggle username" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user-circle"></i> เข้าสู่ระบบ
+                        </button>
+                        <div class="dropdown-menu" id="login" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="Login.html">เข้าสู่ระบบ</a>
+                            <a class="dropdown-item" href="regis.html">สมัครสมาชิก</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded ">
+        <div class="container pl-0 pr-0">
+            <div class="nav-item text-left">
+                <a href="index.html">
+                    หน้าหลัก
+                </a>
+            </div>
+            <div class="dropdown">
+                <button class="btn dropdown-toggle type" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    ประเภทสินค้า
+                </button>
+                <div class="dropdown-menu" id="type" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="allPdd.html">สินค้าทั้งหมด</a>
+                    <a class="dropdown-item" href="mainboard.html">Mainboard</a>
+                    <a class="dropdown-item" href="cpu.html">CPU</a>
+                    <a class="dropdown-item" href="ram.html">RAM</a>
+                    <a class="dropdown-item" href="power-sup.html">Power supply</a>
+                    <a class="dropdown-item" href="graphic">Graphic card</a>
+                    <a class="dropdown-item" href="harddisk.html">Harddisk</a>
+                    <a class="dropdown-item" href="monitor.html">Monitor</a>
+                    <a class="dropdown-item" href="keyboard.html">Keyboard</a>
+                    <a class="dropdown-item" href="mouse.html">Mouse</a>
+                    <a class="dropdown-item" href="case.html">Case</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="btn dropdown-toggle type" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    วิธีการซื้อสินค้า/ชำระสินค้า
+                </button>
+                <div class="dropdown-menu" id="howTo" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="how-buy.html">วิธีการสั่งซื้อสินค้า</a>
+                    <a class="dropdown-item" href="how-pay.html">วิธีการชำระสินค้า</a>
+                </div>
+            </div>
+            <div class="nav-item text-left">
+                <a href="spec.html">จัดเสปคคอมพิวเตอร์</a>
+            </div>
+            <div class="nav-item text-left">
+                <a href="statusProduct.html">เช็คสถานะออเดอร์ </a>
+            </div>
+            <div class="nav-item text-left">
+                <a href="contact.html">ติดต่อเรา</a>
+            </div>
+            </ul>
+        </div>
+        </div>
+    </nav>
+</section>
+
 <div class="container" style="background: #fff; position: relative;">
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9">
@@ -40,7 +119,7 @@
                 <div class="col-12 mt-3">
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" role="tab">Specification</a>
+                            <a class="nav-link active" data-toggle="tab" role="tab" style="background: #3385ff; color: #fff;">Specification</a>
                         </li>
                     </ul>
                     <div class="tab-content">
@@ -100,39 +179,12 @@
                 </ul>
             </section>
         </div>
-        <!--<div class="col-12">-->
-            <!--<div class="nameProduct">-->
-                <!--<h1>NoteBook</h1>-->
-                <!--<hr>-->
-            <!--</div>-->
-            <!--<div class="priceProduct">-->
-                <!--3xxxx .- -->
-            <!--</div>-->
-            <!--<div class="overviewProduct">-->
-                <!--<ul>-->
-                    <!--<li>CPU</li>-->
-                    <!--<li>RAM</li>-->
-                    <!--<li>HDD</li>-->
-                    <!--<li>Display</li>-->
-                    <!--<li>Graphic</li>-->
-                    <!--<li>OS</li>-->
-                <!--</ul>-->
-            <!--</div>-->
-            <!--<div>-->
-                <!--<span class="small text-danger"></span>-->
-            <!--</div>-->
-            <!--<button class="addCart mt-2 mb-1 btn-addcart">-->
-                <!--Add to cart-->
-            <!--</button>-->
-        <!--</div>-->
-
     </div>
 </div>
 <!--Java Script-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
+
 </body>
 </html>
