@@ -24,7 +24,7 @@
         </form>
         <table>
             <tr>
-                <th>Product Id</th><th>Product Name</th><th>Price</th><th>In Stock</th><th>update</th><th>delete</th>
+                <th>Product Id</th><th>Product Name</th><th>In Stock</th><th>Price</th><th>update</th><th>delete</th>
             </tr>
 
             <c:forEach var="i" items="${product.rows}">

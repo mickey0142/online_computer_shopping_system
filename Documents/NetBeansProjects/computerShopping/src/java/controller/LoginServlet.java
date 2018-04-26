@@ -130,8 +130,17 @@ public class LoginServlet extends HttpServlet {
             }
             catch(EOFException e)
             {
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Servlet NewServlet</title>");
+                out.println("</head>");
+                out.println("<body>");
                 out.println("something went wrong. please try again");
                 out.println("<a href='index.jsp'>back to index</a>");
+                out.println("</body>");
+                out.println("</html>");
+                
                 e.printStackTrace();
             }
             catch(Exception e)
