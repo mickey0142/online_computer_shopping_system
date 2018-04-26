@@ -1,35 +1,49 @@
 body{
     font-family: 'Pridi', serif;
     font-family: 'IBM Plex Sans', sans-serif;
-    background-color: white;
-    margin: 15px;
 }
-.top{
+.menu-product .navbar-nav:hover{
+    color: #3385ff;
+}
+.easy-autocomplete{
+    width: 100%;
     position: relative;
-    background-color: #ffffff;
-    height: 83.5px;
-    padding-top: 20px;
-    line-height: 50px;
-    overflow: hidden;
 }
-.fixed-top{
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1030;
-}
-.fixed-top2{
-    z-index: 1030;
-}
-.fixed-top2{
-    border-top: 1px solid #ddd;
-    position: fixed;
-    top: 73px;
-    right: 0;
-    left: 0;
+.searchTerm{
+    float: left;
+    width: 100%;
+    border: 3px solid #00B4CC;
+    padding: 5px;
+    border-radius: 5px;
+    outline: none;
+    color: #9DBFAF;
 }
 
+.searchTerm:focus{
+    color: #00B4CC;
+}
+.searchButton {
+    position: absolute;
+    right: -50px;
+    width: 40px;
+    height: 36px;
+    border: 1px solid #00B4CC;
+    background: #00B4CC;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+}
+#goCart:hover{
+    color: #000;
+}
+#goCart:active{
+    color: #000;
+}
+#goCart:visited{
+    color: #000;
+}
 img.resize{
     width: 50%;
     height: 50%;
@@ -92,9 +106,10 @@ section{
     position: relative;
     margin: auto;
     width: 450px;
-    top: 200px;
+    top: 80px;
     border: 5px solid;
     padding: 10px;
+    margin-bottom: 100px;
     box-shadow: 0px 0px 10px 10px #eeeeee;
 }
 .userPass{
@@ -109,4 +124,26 @@ hr{
 }
 #lName{
     margin-left: 11.5%;
+}
+#phone{
+    margin-left: 3.25%;
+}
+#email{
+    margin-left: 16.6%;
+}
+#user{
+    margin-left: 7.85%;
+}
+#pass{
+    margin-left: 12%;
+}
+#conPass{
+    margin-left: 3.3%;
+}
+#address{
+    padding: 15px;
+    resize: none;
+}
+.sex{
+    margin-left: 15px;
 }

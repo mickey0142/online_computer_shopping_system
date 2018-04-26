@@ -2,21 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>รายระเอียดสินค้า</title>
+    <title>ติดตามสถานะสินค้า</title>
+    <link rel="stylesheet" href="statusProduct.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Pridi" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
+
 </head>
 <body>
 <section class="hidden-md-down header-box">
-    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded ">
         <div class="container">
             <div class="col-3 loGo">
                 <a href="index.html"><img src="pic/logo.png" alt="This is logo for web" class="resize"></a>
             </div>
             <div class="col-6 searching">
-                <input class="form-control mr-sm-2" type="search" placeholder="ค้นหาสินค้าที่คุณต้องการ..." aria-label="Search">
+                <div class="easy-autocomplete" style="width: 540px">
+                    <input class="form-control mr-sm-2 searchTerm" type="search" placeholder="ค้นหาสินค้าที่คุณต้องการ..." aria-label="Search">
+                    <button type="submit" class="searchButton"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </div>
             </div>
             <div class="col etc">
                 <div class="row">
@@ -24,11 +29,11 @@
                         <i class="fas fa-shopping-cart" aria-hidden="true"></i>
                     </div>
                     <div class="col nav-item dropdown">
-                        <button class="dropdown-toggle" type="button" data-toggle="dropdown">
+                        <button class="dropdown-toggle dropbtn" type="button" data-toggle="dropdown" onclick="clickUsername()">
                             <i class="fas fa-user-circle" style="vertical-align: middle; color: #000;" aria-hidden="true"></i>Username
                             <span class="caret"></span>
                         </button>
-                        <div class="dropdown-menu">
+                        <div class="dropdown-menu" id="myDropdown">
                             <li><a href="#" class="dropdown-item">Login</a></li >
                             <li><a href="#" class="dropdown-item">Register</a></li>
                         </div>
@@ -37,7 +42,7 @@
             </div>
         </div>
     </nav>
-    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded ">
         <div class="container pl-0 pr-0">
             <!--<div class="collapse navbar-collapse">-->
             <!--<ul class="navbar-nav nav-fill w-100">-->
@@ -59,48 +64,38 @@
                 <a href="#">ติดต่อเรา</a>
             </li>
             </ul>
-            <!--</div>-->
+        </div>
         </div>
     </nav>
 </section>
-<div class="container">
-        <div class="row">
-            <div class="col-6 picProduct">
-                <img src="pic/logo.png" alt="pic Product">
+<div class="container cart-navigation" id="body" style="margin-top: 104px">
+    <div class="row margin-cart">
+        <div class="col-md">
+            <div class="panel panel-defualt">
+                <div class="panel-heading text-left cart-navigation2">
+                    <span>รายการสินค้า</span>
+                </div>
             </div>
-        </div>
-        <div class="col-12">
-            <div class="nameProduct">
-                <h1>NoteBook</h1>
-                <hr>
+            <div class="table-response">
+                <table class="table table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th class="text-center">รูปสินค้า</th>
+                        <th class="text-center">รหัสสินค้า</th>
+                        <th class="text-center">ชื่อสินค้า</th>
+                        <th class="text-center">สถานะสินค้า</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <th class="text-center">a</th>
+                    <th class="text-center">a</th>
+                    <th class="text-center">a</th>
+                    <th class="text-center">a</th>
+                    </tbody>
+                </table>
             </div>
-            <div class="priceProduct">
-                3xxxx .-
-            </div>
-            <div class="overviewProduct">
-                <ul>
-                    <li>CPU</li>
-                    <li>RAM</li>
-                    <li>HDD</li>
-                    <li>Display</li>
-                    <li>Graphic</li>
-                    <li>OS</li>
-                </ul>
-            </div>
-            <div>
-                <span class="small text-danger"></span>
-            </div>
-            <button class="addCart mt-2 mb-1 btn-addcart">
-                Add to cart
-            </button>
         </div>
     </div>
-<!--Java Script-->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-
+</div>
 </body>
 </html>
