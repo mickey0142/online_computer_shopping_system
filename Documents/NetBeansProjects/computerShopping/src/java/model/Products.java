@@ -100,4 +100,31 @@ public class Products implements java.io.Serializable{
             e.printStackTrace();
         }
     }
+    
+    public void removeFromDB(Connection conn)
+    {
+        try
+        {
+            String sql = "delete from products where productId = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, id);
+            ps.executeUpdate();
+            if (id.startsWith("01") || id.startsWith("02") || id.startsWith("03"))
+            {
+                sql = "delete from producttype2 where productId = ?";
+                ps = conn.prepareStatement(sql);
+                ps.setString(1, id);
+            }
+            if (id.startsWith("04") || id.startsWith("05") || id.startsWith("06"))
+            {
+                sql = "delete from producttype1 where productId = ?";
+                ps = conn.prepareStatement(sql);
+                ps.setString(1, id);
+            }
+        }
+        catch (Exception e) 
+        {
+            e.printStackTrace();
+        }
+    }
 }
