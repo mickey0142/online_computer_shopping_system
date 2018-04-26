@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>ตะกร้าสินค้า</title>
     <link rel="stylesheet" href="cart.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Pridi" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
@@ -13,7 +13,7 @@
 <section class="hidden-md-down header-box">
     <nav class="navbar navbar-toggleable-md navbar-light bg-faded ">
         <div class="container">
-            <div class="col-3 loGo">
+            <div class="col-2 loGo">
                 <a href="index.html"><img src="pic/logo.png" alt="This is logo for web" class="resize"></a>
             </div>
             <div class="col-6 searching">
@@ -25,16 +25,15 @@
             <div class="col etc">
                 <div class="row">
                     <div class="col-4 text-right">
-                        <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                        <a href="cart.html" id="goCart"><i class="fas fa-shopping-cart" aria-hidden="true"></i></a>
                     </div>
                     <div class="col nav-item dropdown">
-                        <button class="dropdown-toggle dropbtn" type="button" data-toggle="dropdown" onclick="clickUsername()">
-                            <i class="fas fa-user-circle" style="vertical-align: middle; color: #000;" aria-hidden="true"></i>Username
-                            <span class="caret"></span>
+                        <button class="btn dropdown-toggle username" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user-circle"></i> เข้าสู่ระบบ
                         </button>
-                        <div class="dropdown-menu" id="myDropdown">
-                            <a href="Login.html" class="dropdown-item">Login</a>
-                            <a href="regis.html" class="dropdown-item">Register</a>
+                        <div class="dropdown-menu" id="login" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="Login.html">เข้าสู่ระบบ</a>
+                            <a class="dropdown-item" href="regis.html">สมัครสมาชิก</a>
                         </div>
                     </div>
                 </div>
@@ -43,32 +42,47 @@
     </nav>
     <nav class="navbar navbar-toggleable-md navbar-light bg-faded ">
         <div class="container pl-0 pr-0">
-            <!--<div class="collapse navbar-collapse">-->
-            <!--<ul class="navbar-nav nav-fill w-100">-->
-            <li class="nav-item text-left">
+            <div class="nav-item text-left">
                 <a href="#">
                     หน้าหลัก
                 </a>
-            </li>
-            <li class="nav-item text-left">
-                <a href="#" target="_self" class="link_top">ประเภทสินค้า <i class="fas fa-caret-down"></i></a>
-                <div class="dropdown-menu" id="type">
-                    <a href="#" class="dropdown-item">aa</a>
-                    <a href="#" class="dropdown-item">aaa</a>
+            </div>
+            <div class="dropdown">
+                <button class="btn dropdown-toggle type" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    ประเภทสินค้า
+                </button>
+                <div class="dropdown-menu" id="type" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">สินค้าทั้งหมด</a>
+                    <a class="dropdown-item" href="#">Mainboard</a>
+                    <a class="dropdown-item" href="#">CPU</a>
+                    <a class="dropdown-item" href="#">RAM</a>
+                    <a class="dropdown-item" href="#">Power supply</a>
+                    <a class="dropdown-item" href="#">Graphic card</a>
+                    <a class="dropdown-item" href="#">Harddisk</a>
+                    <a class="dropdown-item" href="#">Monitor</a>
+                    <a class="dropdown-item" href="#">Keyboard</a>
+                    <a class="dropdown-item" href="#">Mouse</a>
+                    <a class="dropdown-item" href="#">Case</a>
                 </div>
-            </li>
-            <li class="nav-item text-left">
-                <a href="#" target="_self" class="link_top">วิธีสั่งซื้อ/ชำระเงิน</a>
-            </li>
-            <li class="nav-item text-left">
-                <a href="#">แจ้งวิธีการชำระเงิน</a>
-            </li>
-            <li class="nav-item text-left">
-                <a href="#">เช็คสถานะการสั่งซื้อ/จัดส่ง</a>
-            </li>
-            <li class="nav-item text-left">
+            </div>
+            <div class="dropdown">
+                <button class="btn dropdown-toggle type" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    วิธีการซื้อสินค้า/ชำระสินค้า
+                </button>
+                <div class="dropdown-menu" id="howTo" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">วิธีการสั่งซื้อสินค้า</a>
+                    <a class="dropdown-item" href="#">วิธีการชำระสินค้า</a>
+                </div>
+            </div>
+            <div class="nav-item text-left">
+                <a href="#">จัดเสปค</a>
+            </div>
+            <div class="nav-item text-left">
+                <a href="#">เช็คสถานะออเดอร์</a>
+            </div>
+            <div class="nav-item text-left">
                 <a href="#">ติดต่อเรา</a>
-            </li>
+            </div>
             </ul>
         </div>
         </div>
@@ -132,10 +146,9 @@
 </div>
 
 <!--Java Script-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
+
 </body>
 </html>

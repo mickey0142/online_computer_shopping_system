@@ -32,7 +32,7 @@
                         <button class="btn dropdown-toggle username" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-user-circle"></i> เข้าสู่ระบบ
                         </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <div class="dropdown-menu" id="login" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="Login.html">เข้าสู่ระบบ</a>
                             <a class="dropdown-item" href="regis.html">สมัครสมาชิก</a>
                         </div>
@@ -43,16 +43,16 @@
     </nav>
     <nav class="navbar navbar-toggleable-md navbar-light bg-faded ">
         <div class="container pl-0 pr-0">
-                    <li class="nav-item text-left">
+                    <div class="nav-item text-left">
                         <a href="#">
                             หน้าหลัก
                         </a>
-                    </li>
+                    </div>
             <div class="dropdown">
                 <button class="btn dropdown-toggle type" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     ประเภทสินค้า
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="dropdown-menu" id="type" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="#">สินค้าทั้งหมด</a>
                     <a class="dropdown-item" href="#">Mainboard</a>
                     <a class="dropdown-item" href="#">CPU</a>
@@ -68,25 +68,22 @@
             </div>
             <div class="dropdown">
                 <button class="btn dropdown-toggle type" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    ประเภทสินค้า
+                    วิธีการซื้อสินค้า/ชำระสินค้า
                 </button>
-                <div class="d   ropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">สินค้าทั้งหมด</a>
-                    <a class="dropdown-item" href="#">Mainboard</a>
+                <div class="dropdown-menu" id="howTo" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">วิธีการสั่งซื้อสินค้า</a>
+                    <a class="dropdown-item" href="#">วิธีการชำระสินค้า</a>
                 </div>
             </div>
-            <!--<li class="nav-item text-left">-->
-                <!--<a href="#" target="_self" class="link_top">วิธีสั่งซื้อ/ชำระเงิน <i class="fas fa-caret-down"></i></a>-->
-            <!--</li>-->
-            <li class="nav-item text-left">
-                <a href="#">แจ้งการชำระเงิน</a>
-            </li>
-            <li class="nav-item text-left">
-                <a href="#">เช็คสถานะการสั่งซื้อ/จัดส่ง </a>
-            </li>
-            <li class="nav-item text-left">
+            <div class="nav-item text-left">
+                <a href="#">จัดเสปค</a>
+            </div>
+            <div class="nav-item text-left">
+                <a href="#">เช็คสถานะออเดอร์ </a>
+            </div>
+            <div class="nav-item text-left">
                 <a href="#">ติดต่อเรา</a>
-            </li>
+            </div>
                 </ul>
             </div>
         </div>
