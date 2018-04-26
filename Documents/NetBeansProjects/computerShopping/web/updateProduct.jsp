@@ -15,7 +15,7 @@
     </head>
     <body>
         <sql:query dataSource="${applicationScope.datasourceName}" var="product">
-            select * from products where productId = '${param.name}'
+            select * from products where productId = '${param.id}'
         </sql:query>
         <%@include file="menu.jsp" %>
         <h1>Update Product</h1>

@@ -26,7 +26,7 @@ public class Init implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         try
         {
-            boolean realdb = true;
+            boolean realdb = false;
             if(!realdb)
             {
                 conn = getComshopdb().getConnection();
