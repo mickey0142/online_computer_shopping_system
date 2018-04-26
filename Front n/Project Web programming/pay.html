@@ -4,11 +4,90 @@
     <meta charset="UTF-8">
     <title>กรุณาเลือกวิธีการชำระเงิน</title>
     <link rel="stylesheet" href="pay.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Pridi" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 </head>
 <body>
+<section class="hidden-md-down header-box">
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded ">
+        <div class="container">
+            <div class="col-2 loGo">
+                <a href="index.html"><img src="pic/logo.png" alt="This is logo for web" class="resize"></a>
+            </div>
+            <div class="col-6 searching">
+                <div class="easy-autocomplete" style="width: 540px">
+                    <input class="form-control mr-sm-2 searchTerm" type="search" placeholder="ค้นหาสินค้าที่คุณต้องการ..." aria-label="Search">
+                    <button type="submit" class="searchButton"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div class="col etc">
+                <div class="row">
+                    <div class="col-4 text-right">
+                        <a href="cart.html" id="goCart"><i class="fas fa-shopping-cart" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="col nav-item dropdown">
+                        <button class="btn dropdown-toggle username" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user-circle"></i> เข้าสู่ระบบ
+                        </button>
+                        <div class="dropdown-menu" id="login" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="Login.html">เข้าสู่ระบบ</a>
+                            <a class="dropdown-item" href="regis.html">สมัครสมาชิก</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded ">
+        <div class="container pl-0 pr-0">
+            <div class="nav-item text-left">
+                <a href="#">
+                    หน้าหลัก
+                </a>
+            </div>
+            <div class="dropdown">
+                <button class="btn dropdown-toggle type" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    ประเภทสินค้า
+                </button>
+                <div class="dropdown-menu" id="type" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">สินค้าทั้งหมด</a>
+                    <a class="dropdown-item" href="#">Mainboard</a>
+                    <a class="dropdown-item" href="#">CPU</a>
+                    <a class="dropdown-item" href="#">RAM</a>
+                    <a class="dropdown-item" href="#">Power supply</a>
+                    <a class="dropdown-item" href="#">Graphic card</a>
+                    <a class="dropdown-item" href="#">Harddisk</a>
+                    <a class="dropdown-item" href="#">Monitor</a>
+                    <a class="dropdown-item" href="#">Keyboard</a>
+                    <a class="dropdown-item" href="#">Mouse</a>
+                    <a class="dropdown-item" href="#">Case</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="btn dropdown-toggle type" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    วิธีการซื้อสินค้า/ชำระสินค้า
+                </button>
+                <div class="dropdown-menu" id="howTo" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">วิธีการสั่งซื้อสินค้า</a>
+                    <a class="dropdown-item" href="#">วิธีการชำระสินค้า</a>
+                </div>
+            </div>
+            <div class="nav-item text-left">
+                <a href="#">จัดเสปคคอมพิวเตอร์</a>
+            </div>
+            <div class="nav-item text-left">
+                <a href="#">เช็คสถานะออเดอร์</a>
+            </div>
+            <div class="nav-item text-left">
+                <a href="#">ติดต่อเรา</a>
+            </div>
+            </ul>
+        </div>
+        </div>
+    </nav>
+</section>
+
 <div class="container cart-navigation" id="body" style="margin-top: 144px">
     <div class="row margin-cart">
         <div class="col-md-8">
@@ -19,19 +98,27 @@
             </div>
             <div class="choose-pay">
                 <div class="payment-method-list clearfix text-right">
-                    <div class="pay-method-item clearfix automation-payment-method-item ">
-                        <i class="far fa-money-bill-alt"></i>
+                    <div class="pay-method-item clearfix automation-payment-method-item" id="bank">
+                        <i class="fas fa-university"></i>
                         <div>
                             <div class="title">
                                 โอนเงินผ่านธนาคาร
                             </div>
                         </div>
                     </div>
-                    <div class="pay-method-item clearfix automation-payment-method-item ">
+                    <div class="pay-method-item clearfix automation-payment-method-item" id="openBox" >
                         <i class="far fa-credit-card"></i>
                         <div>
                             <div class="title">
                                 ชำระผ่านบัตรเครดิต/เดบิต
+                            </div>
+                        </div>
+                    </div>
+                    <div id="bankModel" class="model">
+                        <div class="model-content">
+                            <div class="model-header">
+                                <span class="close">&times;</span>
+                                <h2>โอนเงินผ่านธนาคาร</h2>
                             </div>
                         </div>
                     </div>
@@ -61,7 +148,7 @@
     <div class="row margin-cart" id="cart">
         <div class="col-md-8 text-right">
             <a href="#" class="btn btn-primary btn-md cart-link" role="button">
-                <i class="fas fa-angle-left"></i>เลือกสินค้าต่อ
+                <i class="fas fa-angle-left" ></i>เลือกสินค้าต่อ
             </a>
             <a href="#" class="btn btn-primary btn-md cart-link" role="button">
                 ชำระสินค้า<i class="fas fa-angle-right"></i>
@@ -71,11 +158,8 @@
 </div>
 
 <!--Java Script-->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>
