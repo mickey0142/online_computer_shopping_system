@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>เข้าสู่ระบบ</title>
     <link rel="stylesheet" href="login.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Pridi" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
@@ -43,7 +43,7 @@
     <nav class="navbar navbar-toggleable-md navbar-light bg-faded ">
         <div class="container pl-0 pr-0">
             <div class="nav-item text-left">
-                <a href="#">
+                <a href="index.html">
                     หน้าหลัก
                 </a>
             </div>
@@ -52,17 +52,17 @@
                     ประเภทสินค้า
                 </button>
                 <div class="dropdown-menu" id="type" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">สินค้าทั้งหมด</a>
-                    <a class="dropdown-item" href="#">Mainboard</a>
-                    <a class="dropdown-item" href="#">CPU</a>
-                    <a class="dropdown-item" href="#">RAM</a>
-                    <a class="dropdown-item" href="#">Power supply</a>
-                    <a class="dropdown-item" href="#">Graphic card</a>
-                    <a class="dropdown-item" href="#">Harddisk</a>
-                    <a class="dropdown-item" href="#">Monitor</a>
-                    <a class="dropdown-item" href="#">Keyboard</a>
-                    <a class="dropdown-item" href="#">Mouse</a>
-                    <a class="dropdown-item" href="#">Case</a>
+                    <a class="dropdown-item" href="allPdd.html">สินค้าทั้งหมด</a>
+                    <a class="dropdown-item" href="mainboard.html">Mainboard</a>
+                    <a class="dropdown-item" href="cpu.html">CPU</a>
+                    <a class="dropdown-item" href="ram.html">RAM</a>
+                    <a class="dropdown-item" href="power-sup.html">Power supply</a>
+                    <a class="dropdown-item" href="graphic">Graphic card</a>
+                    <a class="dropdown-item" href="harddisk.html">Harddisk</a>
+                    <a class="dropdown-item" href="monitor.html">Monitor</a>
+                    <a class="dropdown-item" href="keyboard.html">Keyboard</a>
+                    <a class="dropdown-item" href="mouse.html">Mouse</a>
+                    <a class="dropdown-item" href="case.html">Case</a>
                 </div>
             </div>
             <div class="dropdown">
@@ -70,18 +70,18 @@
                     วิธีการซื้อสินค้า/ชำระสินค้า
                 </button>
                 <div class="dropdown-menu" id="howTo" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">วิธีการสั่งซื้อสินค้า</a>
-                    <a class="dropdown-item" href="#">วิธีการชำระสินค้า</a>
+                    <a class="dropdown-item" href="how-buy.html">วิธีการสั่งซื้อสินค้า</a>
+                    <a class="dropdown-item" href="how-pay.html">วิธีการชำระสินค้า</a>
                 </div>
             </div>
             <div class="nav-item text-left">
-                <a href="#">จัดเสปค</a>
+                <a href="spec.html">จัดเสปคคอมพิวเตอร์</a>
             </div>
             <div class="nav-item text-left">
-                <a href="#">เช็คสถานะออเดอร์</a>
+                <a href="statusProduct.html">เช็คสถานะออเดอร์ </a>
             </div>
             <div class="nav-item text-left">
-                <a href="#">ติดต่อเรา</a>
+                <a href="contact.html">ติดต่อเรา</a>
             </div>
             </ul>
         </div>
@@ -96,7 +96,7 @@
             <h1>เข้าสู่ระบบ</h1><br>
             Uername: <input type="text" placeholder="Username"><br><br>
             Password: <input type="password" placeholder="Password"><br><br>
-            <button type="submit">เข้าสู่ระบบ</button>
+            <button type="submit"><a href="index.html">เข้าสู่ระบบ</a>  </button>
             <hr>
             <a href="rememberPass.html" id="remember">ลืมรหัสผ่าน</a>
             </div>
@@ -106,10 +106,8 @@
 </div>
 
 <!--Java Script-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
 </body>
 </html>
