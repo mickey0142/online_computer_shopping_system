@@ -17,6 +17,7 @@
         <sql:query dataSource="${applicationScope.datasourceName}" var="product">
             select * from products where productId = '${param.id}'
         </sql:query>
+        <c:set scope="session" value="updateProduct.jsp?id=${param.id}" var="back"/>
         <%@include file="menu.jsp" %>
         <h1>Update Product</h1>
         <c:forEach var="i" items="${product.rows}">
@@ -45,8 +46,10 @@
                 </c:if>
                 <input type="submit" value="update" />
             </form>
+                picture : <img src="ShowPicture?id=${i.productId}&table=productpictures"/>
             <form action="InsertPicture?id=${i.productId}&table=updateProduct" method="POST" enctype="multipart/form-data">
                 Insert picture : <input type="file" name="picture" />
+                <input type="submit" value="upload" />
             </form>
         </c:forEach>
     </body>

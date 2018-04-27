@@ -22,7 +22,7 @@
         <c:forEach var="i" items="${data.rows}">
             <div style="border: 1px solid black">
                 <h2>orderid : ${i.orderId} <br>
-                    payment proof : <img src="ShowPicture?id=${i.orderId}"/> status : ${i.status} totalprice : ${i.totalPrice} orderdate : ${i.orderDate}</h2>
+                    payment proof : <img src="ShowPicture?id=${i.orderId}&table=orders"/> status : ${i.status} totalprice : ${i.totalPrice} orderdate : ${i.orderDate}</h2>
                 <sql:query dataSource="${applicationScope.datasourceName}" var="detail">
                     select * from orderdetails where orderId = ${i.orderId}
                 </sql:query>

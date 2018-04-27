@@ -56,18 +56,47 @@ public class ShowPicture extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
             /* TODO output your page here. You may use following sample code. */
-            int id = Integer.parseInt(request.getParameter("id"));
-            String sql = "select paymentProof from orders where orderId = ?";
+            String pid = request.getParameter("id");
+            int id = Integer.parseInt(pid);
+            String table = request.getParameter("table");
+            String sql = "";
+            if (table.equals("orders"))
+            {
+                sql = "select paymentProof from orders where orderId = ?";
+            }
+            else if (table.equals("productpictures"))
+            {
+                sql = "select picture from productpictures where productId = ?";
+            }
             try
             {
                 Blob image;
                 byte[] imgData = null;
                 PreparedStatement ps = conn.prepareStatement(sql);
-                ps.setInt(1, id);
+                if (table.equals("orders"))
+                {
+                    ps.setInt(1, id);
+                }
+                else if (table.equals("productpictures"))
+                {
+                    ps.setString(1, pid);
+                }
                 ResultSet rs = ps.executeQuery();
+                System.out.println(ps);
                 if(rs.next())
                 {
-                    image = rs.getBlob("paymentProof");
+                    if (table.equals("orders"))
+                    {
+                        image = rs.getBlob("paymentProof");
+                    }
+                    else if (table.equals("productpictures"))
+                    {
+                        image = rs.getBlob("picture");
+                    }
+                    else
+                    {
+                        image = null;
+                    }
                     if (image == null)
                     {
                         throw new NullPointerException();
@@ -82,7 +111,7 @@ public class ShowPicture extends HttpServlet {
             }
             catch(NullPointerException e)
             {
-                System.out.println("from ShowPicture.java : picture not found");
+                
             }
             catch(Exception e)
             {

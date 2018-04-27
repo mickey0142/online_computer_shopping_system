@@ -94,16 +94,7 @@ public class AddProduct extends HttpServlet {
                 product.setPrice(price);
                 product.addToDB(inStock, conn);
             }
-            if (request.getParameter("picture") != null)
-            {
-                RequestDispatcher rd = request.getRequestDispatcher("InsertPicture");
-                request.setAttribute(, rd);
-                rd.forward(request,response);
-            }
-            else
-            {
-                response.sendRedirect("manageProduct.jsp");
-            }
+            response.sendRedirect("manageProduct.jsp");
         }
     }
 
