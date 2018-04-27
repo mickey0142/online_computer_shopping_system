@@ -45,6 +45,9 @@
                 </c:if>
                 <input type="submit" value="update" />
             </form>
+            <form action="InsertPicture?id=${i.productId}&table=updateProduct" method="POST" enctype="multipart/form-data">
+                Insert picture : <input type="file" name="picture" />
+            </form>
         </c:forEach>
     </body>
 </html>

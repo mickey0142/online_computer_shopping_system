@@ -59,6 +59,8 @@ public class InsertPicture extends HttpServlet {
             HttpSession session = request.getSession();
             InputStream input = null;
             Part filePart = request.getPart("picture");
+            String table = request.getParameter("table");
+            System.out.println(table);
             if (filePart != null)
             {
                 // prints out some information for debugging
@@ -71,15 +73,33 @@ public class InsertPicture extends HttpServlet {
             }
             try
             {
-                String sql = "update orders set paymentProof = ? where orderId = ?";
-                PreparedStatement ps = conn.prepareStatement(sql);
-                int id = Integer.parseInt(request.getParameter("id"));
-                System.out.println(id);
-                ps.setBlob(1, input);
-                ps.setInt(2, id);
-                if (ps.executeUpdate() < 0)
+                if (table.equals("orders"))
                 {
-                    System.out.println("insert error");
+                    String sql = "update orders set paymentProof = ? where orderId = ?";
+                    PreparedStatement ps = conn.prepareStatement(sql);
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    System.out.println(id);
+                    ps.setBlob(1, input);
+                    ps.setInt(2, id);
+                    if (ps.executeUpdate() < 0) {
+                        System.out.println("insert error");
+                    }
+                }
+                else if (table.equals("addProduct"))
+                {
+                    String sql = "insert into productpictures (productId, picture) values (?, ?)";
+                    PreparedStatement ps = conn.prepareStatement(sql);
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    System.out.println(id);
+                    ps.setInt(1, id);
+                    ps.setBlob(2, input); 
+                    if (ps.executeUpdate() < 0) {
+                        System.out.println("insert error");
+                    }
+                }
+                else if (table.equals("updateProduct"))
+                {
+                    
                 }
             }
             catch(Exception e)

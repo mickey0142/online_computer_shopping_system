@@ -17,6 +17,9 @@
 <sql:query dataSource="${applicationScope.datasourceName}" var="product">
     select * from products where productId like "${productId}%" and productName like "%${search}%"
 </sql:query>
+    <!--query for using in spec : select * from products left outer join producttype2 using (productId) where เหมือนเดิม and 
+    (compatibility like 'ตัวแปร__' or compatibility < '0I_' or compatibility is null)
+    use fn:substring in el expression $ { } in here      ^ to cut string to only second char of compatibility-->
 <c:forEach var="i" items="${product.rows}">
     <shortcut:show data="${i}"></shortcut:show>
 </c:forEach>

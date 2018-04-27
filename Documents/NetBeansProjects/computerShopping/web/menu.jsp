@@ -13,9 +13,9 @@
         <title>menu</title>
     </head>
     <body>
-        <a href="index.jsp">index</a> | 
+        <a href="index.jsp">index</a> | <a href="shoppingPage.jsp">shopping</a> | <a href="spec.jsp">spec</a> | 
         <c:if test="${!sessionScope.loginFlag || sessionScope.loginFlag == null}">
-            <a href="login.jsp">login</a> | <a href="register.jsp">register</a> 
+            <a href="login.jsp">login</a> | <a href="register.jsp">register</a>
         </c:if>
         <c:if test="${sessionScope.loginFlag}">
             <!--if user is employee-->

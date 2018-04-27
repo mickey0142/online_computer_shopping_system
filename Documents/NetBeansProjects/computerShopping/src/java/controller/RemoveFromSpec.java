@@ -7,19 +7,21 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.ProductLists;
 
 /**
  *
  * @author Mickey
  */
-@WebServlet(name = "SetSessionValue", urlPatterns = {"/SetSessionValue"})
-public class SetSessionValue extends HttpServlet {
+@WebServlet(name = "RemoveFromSpec", urlPatterns = {"/RemoveFromSpec"})
+public class RemoveFromSpec extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,12 +38,27 @@ public class SetSessionValue extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
-            request.setCharacterEncoding("UTF-8");
-            String attributeName = request.getParameter("attributeName");
-            String backTo = request.getParameter("backTo");
-            String value = request.getParameter(attributeName);
-            session.setAttribute(attributeName, value);
-            response.sendRedirect(backTo);
+            int index = Integer.parseInt(request.getParameter("index"));
+            ArrayList<ProductLists> inSpec = (ArrayList<ProductLists>) session.getAttribute("inSpec");
+            inSpec.set(index, null);
+            ProductLists mainboard = inSpec.get(1);
+            ProductLists cpu = inSpec.get(2);
+            ProductLists ram = inSpec.get(3);
+            if (mainboard == null && cpu == null && ram == null)
+            {
+                session.setAttribute("compatibilityCode", null);
+            }
+            else if (mainboard == null && cpu == null && ram != null)
+            {
+                String compatibility = ram.getCompatibility();
+                compatibility = "_" + compatibility.substring(1);
+                session.setAttribute("compatibilityCode", compatibility);
+            }
+            else if (mainboard != null)
+            {
+                
+            }
+            response.sendRedirect("spec.jsp");
         }
     }
 
