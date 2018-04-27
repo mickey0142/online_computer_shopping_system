@@ -24,7 +24,7 @@
         </sql:query>
         <c:forEach var="i"  items="${orderData.rows}">
             order Id : ${i.orderId}<br>
-            payment Proof : <img src="ShowPicture?id=${i.orderId}"/><br>
+            payment Proof : <img src="ShowPicture?id=${i.orderId}&table=orders"/><br>
             Status : ${i.status}<br>
             Total Price : ${i.totalPrice}<br>
             Customer Id : ${i.customerId}<br>

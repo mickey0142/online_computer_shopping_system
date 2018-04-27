@@ -77,29 +77,26 @@ public class InsertPicture extends HttpServlet {
                 {
                     String sql = "update orders set paymentProof = ? where orderId = ?";
                     PreparedStatement ps = conn.prepareStatement(sql);
-                    int id = Integer.parseInt(request.getParameter("id"));
+                    String id = request.getParameter("id");
                     System.out.println(id);
                     ps.setBlob(1, input);
-                    ps.setInt(2, id);
-                    if (ps.executeUpdate() < 0) {
-                        System.out.println("insert error");
-                    }
-                }
-                else if (table.equals("addProduct"))
-                {
-                    String sql = "insert into productpictures (productId, picture) values (?, ?)";
-                    PreparedStatement ps = conn.prepareStatement(sql);
-                    int id = Integer.parseInt(request.getParameter("id"));
-                    System.out.println(id);
-                    ps.setInt(1, id);
-                    ps.setBlob(2, input); 
+                    ps.setString(2, id);
                     if (ps.executeUpdate() < 0) {
                         System.out.println("insert error");
                     }
                 }
                 else if (table.equals("updateProduct"))
                 {
-                    
+                    String sql = "insert into productpictures (productId, picture) values (?, ?)";
+                    PreparedStatement ps = conn.prepareStatement(sql);
+                    String id = request.getParameter("id");
+                    System.out.println(id);
+                    ps.setString(1, id);
+                    ps.setBlob(2, input);
+                    if (ps.executeUpdate() < 0)
+                    {
+                        System.out.println("insert error");
+                    }
                 }
             }
             catch(Exception e)
