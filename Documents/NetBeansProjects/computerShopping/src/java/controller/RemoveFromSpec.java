@@ -40,23 +40,34 @@ public class RemoveFromSpec extends HttpServlet {
             HttpSession session = request.getSession();
             int index = Integer.parseInt(request.getParameter("index"));
             ArrayList<ProductLists> inSpec = (ArrayList<ProductLists>) session.getAttribute("inSpec");
-            inSpec.set(index, null);
-            ProductLists mainboard = inSpec.get(1);
-            ProductLists cpu = inSpec.get(2);
-            ProductLists ram = inSpec.get(3);
-            if (mainboard == null && cpu == null && ram == null)
+            if (index == -1)
             {
-                session.setAttribute("compatibilityCode", null);
+                for (int i = 0 ; i <= 10; i++)
+                {
+                    inSpec.set(i, null);
+                }
+                session.setAttribute("inSpec", inSpec);
+                session.setAttribute("compCodeMC", null);
+                session.setAttribute("compCodeMR", null);
+                session.setAttribute("compCodeC", null);
+                session.setAttribute("compCodeR", null);
             }
-            else if (mainboard == null && cpu == null && ram != null)
+            else
             {
-                String compatibility = ram.getCompatibility();
-                compatibility = "_" + compatibility.substring(1);
-                session.setAttribute("compatibilityCode", compatibility);
-            }
-            else if (mainboard != null)
-            {
-                
+                inSpec.set(index, null);
+                if (index == 1)
+                {
+                    session.setAttribute("compCodeMC", null);
+                    session.setAttribute("compCodeMR", null);
+                }
+                else if (index == 2)
+                {
+                    session.setAttribute("compCodeC", null);
+                }
+                else if (index == 3)
+                {
+                    session.setAttribute("compCodeR", null);
+                }
             }
             response.sendRedirect("spec.jsp");
         }

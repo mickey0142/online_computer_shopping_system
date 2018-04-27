@@ -60,13 +60,12 @@ public class InsertPicture extends HttpServlet {
             InputStream input = null;
             Part filePart = request.getPart("picture");
             String table = request.getParameter("table");
-            System.out.println(table);
             if (filePart != null)
             {
                 // prints out some information for debugging
-                System.out.println(filePart.getName());
-                System.out.println(filePart.getSize());
-                System.out.println(filePart.getContentType());
+//                System.out.println(filePart.getName());
+//                System.out.println(filePart.getSize());
+//                System.out.println(filePart.getContentType());
 
                 // obtains input stream of the upload file
                 input = filePart.getInputStream();
@@ -78,7 +77,6 @@ public class InsertPicture extends HttpServlet {
                     String sql = "update orders set paymentProof = ? where orderId = ?";
                     PreparedStatement ps = conn.prepareStatement(sql);
                     String id = request.getParameter("id");
-                    System.out.println(id);
                     ps.setBlob(1, input);
                     ps.setString(2, id);
                     if (ps.executeUpdate() < 0) {
@@ -90,7 +88,6 @@ public class InsertPicture extends HttpServlet {
                     String sql = "insert into productpictures (productId, picture) values (?, ?)";
                     PreparedStatement ps = conn.prepareStatement(sql);
                     String id = request.getParameter("id");
-                    System.out.println(id);
                     ps.setString(1, id);
                     ps.setBlob(2, input);
                     if (ps.executeUpdate() < 0)

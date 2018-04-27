@@ -92,49 +92,99 @@ public class AddToSpec extends HttpServlet {
             {
                 pl.setCompatibility(compatibility);
             }
-            String compatibilityCode = (String) session.getAttribute("compatibilityCode");
-            boolean isCompatible = true;
-            // if this is the first product to add in spec
-            if (compatibility != null && (compatibilityCode == null || compatibilityCode.charAt(0) == '_'))
+            String compCodeC = (String) session.getAttribute("compCodeC");
+            String compCodeMC = (String) session.getAttribute("compCodeMC");
+            String compCodeMR = (String) session.getAttribute("compCodeMR");
+            String compCodeR = (String) session.getAttribute("compCodeR");
+            if (compatibility != null)
             {
-                inSpec.set(index, pl);
-                // if it is ram
-                if (index == 3)// test to see if this is working later
+                if (index == 1)
                 {
-                    compatibility = "_" + compatibility.substring(1);
+                    if (compCodeC == null)
+                    {
+                        compCodeMC = compatibility.substring(0, 1);
+                        session.setAttribute("compCodeMC", compCodeMC);
+                        inSpec.set(index, pl);
+                    }
+                    else
+                    {
+                        if (compatibility.substring(0, 1).equals(compCodeC))
+                        {
+                            compCodeMC = compatibility.substring(0, 1);
+                            session.setAttribute("compCodeMC", compCodeMC);
+                            inSpec.set(index, pl);
+                        }
+                        else
+                        {
+                            session.setAttribute("message", "this product is not compatible");
+                        }
+                    }
+                    if (compCodeR == null)
+                    {
+                        compCodeMR = compatibility.substring(1, 3);
+                        session.setAttribute("compCodeMR", compCodeMR);
+                        inSpec.set(index, pl);
+                    }
+                    else
+                    {
+                        if (compatibility.charAt(1) > compCodeR.charAt(0) && compatibility.charAt(2) > compCodeR.charAt(1))
+                        {
+                            compCodeMR = compatibility.substring(1, 3);
+                            session.setAttribute("compCodeMR", compCodeMR);
+                            inSpec.set(index, pl);
+                        }
+                        else
+                        {
+                            session.setAttribute("message", "this product is not compatible");
+                        }
+                    }
                 }
-                // if it is cpu
                 if (index == 2)
                 {
-                    compatibility = compatibility.charAt(0) + "_" + compatibility.charAt(2);
-                }
-                session.setAttribute("compatibilityCode", compatibility);
-                compatibilityCode = (String) session.getAttribute("compatibilityCode");
-            }
-            else if (compatibility != null && compatibilityCode != null)
-            {
-                if (index == 1 || index == 2)// if add mainboard or cpu
-                {
-                    if (compatibility.charAt(0) != compatibilityCode.charAt(0))
+                    if (compCodeMC == null)
                     {
-                        session.setAttribute("message", "this product is not compatible");
-                        isCompatible = false;
+                        compCodeC = compatibility.substring(0, 1);
+                        session.setAttribute("compCodeC", compCodeC);
+                        inSpec.set(index, pl);
+                    }
+                    else
+                    {
+                        if (compatibility.substring(0, 1).equals(compCodeMC))
+                        {
+                            compCodeC = compatibility.substring(0, 1);
+                            session.setAttribute("compCodeC", compCodeC);
+                            inSpec.set(index, pl);
+                        }
+                        else
+                        {
+                            session.setAttribute("message", "this product is not compatible");
+                        }
                     }
                 }
-                else if (index == 3)// if add ram
+                if (index == 3)
                 {
-                    if (compatibility.charAt(1) < compatibilityCode.charAt(1))
+                    if (compCodeMR == null)
                     {
-                        session.setAttribute("message", "this product is not compatible");
-                        isCompatible = false;
+                        compCodeR = compatibility.substring(1, 3);
+                        session.setAttribute("compCodeR", compCodeR);
+                        inSpec.set(index, pl);
+                    }
+                    else
+                    {
+                        if (compatibility.charAt(1) <= compCodeMR.charAt(0) && compatibility.charAt(2) <= compCodeMR.charAt(1))
+                        {
+                            compCodeR = compatibility.substring(1, 3);
+                            session.setAttribute("compCodeR", compCodeR);
+                            inSpec.set(index, pl);
+                        }
+                        else
+                        {
+                            session.setAttribute("message", "this product is not compatible");
+                        }
                     }
                 }
             }
-            if (isCompatible)
-            {
-                inSpec.set(index, pl);
-            }
-            System.out.println(compatibilityCode);
+            
             response.sendRedirect("spec.jsp");
         }
     }
