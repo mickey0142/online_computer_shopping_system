@@ -8,6 +8,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -85,7 +86,7 @@ public class AddProduct extends HttpServlet {
                 pt1.addToDB(inStock, conn);
             }
             else
-            {
+        {
                 Products product = new Products();
                 product.setId(productId);
                 product.setName(productName);
@@ -93,7 +94,16 @@ public class AddProduct extends HttpServlet {
                 product.setPrice(price);
                 product.addToDB(inStock, conn);
             }
-            response.sendRedirect("manageProduct.jsp");
+            if (request.getParameter("picture") != null)
+            {
+                RequestDispatcher rd = request.getRequestDispatcher("InsertPicture");
+                request.setAttribute(, rd);
+                rd.forward(request,response);
+            }
+            else
+            {
+                response.sendRedirect("manageProduct.jsp");
+            }
         }
     }
 
