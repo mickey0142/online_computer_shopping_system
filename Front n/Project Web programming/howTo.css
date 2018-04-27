@@ -1,0 +1,129 @@
+/*navbar*/
+body{
+    font-family: 'Pridi', serif;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+.menu-product .navbar-nav:hover{
+    color: #3385ff;
+}
+.easy-autocomplete{
+    width: 100%;
+    position: relative;
+    padding-top: 12px;
+}
+.searchTerm{
+    float: left;
+    width: 100%;
+    border: 3px solid #00B4CC;
+    padding: 5px;
+    border-radius: 5px;
+    outline: none;
+    color: #9DBFAF;
+}
+
+.searchTerm:focus{
+    color: #00B4CC;
+}
+.searchButton {
+    position: absolute;
+    width: 40px;
+    height: 36px;
+    border: 1px solid #00B4CC;
+    background: #00B4CC;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+}
+#goCart:hover{
+    color: #000;
+}
+#goCart:active{
+    color: #000;
+}
+#goCart:visited{
+    color: #000;
+}
+img.resize{
+    width: 50%;
+    height: 50%;
+}
+.nav-item a{
+    color: #666;
+}
+.nav-item a:hover{
+    color: rgba(0,0,0,.5);
+}
+i.fa-shopping-cart{
+    font-size: 1.5em;
+    color: #666;
+    padding-top: 10px;
+}
+.bg-faded{
+    background-color: #f7f7f7;
+}
+.mt-1{
+    margin-top: .25rem !important;
+}
+section{
+    display: block;
+}
+.navbar-toggleable-md{
+    flex-direction: row;
+}
+.text-left{
+    text-align: left !important;
+}
+button.username{
+    font-size: 18px;
+    color: #555;
+    background: Menu;
+}
+button.username:focus{
+    color: black;
+}
+.type{
+    color: #555;
+    background-color: Menu;
+}
+.type:focus{
+    color: #000;
+    box-shadow: Menu;
+}
+
+.dropdown #login{
+    left: inherit;
+    width: 120px !important;
+}
+.dropdown #type{
+    width: 100px !important;
+}
+.dropdown #howTo{
+    width: 220px !important;
+}
+
+/*content*/
+.singlepage{
+    padding: 30px;
+    min-height: 700px;
+    font-size: 14px;
+}
+.singlepage .title{
+    font-size: 28px;
+    font-weight: bold;
+    padding-bottom: 5px;
+    border-bottom: 5px solid #22b7eb;
+}
+.singlepage img{
+    max-width: 100%;
+}
+p{
+    display: block;
+    margin-top: 0;
+    margin-bottom: 1rem
+}
+img{
+    vertical-align: middle;
+    border-style: none;
+}
