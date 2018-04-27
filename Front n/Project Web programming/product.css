@@ -1,5 +1,5 @@
 /*html body{*/
-    /*background-color: #FFE184;*/
+/*background-color: #FFE184;*/
 /*}*/
 body{
     font-family: 'Pridi', serif;
@@ -157,18 +157,9 @@ button.username:focus{
     border-left: 8px solid darkorange;
     opacity: 0%, 100%;
     transition-delay: 0.15s;
-    box-shadow: 0 0 15px #aaa;
-    color: white;
-    font-weight: 20px;
 }
-.fa-sort-amount-down{
-    color: #444;
-    font-size: 1.5em;
-    padding-top: 10px;
-    padding: 15px;
-}
-.fa-sort-amount-down:hover{
-    color: darkorange;
+.btn.btn-xs:hover, .btn.btn-xs:link, .btn.btn-xs:visited, .btn.btn-xs:focus{
+    color: orange;
 }
 .part-item{
     vertical-align: top;
@@ -195,7 +186,6 @@ button.username:focus{
     width: auto;
 }
 .part-select{
-    left: 280px;
     margin-top: -40px;
 }
 .part-select .select-path{
@@ -207,6 +197,14 @@ button.username:focus{
     margin: auto;
 }
 .sort{
-    width: 800px;
     border-bottom: 2px solid #f2f2f2    ;
+}
+.btn.btn-primary.btn-md{
+    margin-top: 11px;
+    background-color: #0094d9;
+}
+.btn.btn-primary.btn-md:hover, .btn.btn-primary.btn-md:focus, .btn.btn-primary.btn-md:visited,  .btn.btn-primary.btn-md:link{
+    background-color: #0094d9;
+    margin-top: 11px;
+    box-shadow: 0 0 11px #ababab;
 }

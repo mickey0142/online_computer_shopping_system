@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ระบบจัดเสปก คอมพิวเตอร์</title>
-    <link rel="stylesheet" href="spec.css">
+    <!--เปลียนชื่อตามหัวข้อได้ไหม ถ้าไม่ได้ไม่เป็นไร-->
+    <title>ซื้อขายคอมพิวเตอร์ออนไลน์</title>
+    <link rel="stylesheet" href="product.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Pridi" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous">
@@ -92,85 +93,16 @@
 
 <div class="container float-container" style="background-color: #fff;">
     <div id="part-box">
-        <div class="part-catgory col-xl-3" style="position: absolute">
-            <div>
-                <div id="part-total-price" class="banner total-price default"><b>Select Component</b></div>
-            </div>
-            <ul>
-                <div class="box">
-                    <span style="padding-left: 40px; font-size: 20px;">CPU</span>
-                </div>
-            </ul>
-            <ul>
-                <div class="box">
-                    <span style="padding-left: 40px; font-size: 20px;">Mainboard</span>
-                </div>
-            </ul>
-            <ul>
-                <div class="box">
-                    <span style="padding-left: 40px; font-size: 20px;">Ram</span>
-                </div>
-            </ul>
-            <ul>
-                <div class="box">
-                    <span style="padding-left: 40px; font-size: 20px;">Power Supply</span>
-                </div>
-            </ul>
-            <ul>
-                <div class="box">
-                    <span style="padding-left: 40px; font-size: 20px;">Graphic Card</span>
-                </div>
-            </ul>
-            <ul>
-                <div class="box">
-                    <span style="padding-left: 40px; font-size: 20px;">Harddisk</span>
-                </div>
-            </ul>
-            <ul>
-                <div class="box">
-                    <span style="padding-left: 40px; font-size: 20px;">Monitor</span>
-                </div>
-            </ul>
-            <ul>
-                <div class="box">
-                    <span style="padding-left: 40px; font-size: 20px;">Case</span>
-                </div>
-            </ul>
-        </div>
-        <div class="part-select col-xl-11">
+        <div class="part-select col-xl">
             <div class="select-path">
                 <div class="sort">
-                    <div class="text-left"><h1 style="font-size: 24px">CPU</h1></div>
+                    <div class="text-left"><h1 style="font-size: 24px; padding-left: 15px">CPU</h1></div>
                     <div class="text-right">
-                        <b>Sort by </b> <i class="fas fa-sort-amount-down"></i>
+                        <b>Sort by </b> <button type="button" class="btn btn-xs"><i class="fas fa-sort-amount-down"></i></button>
                     </div>
                 </div>
                 <div class="box-product" style="display: inline-block;">
                     <div class="part-item hilight">
-                            <div class="part-name">
-                                <b>Intel</b>
-                            </div>
-                            <div class="part-photo">
-                                <div class="part-overlay text-center"><img src="pic/logo.png" alt="ภาพสินค้า" class="img-prod"></div>
-                            </div>
-                            <div class="text-center">
-                                <div class="part-price"><b>123.x</b></div>
-                                <span>รายละเอียดสินค้า</span>
-                            </div>
-                        </div>
-                    <div class="part-item hilight">
-                            <div class="part-name">
-                                <b>Intel</b>
-                            </div>
-                            <div class="part-photo">
-                                <div class="part-overlay text-center"><img src="pic/logo.png" alt="ภาพสินค้า" class="img-prod"></div>
-                            </div>
-                            <div class="text-center">
-                                <div class="part-price"><b>123.x</b></div>
-                                <span>รายละเอียดสินค้า</span>
-                            </div>
-                        </div>
-                    <div class="part-item hilight">
                         <div class="part-name">
                             <b>Intel</b>
                         </div>
@@ -180,6 +112,9 @@
                         <div class="text-center">
                             <div class="part-price"><b>123.x</b></div>
                             <span>รายละเอียดสินค้า</span>
+                        </div>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-primary btn-md">Add to cart</button>
                         </div>
                     </div>
                     <div class="part-item hilight">
@@ -193,29 +128,8 @@
                             <div class="part-price"><b>123.x</b></div>
                             <span>รายละเอียดสินค้า</span>
                         </div>
-                    </div>
-                    <div class="part-item hilight">
-                        <div class="part-name">
-                            <b>Intel</b>
-                        </div>
-                        <div class="part-photo">
-                            <div class="part-overlay text-center"><img src="pic/logo.png" alt="ภาพสินค้า" class="img-prod"></div>
-                        </div>
                         <div class="text-center">
-                            <div class="part-price"><b>123.x</b></div>
-                            <span>รายละเอียดสินค้า</span>
-                        </div>
-                    </div>
-                    <div class="part-item hilight">
-                        <div class="part-name">
-                            <b>Intel</b>
-                        </div>
-                        <div class="part-photo">
-                            <div class="part-overlay text-center"><img src="pic/logo.png" alt="ภาพสินค้า" class="img-prod"></div>
-                        </div>
-                        <div class="text-center">
-                            <div class="part-price"><b>123.x</b></div>
-                            <span>รายละเอียดสินค้า</span>
+                            <button type="button" class="btn btn-primary btn-md">Add to cart</button>
                         </div>
                     </div>
                     <div class="part-item hilight">
@@ -229,6 +143,9 @@
                             <div class="part-price"><b>123.x</b></div>
                             <span>รายละเอียดสินค้า</span>
                         </div>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-primary btn-md">Add to cart</button>
+                        </div>
                     </div>
                     <div class="part-item hilight">
                         <div class="part-name">
@@ -241,6 +158,9 @@
                             <div class="part-price"><b>123.x</b></div>
                             <span>รายละเอียดสินค้า</span>
                         </div>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-primary btn-md">Add to cart</button>
+                        </div>
                     </div>
                     <div class="part-item hilight">
                         <div class="part-name">
@@ -252,6 +172,69 @@
                         <div class="text-center">
                             <div class="part-price"><b>123.x</b></div>
                             <span>รายละเอียดสินค้า</span>
+                        </div>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-primary btn-md">Add to cart</button>
+                        </div>
+                    </div>
+                    <div class="part-item hilight">
+                        <div class="part-name">
+                            <b>Intel</b>
+                        </div>
+                        <div class="part-photo">
+                            <div class="part-overlay text-center"><img src="pic/logo.png" alt="ภาพสินค้า" class="img-prod"></div>
+                        </div>
+                        <div class="text-center">
+                            <div class="part-price"><b>123.x</b></div>
+                            <span>รายละเอียดสินค้า</span>
+                        </div>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-primary btn-md">Add to cart</button>
+                        </div>
+                    </div>
+                    <div class="part-item hilight">
+                        <div class="part-name">
+                            <b>Intel</b>
+                        </div>
+                        <div class="part-photo">
+                            <div class="part-overlay text-center"><img src="pic/logo.png" alt="ภาพสินค้า" class="img-prod"></div>
+                        </div>
+                        <div class="text-center">
+                            <div class="part-price"><b>123.x</b></div>
+                            <span>รายละเอียดสินค้า</span>
+                        </div>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-primary btn-md">Add to cart</button>
+                        </div>
+                    </div>
+                    <div class="part-item hilight">
+                        <div class="part-name">
+                            <b>Intel</b>
+                        </div>
+                        <div class="part-photo">
+                            <div class="part-overlay text-center"><img src="pic/logo.png" alt="ภาพสินค้า" class="img-prod"></div>
+                        </div>
+                        <div class="text-center">
+                            <div class="part-price"><b>123.x</b></div>
+                            <span>รายละเอียดสินค้า</span>
+                        </div>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-primary btn-md">Add to cart</button>
+                        </div>
+                    </div>
+                    <div class="part-item hilight">
+                        <div class="part-name">
+                            <b>Intel</b>
+                        </div>
+                        <div class="part-photo">
+                            <div class="part-overlay text-center"><img src="pic/logo.png" alt="ภาพสินค้า" class="img-prod"></div>
+                        </div>
+                        <div class="text-center">
+                            <div class="part-price"><b>123.x</b></div>
+                            <span>รายละเอียดสินค้า</span>
+                        </div>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-primary btn-md">Add to cart</button>
                         </div>
                     </div>
                 </div>
@@ -278,8 +261,8 @@
         </div>
     </div>
 </div>
-<!--java script-->
 
+<!--Java Script-->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
