@@ -1,22 +1,16 @@
-<%-- 
-    Document   : manageCart
-    Created on : Apr 12, 2018, 2:49:02 PM
-    Author     : Mickey
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="UTF-8">
-        <title>ตะกร้าสินค้า</title>
-        <link rel="stylesheet" href="cart.css">
+        <title>วิธีการชำระเงิน</title>
+        <link rel="stylesheet" href="howPay.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Pridi" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
+
     </head>
     <body>
         <section class="hidden-md-down header-box">
@@ -45,8 +39,8 @@
                                     <i class="fas fa-user-circle"></i> 
                                     <c:if test="${!sessionScope.loginFlag || sessionScope.loginFlag == null}">เข้าสู่ระบบ</c:if>
                                     <c:if test="${sessionScope.loginFlag}">${sessionScope.userInfo.getUsername()}</c:if>
-                                    </button>
-                                    <div class="dropdown-menu" id="login" aria-labelledby="dropdownMenuButton">
+                                </button>
+                                <div class="dropdown-menu" id="login" aria-labelledby="dropdownMenuButton">
                                     <c:if test="${!sessionScope.loginFlag || sessionScope.loginFlag == null}">
                                         <a class="dropdown-item" href="login.jsp">เข้าสู่ระบบ</a>
                                         <a class="dropdown-item" href="register.jsp">สมัครสมาชิก</a>
@@ -113,78 +107,98 @@
             </nav>
         </section>
 
-        <div class="container cart-navigation" id="body" style="margin-top: 144px">
-            <div class="row margin-cart">
-                <div class="col-md-8">
-                    <div class="panel panel-defualt">
-                        <div class="panel-heading text-left cart-navigation2">
-                            <span>สินค้าในตะกร้า</span>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 singlepage">
+                    <h1 class="title pt-2">วิธีการสั่งซื้อสินค้า</h1>
+                    <div class="accordion" id="accordion">
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <span>ชำระผ่านโอนเงินผ่านธนาคาร</span>
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                <div class="card-body">
+                                    <div id="card-box">
+                                        <h2 class="topic-head"><b>เลขที่บัญชีในการชำระเงิน</b></h2>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-md-6">
+                                                <div class="bank-detail" style="border: 2px solid #00a950; font-size: 16px">
+                                                    <img src="pic/k-bank.png" alt="ธนาคารกสิกรไทย" style="width: 120px">
+                                                    <div class="nameBank" style=" color: #00a950;"><b>ธนาคาร กสิกรไทย จำกัด (มหาชน)</b></div>
+                                                    <div class="nameAccount"><span>ชื่อบัญชี คอมพิวเตอร์ออนไลน์</span></div>
+                                                    <div class="numberAccount" style=" color: #00a950;"><span><b>เลขที่บัญชี xxx-x-xxxxx-x</b></span></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-md-6">
+                                                <div class="bank-detail" style="border: 2px solid #582584; font-size: 16px">
+                                                    <img src="pic/scb.jpg" alt="ธนาคารไทยพาณิชย์" style="width: 120px">
+                                                    <div class="nameBank" style=" color: #582584;"><b>ธนาคาร ไทยพาณิชย์ จำกัด (มหาชน)</b></div>
+                                                    <div class="nameAccount"><span>ชื่อบัญชี คอมพิวเตอร์ออนไลน์</span></div>
+                                                    <div class="numberAccount" style=" color: #582584;"><span><b>เลขที่บัญชี yyy-y-yyyyy-y</b></span></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-md-6">
+                                                <div class="bank-detail" id="kbank" style="border: 2px solid #ffc422; font-size: 16px">
+                                                    <img src="pic/krungsri.jpg" alt="ธนาคารกสิกรไทย" style="width: 120px">
+                                                    <div class="nameBank" style=" color: #ffc422;"><b>ธนาคาร กรุงศรีอยุธยา จำกัด (มหาชน)</b></div>
+                                                    <div class="nameAccount"><span>ชื่อบัญชี คอมพิวเตอร์ออนไลน์</span></div>
+                                                    <div class="numberAccount" style=" color: #ffc422;"><span><b>เลขที่บัญชี zzz-z-zzzzz-z</b></span></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-md-6">
+                                                <div class="bank-detail" id="ktb" style="border: 2px solid #109AD7; font-size: 16px">
+                                                    <img src="pic/ktb.jpg" alt="ธนาคารกรุงไทย" style="width: 120px">
+                                                    <div class="nameBank" style=" color: #109AD7;"><b>ธนาคาร กรุงไทย จำกัด (มหาชน)</b></div>
+                                                    <div class="nameAccount"><span>ชื่อบัญชี คอมพิวเตอร์ออนไลน์</span></div>
+                                                    <div class="numberAccount" style=" color: #109AD7;"><span><b>เลขที่บัญชี www-w-wwwww-w</b></span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="table-response">
-                        <form action="ManageCart.in" method="POST">
-                            <table class="table table-hover table-striped">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">รูปสินค้า</th>
-                                        <th class="text-center">ชื่อสินค้า</th>
-                                        <th class="text-center">ราคา</th>
-                                        <th class="text-center">จำนวน</th>
-                                        <th class="text-center">ลบ</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <c:set var="totalPrice" scope="page" value="0"/>
-                                    <c:set var="index" value="0"/>
-                                    <c:forEach var="i" items="${sessionScope.order.getProductList()}">
-                                        <tr>
-                                            <td class="text-center"><img src="ShowPicture?id=${i.getProduct().getId()}&table=productpictures" style="width: 100px; height: 100px;"/></td>
-                                            <td class="text-center">${i.getProduct().getName()}</td>
-                                            <td class="text-center">${i.getProduct().getPrice()}</td>
-                                            <td class="text-center">${i.getQuantity()}</td>
-                                            <td class="text-center"><input type="submit" value="ลบ" name="button${index}" /></td>
-                                        </tr>
-                                        <c:set var="totalPrice" scope="page" value="${totalPrice + i.getProduct().getPrice() * i.getQuantity()}"/>
-                                        <c:set var="index" value="${index + 1}"/>
-                                    </c:forEach>
-                                    <jsp:useBean id="order" scope="session" class="model.Orders"/>
-                                    <jsp:setProperty name="order" property="totalPrice" value="${totalPrice}"/>
-                                </tbody>
-                            </table>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="panel panel-defualt">
-                        <div class="panel-heading text-left">
-                            <strong>ข้อมูลการสั่งซื้อ</strong>
-                        </div>
-                        <div class="panel-body f14 text-left">
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td>ราคารวม</td><td>${totalPrice}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="card">
+                            <div class="card-header" id="headingTwo">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        <span>วิธีการชำระเงินผ่านบัตรเครดิต/เดบิต</span>
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                <div class="card-body">
+                                    <h2 class="topic-head"><b>วิธีการชำระเงินผ่านบัตรเครดิต/เดบิต</b></h2>
+                                    <div class="content-pay">
+                                        <p class="content-body">1.เมื่อท่านเลือกชำระเงินผ่านบัตรเครดิต/เดบิต</p>
+                                        <p class="content-body">2.ระบบจะให้ท่านกรอกรายละเอียดบัตรของท่าน</p>
+                                        <p class="content-body">3.กดปุ่ม "ยืนยันการสั่งซื้อ" เพื่อดำเนินการชำระเสร็จสิ้น</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row margin-cart">
-                <div class="col-md-8 text-right">
-                    <a href="shoppingPage.jsp" class="btn btn-primary btn-md cart-link" role="button">
-                        <i class="fas fa-angle-left"></i>เลือกสินค้าต่อ
-                    </a>
-                    <a href="confirmPurchase.jsp" class="btn btn-primary btn-md cart-link" role="button">
-                        ชำระสินค้า<i class="fas fa-angle-right"></i>
-                    </a>
-                </div>
-            </div>
+
         </div>
 
-
-        <!--Java Script-->
+        <!--java script-->
+        <script>
+            function submitForm()
+            {
+                document.getElementById("searchForm").submit();
+            }
+            function submitForm(type)
+            {
+                document.getElementById("productType").value = type;
+                document.getElementById("productTypeForm").submit();
+            }
+        </script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

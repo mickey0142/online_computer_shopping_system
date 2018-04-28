@@ -69,11 +69,6 @@ i.fa-shopping-cart{
 section{
     display: block;
 }
-.row{
-    margin-top: 15px;
-    margin-left: -15px;
-    margin-right: -15px;
-}
 .navbar-toggleable-md{
     flex-direction: row;
 }
@@ -109,62 +104,52 @@ button.username:focus{
 }
 
 /*content*/
-
-.cart-navigation{
+.singlepage{
+    padding: 30px;
+    min-height: 700px;
     font-size: 14px;
-    color: #000;
-    background: #ffffff;
 }
-.margin-cart{
-    margin-top: 10px;
+.singlepage .title{
+    font-size: 28px;
+    font-weight: bold;
+    padding-bottom: 5px;
+    border-bottom: 5px solid #22b7eb;
 }
-
-div{
-    display: block;
-}
-.panel-defualt{
-    border-color: #ddd;
-}
-.panel{
-    margin-bottom: 20px;
-    background: #ffffff;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    box-shadow: 0 1px 1px rgba(0,0,0,.05);
-}
-.panel-heading{
-    background-color: #3385ff;
-    border-color: #ddd;
-    color: #000;
-    padding: 10px 15px;
-    border-bottom: 1px solid transparent;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-}
-.table-response{
-    min-height: 0.01%;
-    overflow-x: auto;
-}
-.table{
-    width: 100%;
+.singlepage img{
     max-width: 100%;
-    margin-bottom: 20px;
 }
-table{
-    background: transparent;
-    border-spacing: 0;
-    border-collapse: collapse;
+p{
+    display: block;
+    margin-top: 0;
+    margin-bottom: 1rem
 }
-thead{
-    display: table-header-group;
-    vertical-align: middle;
-    border-color: inherit;
+.topic-head{
+    font-size: 18px;
 }
-tr{
-    display: table-row;
-    vertical-align: inherit;
-    border-color: inherit;
+.content-body{
+    font-size: 16px;
+    padding-left: 3rem;
 }
-.panel-body{
-    padding: 15px;
+.card-header .mb-0 .btn-link span{
+    color: #444;
+    font-size: 18px;
+    font-weight: bold;
+}
+.card-header .mb-0 .btn-link span:hover, .card-header .mb-0 .btn-link span:link, .card-header .mb-0 .btn-link span:visited{
+    color: darkorange;
+}
+.card-box{
+    flex: 1 1 auto;
+    padding: 1.5rem;
+}
+.card-box .row{
+    margin-left: 0;
+    margin-right: 0;
+}
+.bank-detail{
+    text-align: center;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 10px 0;
+    height: 180px;
 }

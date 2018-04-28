@@ -8,8 +8,6 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,6 +51,7 @@ public class RegisterServlet extends HttpServlet {
             String lastname = request.getParameter("lastname");
             String username = request.getParameter("username");
             String password = request.getParameter("password");
+            String confirmPassword = request.getParameter("confirmPassword");
             String phone = request.getParameter("phone");
             String email = request.getParameter("email");
             String address = request.getParameter("address");
@@ -62,52 +61,57 @@ public class RegisterServlet extends HttpServlet {
             if (firstname.equals(""))
             {
                 success = false;
-                errorMessage += "First name can't be empty" + "\\n";
+                errorMessage += "กรุณาใส่ชื่อจริง" + "\\n";
             }
             if (lastname.equals(""))
             {
                 success = false;
-                errorMessage += "Last name can't be empty" + "\\n";
+                errorMessage += "กรุณาใส่นามสกุล" + "\\n";
             }
             if (username.equals(""))
             {
                 success = false;
-                errorMessage += "Username can't be empty" + "\\n";
+                errorMessage += "กรุณาใส่ username" + "\\n";
             }
             if (username.startsWith("emp"))
             {
                 success = false;
-                errorMessage += "username can't start with emp" + "\\n";
+                errorMessage += "ไม่สามารถตั้งชื่อ username ขึ้นต้นด้วย emp ได้" + "\\n";
             }
             if (password.equals(""))
             {
                 success = false;
-                errorMessage += "password can't be empty" + "\\n";
+                errorMessage += "กรุณาใส่รหัสผ่าน" + "\\n";
+            }
+            if (!password.equals(confirmPassword))
+            {
+                success = false;
+                errorMessage += "ยีนยันรหัสผ่านไม่ตรงกับรหัสผ่าน" + "\\n";
             }
             if (phone == null)
             {
                 success = false;
-                errorMessage += "phone can't be empty" + "\\n";
+                errorMessage += "กรุณาใส่เบอร์โทรศัพท์" + "\\n";
             }
             if (email == null)
             {
                 success = false;
-                errorMessage += "email can't be empty" + "\\n";
+                errorMessage += "กรุณาใส่อีเมล์" + "\\n";
             }
             if (address.equals(""))
             {
                 success = false;
-                errorMessage += "address can't be empty" + "\\n";
+                errorMessage += "กรุณาใส่ที่อยู่" + "\\n";
             }
             if (phone.length() != 10)
             {
                 success = false;
-                errorMessage += "Phone number invalid" + "\\n";
+                errorMessage += "คุณใส่เบอร์โทรศัพท์ผิด" + "\\n";
             }
             if (!(email.contains("@") && email.contains(".com")))
             {
                 success = false;
-                errorMessage += "Email invalid" + "\\n";
+                errorMessage += "คุณใส่อีเมล์ผิด" + "\\n";
             }
             if (success)
             {
@@ -123,12 +127,12 @@ public class RegisterServlet extends HttpServlet {
                 System.out.println(result);
                 if (result.equals("success"))
                 {
-                    session.setAttribute("message", "Register Success!");
+                    session.setAttribute("message", "สมัครสำเร็จ!");
                     response.sendRedirect("register.jsp");
                 }
                 else if (result.equals("duplicatedUsername"))
                 {
-                    session.setAttribute("message", "Username is already exists");
+                    session.setAttribute("message", "ชื่อ username ซ้ำ");
                     response.sendRedirect("register.jsp");
                 }
             }

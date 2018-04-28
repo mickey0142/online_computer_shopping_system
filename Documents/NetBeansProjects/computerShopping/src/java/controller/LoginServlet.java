@@ -116,6 +116,7 @@ public class LoginServlet extends HttpServlet {
                     else
                     {
                         emp.setId(rs.getString("employeeId"));
+                        emp.setUsername(rs.getString("username"));
                         session.setAttribute("userInfo", emp);
                         session.setAttribute("isEmp", "yes");
                         // employee go to page after login here

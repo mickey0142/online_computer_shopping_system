@@ -7,10 +7,17 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>register</title>
+        <meta charset="UTF-8">
+        <title>สมัครสมาชิก</title>
+        <link rel="stylesheet" type="text/css" href="register.css">
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Pridi" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
+
     </head>
     <body>
         <c:if test="${sessionScope.message != '' and sessionScope.message != null}">
@@ -18,18 +25,133 @@
                 alert("${sessionScope.message}");
             </script>
         </c:if>
-        <h1>Register</h1>
-        <%@include file="menu.jsp" %><br>
-        <form action="RegisterServlet" method="POST">
-            first name : <input type="text" name="firstname" value="" size="30" /><br>
-            last name : <input type="text" name="lastname" value="" size="30" /><br>
-            username : <input type="text" name="username" value="" size="30" /><br>
-            password : <input type="text" name="password" value="" size="30" /><br>
-            phone number : <input type="text" name="phone" value="" size="30" /><br>
-            email : <input type="text" name="email" value="" size="30" /><br>
-            address : <input type="text" name="address" value="" size="30" /><br>
-            <input type="submit" value="register" />
-        </form>
+        <section class="hidden-md-down header-box">
+            <nav class="navbar navbar-toggleable-md navbar-light bg-faded ">
+                <div class="container">
+                    <div class="col-2 loGo">
+                        <a href="index.jsp"><img src="pic/logo.png" alt="This is logo for web" class="resize"></a>
+                    </div>
+                    <form action="shoppingPage.jsp" id="searchForm">
+                        <div class="col-6 searching">
+                            <div class="easy-autocomplete" style="width: 540px">
+                                <input class="form-control mr-sm-2 searchTerm" type="search" placeholder="ค้นหาสินค้าที่คุณต้องการ..." aria-label="Search" name="searchName">
+                                <button type="submit" class="searchButton" onclick="submitForm()"><i class="fa fa-search" aria-hidden="true" onclick="submitForm()"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="col etc">
+                        <div class="row">
+                            <div class="col-4 text-right">
+                                <c:if test="${sessionScope.loginFlag and sessionScope.isEmp == null}">
+                                    <a href="manageCart.jsp" id="goCart"><i class="fas fa-shopping-cart" aria-hidden="true"></i></a>
+                                    </c:if>
+                            </div>
+                            <div class="col nav-item dropdown">
+                                <button class="btn dropdown-toggle username" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-user-circle"></i> 
+                                    <c:if test="${!sessionScope.loginFlag || sessionScope.loginFlag == null}">เข้าสู่ระบบ</c:if>
+                                    <c:if test="${sessionScope.loginFlag}">${sessionScope.userInfo.getUsername()}</c:if>
+                                    </button>
+                                    <div class="dropdown-menu" id="login" aria-labelledby="dropdownMenuButton">
+                                    <c:if test="${!sessionScope.loginFlag || sessionScope.loginFlag == null}">
+                                        <a class="dropdown-item" href="login.jsp">เข้าสู่ระบบ</a>
+                                        <a class="dropdown-item" href="register.jsp">สมัครสมาชิก</a>
+                                    </c:if>
+                                    <c:if test="${sessionScope.loginFlag}">
+                                        <a class="dropdown-item" href="LogoutServlet">ออกจากระบบ</a>
+                                    </c:if>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <nav class="navbar navbar-toggleable-md navbar-light bg-faded ">
+                <div class="container pl-0 pr-0">
+                    <div class="nav-item text-left">
+                        <a href="index.jsp">
+                            หน้าหลัก
+                        </a>
+                    </div>
+                    <div class="dropdown">
+                        <form action="SetSessionValue?attributeName=productTypeId" method="POST" id="productTypeForm">
+                            <button class="btn dropdown-toggle type" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                ประเภทสินค้า
+                            </button>
+                            <div class="dropdown-menu" id="type" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#" onclick="submitForm('%')">สินค้าทั้งหมด</a>
+                                <a class="dropdown-item" href="#" onclick="submitForm('01')">Mainboard</a>
+                                <a class="dropdown-item" href="#" onclick="submitForm('02')">CPU</a>
+                                <a class="dropdown-item" href="#" onclick="submitForm('03')">RAM</a>
+                                <a class="dropdown-item" href="#" onclick="submitForm('04')">Power supply</a>
+                                <a class="dropdown-item" href="#" onclick="submitForm('05')">Graphic card</a>
+                                <a class="dropdown-item" href="#" onclick="submitForm('06')">Harddisk</a>
+                                <a class="dropdown-item" href="#" onclick="submitForm('07')">Monitor</a>
+                                <a class="dropdown-item" href="#" onclick="submitForm('08')">Keyboard</a>
+                                <a class="dropdown-item" href="#" onclick="submitForm('09')">Mouse</a>
+                                <a class="dropdown-item" href="#" onclick="submitForm('10')">Case</a>
+                            </div>
+                            <input type="hidden" value="${sessionScope.productTypeId}" id="productType" name="productTypeId"/>
+                            <input type="hidden" value="shoppingPage.jsp" id="backTo" name="backTo"/>
+                        </form>
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle type" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            วิธีการซื้อสินค้า/ชำระสินค้า
+                        </button>
+                        <div class="dropdown-menu" id="howTo" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="howBuy.jsp">วิธีการสั่งซื้อสินค้า</a>
+                            <a class="dropdown-item" href="howPay.jsp">วิธีการชำระสินค้า</a>
+                        </div>
+                    </div>
+                    <div class="nav-item text-left">
+                        <a href="spec.jsp">จัดสเปคคอมพิวเตอร์</a>
+                    </div>
+                    <div class="nav-item text-left">
+                        <a href="orderHistory.jsp">เช็คสถานะออเดอร์ </a>
+                    </div>
+                    <div class="nav-item text-left">
+                        <a href="contact.html">ติดต่อเรา</a>
+                    </div>
+                    </ul>
+                </div>
+                </div>
+            </nav>
+        </section>
         <% session.setAttribute("message", "");%>
+
+        <form action="RegisterServlet" method="POST" id="registerForm">
+            <div class="container">
+                <div class="box">
+                    <div class="register_box">
+                        <h1>สมัครสมาชิก</h1><br>
+                        ชื่อ: <input type="text" name="firstname" placeholder="ชื่อจริง" id="fName"><br><br>
+                        นามสกุล: <input type="text" name="lastname" placeholder="นามสกุล" id="lName"><br><br>
+                        เบอร์โทรศัพท์: <input type="text" name="phone" placeholder="เบอร์โทรศัพท์" id="phone"><br><br>
+                        อีเมล์: <input type="text" name="email" placeholder="อีเมล์" id="email"><br><br>
+                        ชื่อผู้ใช้งาน: <input type="text" name="username" placeholder="รหัสผ่าน" id="user"><br><br>
+                        รหัสผ่าน: <input type="password" name="password" placeholder="รหัสผ่าน" id="pass"><br><br>
+                        ยืนยันรหัสผ่าน: <input type="password" name="confirmPassword" placeholder="ยืนยันรหัสผ่าน" id="conPass"><br><br>
+                        ที่อยู่จัดส่งสินค้า: <br>
+                        <textarea name="address" id="address" cols="50" rows="7" placeholder="ที่อยู่จัดส่งสินค้า"></textarea>
+                        <br>
+                        <br>
+                        <a href="#" class="btn btn-primary btn-md cart-link" role="button" onclick="submitForm()">
+                            ยืนยันการสมัคร
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!--script-->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script>
+            function submitForm()
+            {
+                document.getElementById("registerForm").submit();
+            }
+        </script>
     </body>
 </html>

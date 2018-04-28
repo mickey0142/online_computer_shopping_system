@@ -82,7 +82,6 @@ public class ShowPicture extends HttpServlet {
                     ps.setString(1, pid);
                 }
                 ResultSet rs = ps.executeQuery();
-                System.out.println(ps);
                 if(rs.next())
                 {
                     if (table.equals("orders"))

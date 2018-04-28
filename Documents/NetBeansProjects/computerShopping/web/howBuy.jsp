@@ -1,35 +1,25 @@
 <%-- 
-    Document   : index
-    Created on : Apr 9, 2018, 9:26:48 AM
+    Document   : howBuy
+    Created on : Apr 28, 2018, 11:03:59 PM
     Author     : Mickey
 --%>
 
-<%@page import="java.util.ArrayList"%>
-<%@page import="model.Products"%>
-<%@page import="model.DBConnector"%>
-<%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
-<%@taglib uri="/WEB-INF/tlds/shortcut" prefix="shortcut" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <meta charset="UTF-8">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>ระบบซื้อ-ขายคอมพิวเตอร์ออนไลน์</title>
-        <link rel="stylesheet" href="index.css">
+        <meta charset="UTF-8">
+        <title>วิธีสั่งซื้อสินค้ากับเรา</title>
+        <link rel="stylesheet" href="howTo.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Pridi" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">    </head>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
+
+    </head>
     <body>
-        <c:if test="${sessionScope.message != '' and sessionScope.message != null}">
-            <script>
-                alert("${sessionScope.message}");
-            </script>
-        </c:if>
-        <% session.setAttribute("message", "");%>
         <section class="hidden-md-down header-box">
             <nav class="navbar navbar-toggleable-md navbar-light bg-faded ">
                 <div class="container">
@@ -56,8 +46,8 @@
                                     <i class="fas fa-user-circle"></i> 
                                     <c:if test="${!sessionScope.loginFlag || sessionScope.loginFlag == null}">เข้าสู่ระบบ</c:if>
                                     <c:if test="${sessionScope.loginFlag}">${sessionScope.userInfo.getUsername()}</c:if>
-                                    </button>
-                                    <div class="dropdown-menu" id="login" aria-labelledby="dropdownMenuButton">
+                                </button>
+                                <div class="dropdown-menu" id="login" aria-labelledby="dropdownMenuButton">
                                     <c:if test="${!sessionScope.loginFlag || sessionScope.loginFlag == null}">
                                         <a class="dropdown-item" href="login.jsp">เข้าสู่ระบบ</a>
                                         <a class="dropdown-item" href="register.jsp">สมัครสมาชิก</a>
@@ -124,45 +114,32 @@
             </nav>
         </section>
 
-        <div class="container" style="position: relative;">
-            <!--Promotion-->
+        <div class="container">
             <div class="row">
-                <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img class="d-block w-100" src="pic/a.png" alt="First slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="pic/b.jpg" alt="Second slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="pic/a.png" alt="Third slide">
-                        </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 singlepage">
+                    <h1 class="title pt-2">วิธีการสั่งซื้อสินค้า</h1>
+                    <p style="text-align: center">
+                        <img src="pic/howTo.png" alt="วิธีใช้งาน">
+                    </p>
                 </div>
             </div>
 
-            <!--javascript-->
-            <script>
-                function submitForm()
-                {
-                    document.getElementById("searchForm").submit();
-                }
-                function submitForm(type)
-                {
-                    document.getElementById("productType").value = type;
-                    document.getElementById("productTypeForm").submit();
-                }
-            </script>
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>>
+        </div>
+        <!--java script-->
+        <script>
+            function submitForm()
+            {
+                document.getElementById("searchForm").submit();
+            }
+            function submitForm(type)
+            {
+                document.getElementById("productType").value = type;
+                document.getElementById("productTypeForm").submit();
+            }
+        </script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>>
+
     </body>
 </html>
