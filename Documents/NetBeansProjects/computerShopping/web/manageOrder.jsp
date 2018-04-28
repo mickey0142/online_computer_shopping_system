@@ -17,8 +17,22 @@
         <%@include file="menu.jsp" %>
         <h1>manage order</h1>
         <sql:query dataSource="${applicationScope.datasourceName}" var="orderData">
-            select * from orders order by orderDate
+            select * from orders where status like '${param.status}%'
+            <c:if test="${param.cusId != '' and param.cusId != null}"> and customerId = ${param.cusId}</c:if>
+                order  by orderDate
         </sql:query>
+        <form action="manageOrder.jsp" method="POST">
+            Customer Id : <input type="text" name="cusId" value="" /> 
+            <select name="status">
+                <option>%</option>
+                <option>not paid</option>
+                <option>paid</option>
+                <option>assembling</option>
+                <option>shipping</option>
+                <option>cancelled</option>
+            </select>
+            <input type="submit" value="search" />
+        </form>
         <jsp:useBean id="DBConn" scope="page" class="model.DBConnector"/>
         <table>
             <tr>

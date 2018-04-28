@@ -26,6 +26,7 @@
         <% session.setAttribute("message", "");%>
         <%@include file="menu.jsp" %><br>
         <h1>จัด spec</h1>
+        <a href="BuySpec.in">สั่งซื้อ spec นี้</a>
         C : ${sessionScope.compCodeC}<br>MC : ${sessionScope.compCodeMC}<br>MR : ${sessionScope.compCodeMR}<br>R : ${sessionScope.compCodeR}<br>
         <a href="RemoveFromSpec?index=-1">
                     <div style="background-color: lightgoldenrodyellow; width: 50px;">clear</div>
@@ -116,7 +117,7 @@
             <input type="hidden" value="specProductTypeId" name="attributeName"/>
         </form>
 
-        <shortcut:select productId="${sessionScope.specProductTypeId}" search="${param.searchName}"></shortcut:select>
+        <shortcut:select productId="${sessionScope.specProductTypeId}" search="${param.searchName}" fromPage="spec"></shortcut:select>
 
         <!--javascript-->
         <script>

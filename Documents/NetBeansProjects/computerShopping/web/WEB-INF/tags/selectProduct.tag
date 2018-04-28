@@ -12,11 +12,32 @@
 <%-- The list of normal or fragment attributes can be specified here: --%>
 <%@attribute name="productId"%>
 <%@attribute name="search"%>
+<%@attribute name="fromPage" %>
 
 <%-- any content can be specified here e.g.: --%>
-<sql:query dataSource="${applicationScope.datasourceName}" var="product">
-    select * from products where productId like "${productId}%" and productName like "%${search}%"
-</sql:query>
+<c:if test="${fromPage == 'shopping'}">
+    <sql:query dataSource="${applicationScope.datasourceName}" var="product">
+        select * from products where productId like "${productId}%" and productName like "%${search}%"
+    </sql:query>
+</c:if>
+<c:if test="${fromPage == 'spec'}">
+    <c:set scope="page" var="firstChar" value="_"/>
+    <c:set scope="page" var="secondChar" value="_"/>
+    <c:if test="${sessionScope.compCodeC != null}">
+        <c:set scope="page" var="firstChar" value="${sessionScope.compCodeC}"/>
+    </c:if>
+    <c:if test="${sessionScope.compCodeMC != null}">
+        <c:set scope="page" var="firstChar" value="${sessionScope.compCodeMC}"/>
+    </c:if>
+    <c:if test="${sessionScope.compCodeMR != null}">
+        <c:set scope="page" var="secondChar" value="${sessionScope.compCodeMR}"/>
+    </c:if>
+    <sql:query dataSource="${applicationScope.datasourceName}" var="product">
+        select * from products left outer join producttype2 using (productId)
+        where productId like "${productId}%" and productName like "%${search}%" and
+        (compatibility like '${firstChar}__' or compatibility < '0${secondChar}' or compatibility is null)
+    </sql:query>
+</c:if>
 <jsp:useBean id="DBConn" scope="page" class="model.DBConnector"/>
 <!--query for using in spec : select * from products left outer join producttype2 using (productId) where เหมือนเดิม and 
 (compatibility like 'ตัวแปร__' or compatibility < '0I_' or compatibility is null)

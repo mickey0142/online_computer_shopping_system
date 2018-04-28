@@ -65,7 +65,7 @@
             <input type="hidden" value="shoppingPage.jsp" id="backTo" name="backTo"/>
         </form>
         
-        <shortcut:select productId="${sessionScope.productTypeId}" search="${param.searchName}"></shortcut:select>
+        <shortcut:select productId="${sessionScope.productTypeId}" search="${param.searchName}" fromPage="shopping"></shortcut:select>
         <c:if test="${sessionScope.loginFlag and sessionScope.isEmp == null}">
             <%@include file="showCart.jsp" %>
         </c:if>

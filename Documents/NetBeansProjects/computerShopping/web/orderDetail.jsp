@@ -37,6 +37,7 @@
                 update status : <select name="status">
                     <option>not paid</option>
                     <option>paid</option>
+                    <option>assembling</option>
                     <option>shipping</option>
                     <option>cancelled</option>
                 </select>

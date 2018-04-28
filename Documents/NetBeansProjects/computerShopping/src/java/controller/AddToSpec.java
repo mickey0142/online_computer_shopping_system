@@ -61,7 +61,7 @@ public class AddToSpec extends HttpServlet {
                 powerConsumption = Double.parseDouble(request.getParameter("powerConsumption"));
                 compatibility = request.getParameter("compatibility");
             }
-            else if (productId.startsWith("04") || productId.startsWith("05") || productId.startsWith("06"))
+            else if (productId.startsWith("04") || productId.startsWith("05"))
             {
                 powerConsumption = Double.parseDouble(request.getParameter("powerConsumption"));
             }
@@ -80,7 +80,7 @@ public class AddToSpec extends HttpServlet {
                 }
                 session.setAttribute("inSpec", inSpec);
             }
-            int index = productId.charAt(1)-48;
+            int index = Integer.parseInt(productId.substring(0, 2));
             System.out.println(index);
             ProductLists pl = new ProductLists();
             pl.setProduct(pd);
@@ -96,6 +96,12 @@ public class AddToSpec extends HttpServlet {
             String compCodeMC = (String) session.getAttribute("compCodeMC");
             String compCodeMR = (String) session.getAttribute("compCodeMR");
             String compCodeR = (String) session.getAttribute("compCodeR");
+            String temp = (String) session.getAttribute("powerSup");
+            String temp2 = (String) session.getAttribute("powerCon");
+            double powerSup = -1;
+            double powerCon = -1;
+            if (temp != null) powerSup = Double.parseDouble(temp);
+            if (temp2 != null) powerCon =  Double.parseDouble(temp2);
             if (compatibility != null)
             {
                 if (index == 1)
@@ -116,7 +122,7 @@ public class AddToSpec extends HttpServlet {
                         }
                         else
                         {
-                            session.setAttribute("message", "this product is not compatible");
+                            session.setAttribute("message", "สินค้าชิ้นนี้ไม่เข้ากับชิ้นอื่น");
                         }
                     }
                     if (compCodeR == null)
@@ -135,7 +141,7 @@ public class AddToSpec extends HttpServlet {
                         }
                         else
                         {
-                            session.setAttribute("message", "this product is not compatible");
+                            session.setAttribute("message", "สินค้าชิ้นนี้ไม่เข้ากับชิ้นอื่น");
                         }
                     }
                 }
@@ -157,7 +163,7 @@ public class AddToSpec extends HttpServlet {
                         }
                         else
                         {
-                            session.setAttribute("message", "this product is not compatible");
+                            session.setAttribute("message", "สินค้าชิ้นนี้ไม่เข้ากับชิ้นอื่น");
                         }
                     }
                 }
@@ -179,12 +185,41 @@ public class AddToSpec extends HttpServlet {
                         }
                         else
                         {
-                            session.setAttribute("message", "this product is not compatible");
+                            session.setAttribute("message", "สินค้าชิ้นนี้ไม่เข้ากับชิ้นอื่น");
                         }
                     }
                 }
             }
-            
+            else if (index == 4)
+            {
+                if (powerConsumption < powerCon)
+                {
+                    session.setAttribute("message", "กำลังไฟไม่เพียงพอ");
+                }
+                else
+                {
+                    powerSup = powerConsumption;
+                    session.setAttribute("powerSup", powerSup);
+                    inSpec.set(index, pl);
+                }
+            }
+            else if (index == 5)
+            {
+                if (powerConsumption < powerSup || powerSup != -1)
+                {
+                    powerCon = powerConsumption;
+                    session.setAttribute("powerSup", powerSup);
+                    inSpec.set(index, pl);
+                }
+                else
+                {
+                    session.setAttribute("message", "กำลังไฟไม่เพียงพอ");
+                }
+            }
+            else
+            {
+                inSpec.set(index, pl);
+            }
             response.sendRedirect("spec.jsp");
         }
     }

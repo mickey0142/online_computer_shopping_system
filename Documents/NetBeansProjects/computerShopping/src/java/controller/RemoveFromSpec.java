@@ -42,9 +42,10 @@ public class RemoveFromSpec extends HttpServlet {
             ArrayList<ProductLists> inSpec = (ArrayList<ProductLists>) session.getAttribute("inSpec");
             if (index == -1)
             {
+                inSpec = new ArrayList<ProductLists>();
                 for (int i = 0 ; i <= 10; i++)
                 {
-                    inSpec.set(i, null);
+                    inSpec.add(null);
                 }
                 session.setAttribute("inSpec", inSpec);
                 session.setAttribute("compCodeMC", null);

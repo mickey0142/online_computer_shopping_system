@@ -51,7 +51,7 @@
                         <input type="hidden" name="compatibility" value="${j.compatibility}" />
                     </c:forEach>
                 </c:if>
-                <c:if test="${fn:startsWith(i.productId, '04') or fn:startsWith(i.productId, '05') or fn:startsWith(i.productId, '06')}">
+                <c:if test="${fn:startsWith(i.productId, '04') or fn:startsWith(i.productId, '05')}">
                     <sql:query dataSource="${applicationScope.datasourceName}" var="type1">
                         select * from producttype1 where productId = ${i.productId}
                     </sql:query>
