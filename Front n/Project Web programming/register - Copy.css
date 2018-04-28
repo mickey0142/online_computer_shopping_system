@@ -1,0 +1,172 @@
+body{
+    font-family: 'Pridi', serif;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+.menu-product .navbar-nav:hover{
+    color: #3385ff;
+}
+.easy-autocomplete{
+    width: 100%;
+    position: relative;
+    padding-top: 12px;
+}
+.searchTerm{
+    float: left;
+    width: 100%;
+    border: 3px solid #00B4CC;
+    padding: 5px;
+    border-radius: 5px;
+    outline: none;
+    color: #9DBFAF;
+}
+
+.searchTerm:focus{
+    color: #00B4CC;
+}
+.searchButton {
+    position: absolute;
+    width: 40px;
+    height: 36px;
+    border: 1px solid #00B4CC;
+    background: #00B4CC;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+}
+#goCart:hover{
+    color: #000;
+}
+#goCart:active{
+    color: #000;
+}
+#goCart:visited{
+    color: #000;
+}
+img.resize{
+    width: 50%;
+    height: 50%;
+}
+.nav-item a{
+    color: #666;
+}
+.nav-item a:hover{
+    color: rgba(0,0,0,.5);
+}
+i.fa-shopping-cart{
+    font-size: 1.5em;
+    color: #666;
+    padding-top: 10px;
+}
+.bg-faded{
+    background-color: #f7f7f7;
+}
+li{
+    list-style: none;
+}
+.mt-1{
+    margin-top: .25rem !important;
+}
+.title-h .seeAll{
+    border: 0px solid #fff;
+    border-radius: 5px;
+    color: #ffffff;
+    background: transparent;
+    cursor: pointer;
+    padding: 0px 15px;
+    font-size: 14px;
+}
+section{
+    display: block;
+}
+.row{
+    margin-top: 15px;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+.navbar-toggleable-md{
+    flex-direction: row;
+}
+.text-left{
+    text-align: left !important;
+}
+button.username{
+    font-size: 18px;
+    color: #555;
+    background: Menu;
+}
+button.username:focus{
+    color: black;
+}
+.type{
+    color: #555;
+    background-color: Menu;
+}
+.type:focus{
+    color: #000;
+    box-shadow: Menu;
+}
+.dropdown #login{
+    left: inherit;
+    width: 120px !important;
+}
+.dropdown #type{
+    width: 100px !important;
+}
+.dropdown #howTo{
+    width: 220px !important;
+}
+.navbar-toggleable-md{
+    flex-direction: row;
+}
+.text-left{
+    text-align: left !important;
+}
+.fa{
+    display: inline-block;
+    font-size: inherit;
+    text-rendering: auto;
+}
+.box{
+    position: relative;
+    margin: auto;
+    width: 420px;
+    top: 60px;
+    border: 5px solid #f6f6f6;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 50px;
+    box-shadow: 0px 0px 10px 10px #fafafa;
+}
+#fName{
+    margin-left: 20%;
+}
+#lName{
+    margin-left: 11.5%;
+}
+#phone{
+    margin-left: 3.25%;
+}
+#email{
+    margin-left: 16.6%;
+}
+#user{
+    margin-left: 7.85%;
+}
+#pass{
+    margin-left: 12%;
+}
+#conPass{
+    margin-left: 3.3%;
+}
+#address{
+    padding: 15px;
+    resize: none;
+}
+.sex{
+    margin-left: 15px;
+}
+.detail-regis{
+    margin-bottom: 15px;
+}
