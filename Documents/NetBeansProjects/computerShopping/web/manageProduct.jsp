@@ -19,6 +19,7 @@
         <sql:query dataSource="${applicationScope.datasourceName}" var="product">
             select * from products
         </sql:query>
+        <jsp:useBean id="DBConn" scope="page" class="model.DBConnector"/>
         <form action="deleteProduct.emp" method="POST" id="deleteProduct">
             <input type="hidden" name="deleteId" value="test" id="deleteId"/>
         </form>

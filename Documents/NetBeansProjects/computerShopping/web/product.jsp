@@ -20,6 +20,7 @@
         <sql:query dataSource="${applicationScope.datasourceName}" var="product">
             select * from products where productId = "${param.id}"
         </sql:query>
+        <jsp:useBean id="DBConn" scope="page" class="model.DBConnector"/>
         <c:forEach var="i" items="${product.rows}">
             Product Id : ${i.productId}<br>
             Product Name : ${i.productName}<br>

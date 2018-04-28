@@ -19,6 +19,7 @@
         <sql:query dataSource="${applicationScope.datasourceName}" var="data">
             select * from orders where customerId = ${sessionScope.userInfo.getId()}
         </sql:query>
+        <jsp:useBean id="DBConn" scope="page" class="model.DBConnector"/>
         <c:forEach var="i" items="${data.rows}">
             <div style="border: 1px solid black">
                 <h2>orderid : ${i.orderId} <br>

@@ -19,6 +19,7 @@
         <sql:query dataSource="${applicationScope.datasourceName}" var="orderData">
             select * from orders order by orderDate
         </sql:query>
+        <jsp:useBean id="DBConn" scope="page" class="model.DBConnector"/>
         <table>
             <tr>
                 <th>Order Id</th><th>payment Proof</th><th>status</th><th>total Price</th><th>customer Id</th><th>order Date</th><th>update</th>

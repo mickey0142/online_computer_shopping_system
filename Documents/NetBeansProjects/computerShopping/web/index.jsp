@@ -4,6 +4,10 @@
     Author     : Mickey
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.Products"%>
+<%@page import="model.DBConnector"%>
+<%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
