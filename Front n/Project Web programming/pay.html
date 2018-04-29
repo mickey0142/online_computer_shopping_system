@@ -98,6 +98,7 @@
             </div>
             <div class="choose-pay">
                 <div class="payment-method-list clearfix text-right">
+                    <a class="expanded" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                     <div class="pay-method-item clearfix automation-payment-method-item" id="bank">
                         <i class="fas fa-university"></i>
                         <div>
@@ -106,20 +107,80 @@
                             </div>
                         </div>
                     </div>
-                    <div class="pay-method-item clearfix automation-payment-method-item" id="openBox" >
-                        <i class="far fa-credit-card"></i>
-                        <div>
-                            <div class="title">
-                                ชำระผ่านบัตรเครดิต/เดบิต
+                    </a>
+                    <div class="pay-method-item clearfix automation-payment-method-item" id="card-pay" >
+                        <a class="expanded" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
+                            <i class="far fa-credit-card"></i>
+                            <div>
+                                <div class="title">
+                                    ชำระผ่านบัตรเครดิต/เดบิต
+                                </div>
                             </div>
+                        </a>
+                    </div>
+                    <!-- collapse -->
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body text-left">
+                            <p>กรุณาทำรายการชำระค่าสินค้าภายใน48ชั่วโมง หากไม่ชำระภายในเวลาดังกล่าว การสั่งสินค้าของท่านจะโดนยกเลิก</p>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline1"><img src="pic/k-bank.png" alt="ธนาคารกสิกรไทย " style="height: 45px; width: 132px"></label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline2"><img src="pic/scb.jpg" alt="ธนาคารไทยพาณิชย์ " style="height: 45px; width: 132px"></label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline3" name="customRadioInline1" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline3"><img src="pic/krungsri.jpg" alt="ธนาคารกรุงศรี " style="height: 45px; width: 132px"></label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline4" name="customRadioInline1" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline4"><img src="pic/ktb.jpg" alt="ธนาคารกรุงไทย " style="height: 45px; width: 132px"></label>
+                            </div>
+                              <button class="btn btn-primary" type="submit" style="width: 120px; margin-top: 15px">สั่งซื้อสินค้า</button>
                         </div>
                     </div>
-                    <div id="bankModel" class="model">
-                        <div class="model-content">
-                            <div class="model-header">
-                                <span class="close">&times;</span>
-                                <h2>โอนเงินผ่านธนาคาร</h2>
+                    <div class="collapse" id="collapseExample2">
+                        <div class="card card-body text-left">
+                            <div class="img-list">
+                                <img src="pic/visa.png" class="bank-img">
+                                <img src="pic/TB1sH7_bxrI8KJjy0FpXXb5hVXa-80-80.png" class="bank-img">
+                                <img src="pic/TB1JmMulOqAXuNjy1XdXXaYcVXa-80-80.png" class="bank-img">
                             </div>
+                            <form>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationDefault01" required class="next-from-item-label">หมายเลขบัตร</label>
+      <input type="text" class="form-control" id="validationDefault01" required placeholder="หมายเลขบัตร">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="validationDefault02" required class="next-from-item-label">ชื่อผู้ถือขัตร</label>
+      <input type="text" class="form-control" id="validationDefault03" placeholder="ชื่อผู้ถือบัตร" required>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="validationDefault03" required class="next-from-item-label">วันหมดอายุ</label>
+      <input type="text" class="form-control" id="validationDefault03" placeholder="MM/YY" required>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="validationDefault04" required class="next-from-item-label">CVV</label>
+      <input type="text" class="form-control" id="validationDefault03" placeholder="CVV" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+      <label class="form-check-label" for="invalidCheck2">
+        ยินยอมกับการใช้บัตร
+      </label>
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">สั่งซื้อสินค้า</button>
+</form>
                         </div>
                     </div>
                 </div>
