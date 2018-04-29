@@ -256,3 +256,32 @@ div{
     background-color: #3385ff;
     color: #fff;
 }
+.card.card-body.text-left{
+    width: 650px;
+    position: relative;
+    z-index: 1;
+    padding: 30px 40px;
+    background: #fff;
+    box-shadow: 0 0 2px #ccc;
+}
+.expanded{
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #2f2f2f;
+}
+.expanded:hover{
+    text-decoration: none;
+    box-shadow: 0 0 10px #fafafa;
+}
+.img-list .bank-img{
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+}
+.next-from-item-label[required]:before{
+    display: inline-block;
+    margin-right: 4px;
+    content: "*";
+    color: #f44336;
+}
