@@ -160,7 +160,7 @@
                                         </tr>
                                     </thead>
                                 <sql:query dataSource="${applicationScope.datasourceName}" var="detail">
-                                    select * from orderdetails where orderId = ${i.orderId}
+                                    select * from orderdetails join products using (productId) where orderId = ${i.orderId}
                                 </sql:query>
                                 <c:forEach var="j" items="${detail.rows}">
                                     <tbody>
