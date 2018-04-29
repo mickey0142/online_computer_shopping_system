@@ -27,6 +27,9 @@
         <c:if test="${sessionScope.pageNum == null}">
             <c:set scope="session" var="pageNum" value="1"/>
         </c:if>
+        <c:if test="${sessionScope.sortBy == null}">
+            <c:set scope="session" var="sortBy" value="productId"/>
+        </c:if>
         <sql:query dataSource="${applicationScope.datasourceName}" var="product">
             select * from products where productId like "${sessionScope.productTypeId}%" and productName like "%${param.search}%"
         </sql:query>
@@ -107,26 +110,46 @@
                             <input type="hidden" value="shoppingPage.jsp" id="backTo" name="backTo"/>
                         </form>
                     </div>
-                    <div class="dropdown">
-                        <button class="btn dropdown-toggle type" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            วิธีการซื้อสินค้า/ชำระสินค้า
-                        </button>
-                        <div class="dropdown-menu" id="howTo" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="howBuy.jsp">วิธีการสั่งซื้อสินค้า</a>
-                            <a class="dropdown-item" href="howPay.jsp">วิธีการชำระสินค้า</a>
+                    <c:if test="${sessionScope.isEmp == null}">
+                        <div class="dropdown">
+
+                            <button class="btn dropdown-toggle type" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                วิธีการซื้อสินค้า/ชำระสินค้า
+                            </button>
+
+                            <div class="dropdown-menu" id="howTo" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="howBuy.jsp">วิธีการสั่งซื้อสินค้า</a>
+                                <a class="dropdown-item" href="howPay.jsp">วิธีการชำระสินค้า</a>
+                            </div>
                         </div>
-                    </div>
+                    </c:if>
                     <div class="nav-item text-left">
                         <a href="spec.jsp">จัดสเปคคอมพิวเตอร์</a>
                     </div>
-                    <c:if test="${sessionScope.loginFlag}">
+                    <c:if test="${sessionScope.isEmp != null}">
+                        <c:if test="${sessionScope.userInfo.getEmployeeType() == 'accounting' or sessionScope.userInfo.getEmployeeType() == 'assemble'}">
+                            <div class="nav-item text-left">
+                                <a href="manageOrder.jsp">จัดการรายการออเดอร์</a>
+                            </div>
+                        </c:if>
+                    </c:if>
+                    <c:if test="${sessionScope.isEmp != null}">
+                        <c:if test="${sessionScope.userInfo.getEmployeeType() == 'warehouse'}">
+                            <div class="nav-item text-left">
+                                <a href="manageProduct.jsp">จัดการข้อมูลสินค้า</a>
+                            </div>
+                        </c:if>
+                    </c:if>
+                    <c:if test="${sessionScope.loginFlag and sessionScope.isEmp == null}">
                         <div class="nav-item text-left">
                             <a href="orderHistory.jsp">เช็คสถานะออเดอร์ </a>
                         </div>
                     </c:if>
-                    <div class="nav-item text-left">
-                        <a href="contact.jsp">ติดต่อเรา</a>
-                    </div>
+                    <c:if test="${sessionScope.isEmp == null}">
+                        <div class="nav-item text-left">
+                            <a href="contact.jsp">ติดต่อเรา</a>
+                        </div>
+                    </c:if>
                     </ul>
                 </div>
                 </div>
@@ -174,7 +197,21 @@
                                     </c:if>
                                 </h1></div>
                             <div class="text-right">
-                                <b>Sort by </b> <button type="button" class="btn btn-xs"><i class="fas fa-sort-amount-down"></i></button>
+                                <div class="dropdown">
+                                    <b>Sort by </b>
+                                    <form action="SetSessionValue?attributeName=sortBy" method="POST" id="sortByForm">
+                                        <select name="sortBy" onchange="this.form.submit()" id="sortBy">
+                                            <option>เลือกวิธีการเรียงลำดับ</option>
+                                            <option>หมายเลขสินค้า</option>
+                                            <option>ชื่อสินค้า</option>
+                                            <option>ราคาจากน้อยไปมาก</option>
+                                            <option>ราคาจากมากไปน้อย</option>
+                                        </select>
+                                        <input type="hidden" value="${sessionScope.sortBy}" id="sortBy" name="sortBy"/>
+                                        <input type="hidden" value="shoppingPage.jsp" id="backTo" name="backTo"/>
+                                        <input type="hidden" value="sortBy" name="attributeName"/>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                         <div class="box-product" style="display: inline-block;">
@@ -242,6 +279,11 @@
                                                     {
                                                         document.getElementById("pageNum").value = num;
                                                         document.getElementById("pageNumForm").submit();
+                                                    }
+                                                    function submitSortByForm()
+                                                    {
+
+                                                        document.getElementById("sortByForm").submit();
                                                     }
         </script>
     </body>

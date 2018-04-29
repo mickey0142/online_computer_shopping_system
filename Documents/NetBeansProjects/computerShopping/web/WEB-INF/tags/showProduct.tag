@@ -19,7 +19,7 @@
             <div class="part-overlay text-center"><img src="ShowPicture?id=${data.productId}&table=productpictures" class="img-prod"></div>
         </div>
         <div class="text-center">
-            <div class="part-price"><b>${data.price}</b></div>
+            <div class="part-price"><b>ราคา : ${data.price}</b></div>
             <span>ดูรายละเอียดสินค้า</span>
         </div>
     </div>

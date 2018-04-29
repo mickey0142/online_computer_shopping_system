@@ -46,7 +46,7 @@
                             <div class="col-4 text-right">
                                 <c:if test="${sessionScope.loginFlag and sessionScope.isEmp == null}">
                                     <a href="manageCart.jsp" id="goCart"><i class="fas fa-shopping-cart" aria-hidden="true"></i></a>
-                                </c:if>
+                                    </c:if>
                             </div>
                             <div class="col nav-item dropdown">
                                 <button class="btn dropdown-toggle username" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -97,26 +97,44 @@
                             <input type="hidden" value="shoppingPage.jsp" id="backTo" name="backTo"/>
                         </form>
                     </div>
-                    <div class="dropdown">
-                        <button class="btn dropdown-toggle type" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            วิธีการซื้อสินค้า/ชำระสินค้า
-                        </button>
-                        <div class="dropdown-menu" id="howTo" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="howBuy.jsp">วิธีการสั่งซื้อสินค้า</a>
-                            <a class="dropdown-item" href="howPay.jsp">วิธีการชำระสินค้า</a>
+                    <c:if test="${sessionScope.isEmp == null}">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle type" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                วิธีการซื้อสินค้า/ชำระสินค้า
+                            </button>
+                            <div class="dropdown-menu" id="howTo" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="howBuy.jsp">วิธีการสั่งซื้อสินค้า</a>
+                                <a class="dropdown-item" href="howPay.jsp">วิธีการชำระสินค้า</a>
+                            </div>
                         </div>
-                    </div>
+                    </c:if>
                     <div class="nav-item text-left">
                         <a href="spec.jsp">จัดสเปคคอมพิวเตอร์</a>
                     </div>
-                    <c:if test="${sessionScope.loginFlag}">
+                    <c:if test="${sessionScope.isEmp != null}">
+                        <c:if test="${sessionScope.userInfo.getEmployeeType() == 'accounting' or sessionScope.userInfo.getEmployeeType() == 'assemble'}">
+                            <div class="nav-item text-left">
+                                <a href="manageOrder.jsp">จัดการรายการออเดอร์</a>
+                            </div>
+                        </c:if>
+                    </c:if>
+                    <c:if test="${sessionScope.isEmp != null}">
+                        <c:if test="${sessionScope.userInfo.getEmployeeType() == 'warehouse'}">
+                            <div class="nav-item text-left">
+                                <a href="manageProduct.jsp">จัดการข้อมูลสินค้า</a>
+                            </div>
+                        </c:if>
+                    </c:if>
+                    <c:if test="${sessionScope.loginFlag and sessionScope.isEmp == null}">
                         <div class="nav-item text-left">
                             <a href="orderHistory.jsp">เช็คสถานะออเดอร์ </a>
                         </div>
                     </c:if>
-                    <div class="nav-item text-left">
-                        <a href="contact.jsp">ติดต่อเรา</a>
-                    </div>
+                    <c:if test="${sessionScope.isEmp == null}">
+                        <div class="nav-item text-left">
+                            <a href="contact.jsp">ติดต่อเรา</a>
+                        </div>
+                    </c:if>
                     </ul>
                 </div>
                 </div>

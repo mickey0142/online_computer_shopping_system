@@ -16,9 +16,24 @@
 <%@attribute name="pageNum" %>
 
 <%-- any content can be specified here e.g.: --%>
+<c:if test="${sessionScope.sortBy == 'เลือกวิธีการเรียงลำดับ'}">
+    <c:set scope="session" var="sortBy" value=""/>
+</c:if>
+<c:if test="${sessionScope.sortBy == 'หมายเลขสินค้า'}">
+    <c:set scope="session" var="sortBy" value="productId"/>
+</c:if>
+<c:if test="${sessionScope.sortBy == 'ชื่อสินค้า'}">
+    <c:set scope="session" var="sortBy" value="productName"/>
+</c:if>
+<c:if test="${sessionScope.sortBy == 'ราคาจากน้อยไปมาก'}">
+    <c:set scope="session" var="sortBy" value="price"/>
+</c:if>
+<c:if test="${sessionScope.sortBy == 'ราคาจากมากไปน้อย'}">
+    <c:set scope="session" var="sortBy" value="price desc"/>
+</c:if>
 <c:if test="${fromPage == 'shopping'}">
     <sql:query dataSource="${applicationScope.datasourceName}" var="product">
-        select * from products where productId like "${productId}%" and productName like "%${search}%"
+        select * from products where productId like "${productId}%" and productName like "%${search}%" order by ${sessionScope.sortBy}
     </sql:query>
 </c:if>
 <c:if test="${fromPage == 'spec'}">
@@ -37,6 +52,7 @@
         select * from products left outer join producttype2 using (productId)
         where productId like "${productId}%" and productName like "%${search}%" and
         (compatibility like '${firstChar}__' or compatibility < '0${secondChar}' or compatibility is null)
+        order by ${sessionScope.sortBy}
     </sql:query>
 </c:if>
 <jsp:useBean id="DBConn" scope="page" class="model.DBConnector"/>
