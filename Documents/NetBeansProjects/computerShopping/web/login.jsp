@@ -124,9 +124,9 @@
                             <h1>เข้าสู่ระบบ</h1><br>
                             Username: <input type="text" placeholder="Username" name="username" value=""><br><br>
                             Password: <input type="password" placeholder="Password" name="password" value=""><br><br>
-                            <button type="submit" value="login">เข้าสู่ระบบ</button>
-                            <hr>
-                            <a href="rememberPass.html" id="remember">ลืมรหัสผ่าน</a>
+                            <a href="index.jsp">
+                                <button type="button" class="btn btn-primary btn-md">เข้าสู่ระบบ</button>
+                            </a><hr>
                             <% session.setAttribute("message", "");%>
                         </div>
                     </form>
@@ -136,7 +136,6 @@
 
         <!--Java Script-->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     </body>
 </html>
