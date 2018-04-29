@@ -109,11 +109,3 @@ button.username:focus{
 }
 
 /*content*/
-.btn-light.btn-sm{
-    background-color: #109AD7;
-}
-.btn-light.btn-sm:hover, .btn-light.btn-sm:visited, .btn-light.btn-sm:link, .btn-light.btn-sm:focus{
-    background-color: #109AD7;
-    border:1px solid #109AD7;
-    color: #000;
-}
