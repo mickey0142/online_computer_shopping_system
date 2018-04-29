@@ -82,6 +82,11 @@ public class ConfirmPurchase extends HttpServlet {
                     message += "CVV ไม่ถูกต้อง" + "\\n";
                 }
             }
+            if (order.getProductList().isEmpty())
+            {
+                success = false;
+                message += "ตะกร้าของคุณว่างเปล่า" + "\\n";
+            }
             session.setAttribute("message", message);
             if (success)
             {

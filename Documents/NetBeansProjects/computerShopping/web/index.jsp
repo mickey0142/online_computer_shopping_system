@@ -25,7 +25,6 @@
                 alert("${sessionScope.message}");
             </script>
         </c:if>
-        <%@include file="menu.jsp" %>
         <% session.setAttribute("message", "");%>
         <section class="hidden-md-down header-box">
             <nav class="navbar navbar-toggleable-md navbar-light bg-faded ">
@@ -147,13 +146,16 @@
                 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="d-block w-100" src="pic/a.png" alt="First slide">
+                            <img class="d-block w-100" src="pic/banner1.jpg" alt="First slide">
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100" src="pic/b.jpg" alt="Second slide">
+                            <img class="d-block w-100" src="pic/banner1.jpg" alt="Second slide">
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100" src="pic/a.png" alt="Third slide">
+                            <img class="d-block w-100" src="pic/banner2.jpg" alt="Third slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="pic/banner3.jpg" alt="Third slide">
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
