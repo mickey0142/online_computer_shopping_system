@@ -41,8 +41,6 @@ public class SetSessionValue extends HttpServlet {
             String backTo = request.getParameter("backTo");
             String value = request.getParameter(attributeName);
             session.setAttribute(attributeName, value);
-            System.out.println("from set session name : " + attributeName);
-            System.out.println("from set session value : " + value);
             response.sendRedirect(backTo);
         }
     }

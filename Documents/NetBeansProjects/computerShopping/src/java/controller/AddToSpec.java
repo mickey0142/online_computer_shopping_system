@@ -96,12 +96,20 @@ public class AddToSpec extends HttpServlet {
             String compCodeMC = (String) session.getAttribute("compCodeMC");
             String compCodeMR = (String) session.getAttribute("compCodeMR");
             String compCodeR = (String) session.getAttribute("compCodeR");
-            String temp = (String) session.getAttribute("powerSup");
-            String temp2 = (String) session.getAttribute("powerCon");
+            double temp;
+            double temp2;
             double powerSup = -1;
             double powerCon = -1;
-            if (temp != null) powerSup = Double.parseDouble(temp);
-            if (temp2 != null) powerCon =  Double.parseDouble(temp2);
+            if (session.getAttribute("powerSup") != null)
+            {
+                temp = (double) session.getAttribute("powerSup");
+                powerSup = temp;
+            }
+            if (session.getAttribute("powerCon") != null)
+            {
+                temp2 = (double) session.getAttribute("powerCon");
+                powerCon = temp2;
+            }
             if (compatibility != null)
             {
                 if (index == 1)
