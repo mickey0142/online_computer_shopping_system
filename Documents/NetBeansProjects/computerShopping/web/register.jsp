@@ -136,7 +136,7 @@
                         <textarea name="address" id="address" cols="50" rows="7" placeholder="ที่อยู่จัดส่งสินค้า"></textarea>
                         <br>
                         <br>
-                        <a href="#" class="btn btn-primary btn-md cart-link" role="button" onclick="submitForm()">
+                        <a href="#" class="btn btn-primary btn-md cart-link" role="button" onclick="submitRegisForm()">
                             ยืนยันการสมัคร
                         </a>
                     </div>
@@ -148,7 +148,7 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script>
-            function submitForm()
+            function submitRegisForm()
             {
                 document.getElementById("registerForm").submit();
             }
