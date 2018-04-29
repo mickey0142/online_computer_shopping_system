@@ -15,8 +15,7 @@
         <link rel="stylesheet" href="pay.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Pridi" rel="stylesheet">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-    </head>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">    </head>
     <body>
         <c:if test="${sessionScope.message != '' and sessionScope.message != null}">
             <script>
@@ -193,15 +192,81 @@
                                     <tr>
                                         <td>รวมทั้งหมด</td>
                                     </tr>
-                                    <tr>
-                                        <td>ราคาสุธิที่ต้องชำระ</td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
+            <c:if test="${param.payType == 'credit'}">
+                บัตรเครดิต<br>
+                <form action="ConfirmPurchase.in" method="POST">
+                    <div class="card card-body text-left">
+                        <div class="img-list">
+                            <img src="pic/visa.png" class="bank-img">
+                            <img src="pic/jcb.png" class="bank-img">
+                            <img src="pic/card.png" class="bank-img">
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label for="validationDefault01" required class="next-from-item-label">หมายเลขบัตร</label>
+                                <input type="text" class="form-control" id="validationDefault01" required placeholder="หมายเลขบัตร">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label for="validationDefault02" required class="next-from-item-label">ชื่อผู้ถือขัตร</label>
+                                <input type="text" class="form-control" id="validationDefault03" placeholder="ชื่อผู้ถือบัตร" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label for="validationDefault03" required class="next-from-item-label">วันหมดอายุ</label>
+                                <input type="text" class="form-control" id="validationDefault03" placeholder="MM/YY" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="validationDefault04" required class="next-from-item-label">CVV</label>
+                                <input type="text" class="form-control" id="validationDefault03" placeholder="CVV" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                                <label class="form-check-label" for="invalidCheck2">
+                                    ยินยอมกับการใช้บัตร
+                                </label>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" type="submit">สั่งซื้อสินค้า</button>
+                    </div>
+                    <c:set scope="session" var="paymentType" value="credit"/>
+                </form>
+            </c:if>
+            <c:if test="${param.payType == 'bank'}">
+                <form action="ConfirmPurchase.in" method="POST">
+                    <div class="card card-body text-left">
+                        <p>กรุณาทำรายการชำระค่าสินค้าภายใน48ชั่วโมง หากไม่ชำระภายในเวลาดังกล่าว การสั่งสินค้าของท่านจะโดนยกเลิก</p>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                            <label class="custom-control-label" for="customRadioInline1"><img src="pic/k-bank.png" alt="ธนาคารกสิกรไทย " style="height: 45px; width: 132px"></label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+                            <label class="custom-control-label" for="customRadioInline2"><img src="pic/scb.jpg" alt="ธนาคารไทยพาณิชย์ " style="height: 45px; width: 132px"></label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="customRadioInline3" name="customRadioInline1" class="custom-control-input">
+                            <label class="custom-control-label" for="customRadioInline3"><img src="pic/krungsri.jpg" alt="ธนาคารกรุงศรี " style="height: 45px; width: 132px"></label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="customRadioInline4" name="customRadioInline1" class="custom-control-input">
+                            <label class="custom-control-label" for="customRadioInline4"><img src="pic/ktb.jpg" alt="ธนาคารกรุงไทย " style="height: 45px; width: 132px"></label>
+                        </div>
+                        <button class="btn btn-primary" type="submit" style="width: 120px; margin-top: 15px">สั่งซื้อสินค้า</button>
+                    </div>
+                    <c:set scope="session" var="paymentType" value="bank"/>
+                </form>
+            </c:if>
             <div class="row margin-cart" id="cart">
                 <div class="col-md-8 text-right">
                     <a href="#" class="btn btn-primary btn-md cart-link" role="button">
@@ -213,25 +278,7 @@
                 </div>
             </div>
         </div>
-        <c:if test="${param.payType == 'credit'}">
-            บัตรเครดิต<br>
-            <form action="ConfirmPurchase.in" method="POST">
-                หมายเลขบัตร : <input type="text" name="cardNumber" value="" /><br>
-                ชื่อผู้ถือบัตร : <input type="text" name="cardName" value="" /><br>
-                วันหมดอายุ : <input type="text" name="expireDate" value="" /><br>
-                CVV : <input type="text" name="cvv" value="" /><br>
-                <c:set scope="session" var="paymentType" value="credit"/>
-                <input type="submit" value="ยืนยันการสั่งซื้อ" />
-            </form>
-        </c:if>
-        <c:if test="${param.payType == 'bank'}">
-            โอน<br>
-            <form action="ConfirmPurchase.in" method="POST">
-                อัพโหลดรูป<br>
-                <c:set scope="session" var="paymentType" value="bank"/>
-                <input type="submit" value="ยืนยันการสั่งซื้อ" />
-            </form>
-        </c:if>
+
 
         <!--Java Script-->
         <script>

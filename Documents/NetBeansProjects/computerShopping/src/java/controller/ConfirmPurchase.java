@@ -53,35 +53,8 @@ public class ConfirmPurchase extends HttpServlet {
             Orders order = (Orders) session.getAttribute("order");
             // add insert differentation for credit payment and bank payment later !!
             String paymentType = (String) session.getAttribute("paymentType");
-            String cardNumber = request.getParameter("cardNumber");
-            String cardName = request.getParameter("cardName");
-            String expireDate = request.getParameter("expireDate");
-            String cvv = request.getParameter("cvv");
             boolean success = true;
             String message = "";
-            if (paymentType.equals("credit"))
-            {
-                if (cardNumber.equals(""))
-                {
-                    success = false;
-                    message += "รหัสบัตรเครดิตไม่ถูกต้อง" + "\\n";
-                }
-                if (cardName.equals(""))
-                {
-                    success = false;
-                    message += "ชื่อผู้ถือบัตรไม่ถูกต้อง" + "\\n";
-                }
-                if (expireDate.equals(""))
-                {
-                    success = false;
-                    message += "วันหมดอายุไม่ถูกต้อง" + "\\n";
-                }
-                if (cvv.equals("") || cvv.length() != 3)
-                {
-                    success = false;
-                    message += "CVV ไม่ถูกต้อง" + "\\n";
-                }
-            }
             if (order.getProductList().isEmpty())
             {
                 success = false;
