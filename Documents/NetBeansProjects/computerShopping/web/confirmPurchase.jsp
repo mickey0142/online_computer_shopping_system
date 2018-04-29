@@ -83,9 +83,9 @@
                                 <a class="dropdown-item" href="#" onclick="submitForm('04')">Power supply</a>
                                 <a class="dropdown-item" href="#" onclick="submitForm('05')">Graphic card</a>
                                 <a class="dropdown-item" href="#" onclick="submitForm('06')">Harddisk</a>
-                                <a class="dropdown-item" href="#" onclick="submitForm('07')">Monitor</a>
+<!--                                <a class="dropdown-item" href="#" onclick="submitForm('07')">Monitor</a>
                                 <a class="dropdown-item" href="#" onclick="submitForm('08')">Keyboard</a>
-                                <a class="dropdown-item" href="#" onclick="submitForm('09')">Mouse</a>
+                                <a class="dropdown-item" href="#" onclick="submitForm('09')">Mouse</a>-->
                                 <a class="dropdown-item" href="#" onclick="submitForm('10')">Case</a>
                             </div>
                             <input type="hidden" value="${sessionScope.productTypeId}" id="productType" name="productTypeId"/>
@@ -271,9 +271,6 @@
                 <div class="col-md-8 text-right">
                     <a href="#" class="btn btn-primary btn-md cart-link" role="button">
                         <i class="fas fa-angle-left" ></i>เลือกสินค้าต่อ
-                    </a>
-                    <a href="#" class="btn btn-primary btn-md cart-link" role="button">
-                        ชำระสินค้า<i class="fas fa-angle-right"></i>
                     </a>
                 </div>
             </div>

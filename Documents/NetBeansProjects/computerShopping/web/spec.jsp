@@ -120,9 +120,9 @@
                                 <a class="dropdown-item" href="#" onclick="submitForm('04')">Power supply</a>
                                 <a class="dropdown-item" href="#" onclick="submitForm('05')">Graphic card</a>
                                 <a class="dropdown-item" href="#" onclick="submitForm('06')">Harddisk</a>
-                                <a class="dropdown-item" href="#" onclick="submitForm('07')">Monitor</a>
-                                <a class="dropdown-item" href="#" onclick="submitForm('08')">Keyboard</a>
-                                <a class="dropdown-item" href="#" onclick="submitForm('09')">Mouse</a>
+                                <a class="dropdown-item" href="#" onclick="//submitForm('07')">Monitor</a>
+                                <a class="dropdown-item" href="#" onclick="//submitForm('08')">Keyboard</a>
+                                <a class="dropdown-item" href="#" onclick="//submitForm('09')">Mouse</a>
                                 <a class="dropdown-item" href="#" onclick="submitForm('10')">Case</a>
                             </div>
                             <input type="hidden" value="${sessionScope.productTypeId}" id="productType" name="productTypeId"/>
@@ -282,7 +282,7 @@
                                 </center>
                             </c:if>
                         </ul>
-                        <ul>
+<!--                        <ul>
                             <div class="box"onclick="submitForm('07')">
                                 <span style="padding-left: 40px; font-size: 20px;">
                                     <c:if test="${sessionScope.inSpec.get(7) == null}">
@@ -332,7 +332,7 @@
                                     </a>
                                 </center>
                             </c:if>
-                        </ul>
+                        </ul>-->
                         <ul>
                             <div class="box"onclick="submitForm('10')">
                                 <span style="padding-left: 40px; font-size: 20px;">
