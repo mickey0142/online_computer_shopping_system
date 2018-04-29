@@ -105,11 +105,13 @@
                     <div class="nav-item text-left">
                         <a href="spec.jsp">จัดสเปคคอมพิวเตอร์</a>
                     </div>
+                    <c:if test="${sessionScope.loginFlag}">
+                        <div class="nav-item text-left">
+                            <a href="orderHistory.jsp">เช็คสถานะออเดอร์ </a>
+                        </div>
+                    </c:if>
                     <div class="nav-item text-left">
-                        <a href="orderHistory.jsp">เช็คสถานะออเดอร์ </a>
-                    </div>
-                    <div class="nav-item text-left">
-                        <a href="contact.html">ติดต่อเรา</a>
+                        <a href="contact.jsp">ติดต่อเรา</a>
                     </div>
                     </ul>
                 </div>
@@ -119,14 +121,14 @@
         <div class="container">
             <div>
                 <div class="box">
-                    <form action="LoginServlet" method="POST">
+                    <form action="LoginServlet" method="POST" id="loginForm">
                         <div class="userPass">
                             <h1>เข้าสู่ระบบ</h1><br>
                             Username: <input type="text" placeholder="Username" name="username" value=""><br><br>
                             Password: <input type="password" placeholder="Password" name="password" value=""><br><br>
-                            <a href="index.jsp">
-                                <button type="button" class="btn btn-primary btn-md">เข้าสู่ระบบ</button>
-                            </a><hr>
+                            
+                                <button type="submit" class="btn btn-primary btn-md" onclick="submitLoginForm()">เข้าสู่ระบบ</button>
+                            <hr>
                             <% session.setAttribute("message", "");%>
                         </div>
                     </form>
@@ -137,5 +139,17 @@
         <!--Java Script-->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script>
+            function submitLoginForm()
+            {
+                document.getElementById("loginForm").submit();
+            }
+            function submitForm(type)
+            {
+                document.getElementById("productType").value = type;
+                document.getElementById("backTo").value = "shoppingPage.jsp";
+                document.getElementById("productTypeForm").submit();
+            }
+        </script>
     </body>
 </html>

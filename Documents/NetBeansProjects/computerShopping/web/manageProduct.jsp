@@ -20,7 +20,7 @@
             select * from products where productId like '${sessionScope.productTypeId}%'
             <c:if test="${param.search != '' and param.search != null}"> and productName like '${param.search}%'</c:if>
         </sql:query>
-        <form action="manageOrder.jsp" method="POST">
+        <form action="manageProduct.jsp" method="POST">
             Product Name : <input type="text" name="search" value="" /> 
             <input type="submit" value="search" />
         </form>

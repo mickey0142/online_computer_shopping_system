@@ -1,6 +1,6 @@
 <%-- 
-    Document   : howBuy
-    Created on : Apr 28, 2018, 11:03:59 PM
+    Document   : contact
+    Created on : Apr 29, 2018, 10:09:31 AM
     Author     : Mickey
 --%>
 
@@ -11,13 +11,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="UTF-8">
-        <title>วิธีสั่งซื้อสินค้ากับเรา</title>
-        <link rel="stylesheet" href="howTo.css">
+        <title>ติดต่อเรา</title>
+        <link rel="stylesheet" href="contact.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Pridi" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
-
     </head>
     <body>
         <section class="hidden-md-down header-box">
@@ -39,15 +38,15 @@
                             <div class="col-4 text-right">
                                 <c:if test="${sessionScope.loginFlag and sessionScope.isEmp == null}">
                                     <a href="manageCart.jsp" id="goCart"><i class="fas fa-shopping-cart" aria-hidden="true"></i></a>
-                                </c:if>
+                                    </c:if>
                             </div>
                             <div class="col nav-item dropdown">
                                 <button class="btn dropdown-toggle username" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-user-circle"></i> 
                                     <c:if test="${!sessionScope.loginFlag || sessionScope.loginFlag == null}">เข้าสู่ระบบ</c:if>
                                     <c:if test="${sessionScope.loginFlag}">${sessionScope.userInfo.getUsername()}</c:if>
-                                </button>
-                                <div class="dropdown-menu" id="login" aria-labelledby="dropdownMenuButton">
+                                    </button>
+                                    <div class="dropdown-menu" id="login" aria-labelledby="dropdownMenuButton">
                                     <c:if test="${!sessionScope.loginFlag || sessionScope.loginFlag == null}">
                                         <a class="dropdown-item" href="login.jsp">เข้าสู่ระบบ</a>
                                         <a class="dropdown-item" href="register.jsp">สมัครสมาชิก</a>
@@ -116,32 +115,70 @@
             </nav>
         </section>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 singlepage">
-                    <h1 class="title pt-2">วิธีการสั่งซื้อสินค้า</h1>
-                    <p style="text-align: center">
-                        <img src="pic/howTo.png" alt="วิธีใช้งาน">
-                    </p>
+        <div class="container" style="padding-top: 20px; padding-bottom:20px; width: 700px">
+            <div class="card">
+                <h5 class="card-header" style="color: #f0f0f0; background-color: #3385ff">รายชื่อสมาชิก</h5>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">นายกฤษกรณ์ ก้องศักดิ์ศรี</h5>
+                                <p class="card-text">รหัสประจำตัว 59070005</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">นายจินตวีร์ คงคารัตน์</h5>
+                                <p class="card-text">รหัสประจำตัว 59070023</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">นายญาณภัทร์ พงษ์ขันธ์</h5>
+                                <p class="card-text">รหัสประจำตัว 59070041</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">นาย เมธัส จารุแสงไพโรจน์</h5>
+                                <p class="card-text">รหัสประจำตัว 59070142</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">นายสุรเชษฐ์ ใหญ่ธรรมสาร</h5>
+                                <p class="card-text">รหัสประจำตัว 59070180</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </div>
+
         <!--java script-->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script>
+            function submitForm(type)
+            {
+                document.getElementById("productType").value = type;
+                document.getElementById("backTo").value = "shoppingPage.jsp";
+                document.getElementById("productTypeForm").submit();
+            }
             function submitSearchForm()
             {
                 document.getElementById("searchForm").submit();
             }
-            function submitForm(type)
-            {
-                document.getElementById("productType").value = type;
-                document.getElementById("productTypeForm").submit();
-            }
         </script>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>>
-
     </body>
 </html>

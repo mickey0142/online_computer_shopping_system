@@ -13,6 +13,7 @@
 <%@attribute name="productId"%>
 <%@attribute name="search"%>
 <%@attribute name="fromPage" %>
+<%@attribute name="pageNum" %>
 
 <%-- any content can be specified here e.g.: --%>
 <c:if test="${fromPage == 'shopping'}">
@@ -42,6 +43,10 @@
 <!--query for using in spec : select * from products left outer join producttype2 using (productId) where เหมือนเดิม and 
 (compatibility like 'ตัวแปร__' or compatibility < '0I_' or compatibility is null)
 use fn:substring in el expression $ { } in here      ^ to cut string to only second char of compatibility-->
+<c:set scope="page" var="count" value="1"/>
 <c:forEach var="i" items="${product.rows}">
-    <shortcut:show data="${i}"></shortcut:show>
+    <c:if test="${count <= pageNum*12 and count > (pageNum-1)*12}">
+        <shortcut:show data="${i}"></shortcut:show>
+    </c:if>
+    <c:set var="count" value="${count + 1}"/>
 </c:forEach>

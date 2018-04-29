@@ -29,7 +29,7 @@
                         <div class="col-6 searching">
                             <div class="easy-autocomplete" style="width: 540px">
                                 <input class="form-control mr-sm-2 searchTerm" type="search" placeholder="ค้นหาสินค้าที่คุณต้องการ..." aria-label="Search" name="searchName">
-                                <button type="submit" class="searchButton" onclick="submitForm()"><i class="fa fa-search" aria-hidden="true" onclick="submitForm()"></i></button>
+                                <button type="submit" class="searchButton" onclick="submitSearchForm()"><i class="fa fa-search" aria-hidden="true" onclick="submitSearchForm()"></i></button>
                             </div>
                         </div>
                     </form>
@@ -101,11 +101,13 @@
                     <div class="nav-item text-left">
                         <a href="spec.jsp">จัดสเปคคอมพิวเตอร์</a>
                     </div>
+                    <c:if test="${sessionScope.loginFlag}">
+                        <div class="nav-item text-left">
+                            <a href="orderHistory.jsp">เช็คสถานะออเดอร์ </a>
+                        </div>
+                    </c:if>
                     <div class="nav-item text-left">
-                        <a href="orderHistory.jsp">เช็คสถานะออเดอร์ </a>
-                    </div>
-                    <div class="nav-item text-left">
-                        <a href="contact.html">ติดต่อเรา</a>
+                        <a href="contact.jsp">ติดต่อเรา</a>
                     </div>
                     </ul>
                 </div>
@@ -131,6 +133,7 @@
                         <div style="display: inline-block; width: 100%;">
                             <div style="display: inline-block; width: 50%;">
                                 รูปหลักฐานการโอนเงิน : <img src="ShowPicture?id=${i.orderId}&table=orders" style="width: 200px; height: 200px;"/>
+                                <c:set scope="session" value="orderHistory.jsp" var="back"/>
                                 <form action="InsertPicture?id=${i.orderId}&table=orders" method="POST" enctype="multipart/form-data">
                                     file : <input type="file" name="picture" <c:if test="${i.status != 'not paid'}">disabled="disabled"</c:if> />
                                     <input type="submit" value="upload" <c:if test="${i.status != 'not paid'}">disabled="disabled"</c:if>/>
@@ -184,10 +187,16 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script>
-                                function submitForm()
+                                function submitSearchForm()
                                 {
-                                    document.getElementById("upload").submit();
+                                    document.getElementById("searchForm").submit();
                                 }
+            function submitForm(type)
+            {
+                document.getElementById("productType").value = type;
+                document.getElementById("backTo").value = "shoppingPage.jsp";
+                document.getElementById("productTypeForm").submit();
+            }
         </script>
     </body>
 </html>

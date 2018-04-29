@@ -152,6 +152,12 @@
             {
                 document.getElementById("registerForm").submit();
             }
+            function submitForm(type)
+            {
+                document.getElementById("productType").value = type;
+                document.getElementById("backTo").value = "shoppingPage.jsp";
+                document.getElementById("productTypeForm").submit();
+            }
         </script>
     </body>
 </html>

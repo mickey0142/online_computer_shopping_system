@@ -101,11 +101,13 @@
                     <div class="nav-item text-left">
                         <a href="spec.jsp">จัดสเปคคอมพิวเตอร์</a>
                     </div>
+                    <c:if test="${sessionScope.loginFlag}">
+                        <div class="nav-item text-left">
+                            <a href="orderHistory.jsp">เช็คสถานะออเดอร์ </a>
+                        </div>
+                    </c:if>
                     <div class="nav-item text-left">
-                        <a href="orderHistory.jsp">เช็คสถานะออเดอร์ </a>
-                    </div>
-                    <div class="nav-item text-left">
-                        <a href="contact.html">ติดต่อเรา</a>
+                        <a href="contact.jsp">ติดต่อเรา</a>
                     </div>
                     </ul>
                 </div>
@@ -183,11 +185,16 @@
             </div>
         </div>
 
-
         <!--Java Script-->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
+        <script>
+            function submitForm(type)
+            {
+                document.getElementById("productType").value = type;
+                document.getElementById("backTo").value = "shoppingPage.jsp";
+                document.getElementById("productTypeForm").submit();
+            }
+        </script>
     </body>
 </html>

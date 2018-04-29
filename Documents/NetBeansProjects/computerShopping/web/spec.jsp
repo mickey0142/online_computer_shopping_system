@@ -12,7 +12,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>spec</title>
+        <meta charset="UTF-8">
+        <title>ระบบจัดเสปก คอมพิวเตอร์</title>
+        <link rel="stylesheet" href="spec.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Pridi" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
     </head>
     <body>
         <c:if test="${sessionScope.message != '' and sessionScope.message != null}">
@@ -29,8 +35,8 @@
         <a href="BuySpec.in">สั่งซื้อ spec นี้</a>
         C : ${sessionScope.compCodeC}<br>MC : ${sessionScope.compCodeMC}<br>MR : ${sessionScope.compCodeMR}<br>R : ${sessionScope.compCodeR}<br>
         <a href="RemoveFromSpec?index=-1">
-                    <div style="background-color: lightgoldenrodyellow; width: 50px;">clear</div>
-                </a>
+            <div style="background-color: lightgoldenrodyellow; width: 50px;">clear</div>
+        </a>
         <form action="SetSessionValue" method="POST" id="productTypeForm">
             <div onclick="submitForm('01')" style="background-color: lightgray; margin-top: 5px; width: 100px;">
                 mainboard${sessionScope.inSpec.get(1).getProduct().getName()}
@@ -126,10 +132,6 @@
                 document.getElementById("productType").value = type;
                 document.getElementById("backTo").value = "spec.jsp";
                 document.getElementById("productTypeForm").submit();
-            }
-            function submitRemoveForm(type)
-            {
-                
             }
         </script>
     </body>

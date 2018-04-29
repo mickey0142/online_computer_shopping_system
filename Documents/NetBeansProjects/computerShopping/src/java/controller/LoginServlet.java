@@ -141,7 +141,6 @@ public class LoginServlet extends HttpServlet {
                 out.println("<a href='index.jsp'>back to index</a>");
                 out.println("</body>");
                 out.println("</html>");
-                
                 e.printStackTrace();
             }
             catch(Exception e)

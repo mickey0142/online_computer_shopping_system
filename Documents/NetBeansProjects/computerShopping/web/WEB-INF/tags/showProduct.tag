@@ -10,8 +10,17 @@
 <%@attribute name="data" type="java.util.TreeMap" %>
 
 <%-- any content can be specified here e.g.: --%>
-<a href="product.jsp?id=${data.productId}"
-   <div style="border: 1px solid black; width: 30%; height: 50%; margin: 10px; display: inline-block">
-        ${data.productId} ${data.productName}
+<a href="product.jsp?id=${data.productId}">
+   <div class="part-item hilight">
+        <div class="part-name">
+            <b>${data.productName}</b>
+        </div>
+        <div class="part-photo">
+            <div class="part-overlay text-center"><img src="ShowPicture?id=${data.productId}&table=productpictures" class="img-prod"></div>
+        </div>
+        <div class="text-center">
+            <div class="part-price"><b>${data.price}</b></div>
+            <span>ดูรายละเอียดสินค้า</span>
+        </div>
     </div>
 </a>
