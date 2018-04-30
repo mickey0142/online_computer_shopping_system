@@ -39,7 +39,10 @@
         </c:forEach>
         <c:set scope="session" var="allPageCount" value="${sessionScope.allPageCount / 12}"/>
         <c:set scope="session" var="allPageCount" value="${sessionScope.allPageCount+(1-(sessionScope.allPageCount%1))%1}"/>
-
+        <c:if test="${sessionScope.pageNum > sessionScope.allPageCount}">
+            <c:set scope="session" var="pageNum" value="1"/>
+        </c:if>
+        
         <section class="hidden-md-down header-box">
             <nav class="navbar navbar-toggleable-md navbar-light bg-faded ">
                 <div class="container">

@@ -30,8 +30,8 @@
             <c:set scope="session" var="specProductTypeId" value="01"/>
         </c:if>
         <% session.setAttribute("message", "");%>
-        <c:if test="${sessionScope.pageNum == null}">
-            <c:set scope="session" var="pageNum" value="1"/>
+        <c:if test="${sessionScope.specPageNum == null}">
+            <c:set scope="session" var="specPageNum" value="1"/>
         </c:if>
         <c:if test="${sessionScope.sortBy == null}">
             <c:set scope="session" var="sortBy" value="productId"/>
@@ -58,6 +58,9 @@
         </c:forEach>
         <c:set scope="session" var="allPageCount" value="${sessionScope.allPageCount / 12}"/>
         <c:set scope="session" var="allPageCount" value="${sessionScope.allPageCount+(1-(sessionScope.allPageCount%1))%1}"/>
+        <c:if test="${sessionScope.specPageNum > sessionScope.allPageCount}">
+            <c:set scope="session" var="specPageNum" value="1"/>
+        </c:if>
 
         <section class="hidden-md-down header-box">
             <nav class="navbar navbar-toggleable-md navbar-light bg-faded ">
@@ -113,17 +116,17 @@
                                 ประเภทสินค้า
                             </button>
                             <div class="dropdown-menu" id="type" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#" onclick="submitForm('%')">สินค้าทั้งหมด</a>
-                                <a class="dropdown-item" href="#" onclick="submitForm('01')">Mainboard</a>
-                                <a class="dropdown-item" href="#" onclick="submitForm('02')">CPU</a>
-                                <a class="dropdown-item" href="#" onclick="submitForm('03')">RAM</a>
-                                <a class="dropdown-item" href="#" onclick="submitForm('04')">Power supply</a>
-                                <a class="dropdown-item" href="#" onclick="submitForm('05')">Graphic card</a>
-                                <a class="dropdown-item" href="#" onclick="submitForm('06')">Harddisk</a>
-                                <a class="dropdown-item" href="#" onclick="//submitForm('07')">Monitor</a>
-                                <a class="dropdown-item" href="#" onclick="//submitForm('08')">Keyboard</a>
-                                <a class="dropdown-item" href="#" onclick="//submitForm('09')">Mouse</a>
-                                <a class="dropdown-item" href="#" onclick="submitForm('10')">Case</a>
+                                <a class="dropdown-item" href="#" onclick="submitShopForm('%')">สินค้าทั้งหมด</a>
+                                <a class="dropdown-item" href="#" onclick="submitShopForm('01')">Mainboard</a>
+                                <a class="dropdown-item" href="#" onclick="submitShopForm('02')">CPU</a>
+                                <a class="dropdown-item" href="#" onclick="submitShopForm('03')">RAM</a>
+                                <a class="dropdown-item" href="#" onclick="submitShopForm('04')">Power supply</a>
+                                <a class="dropdown-item" href="#" onclick="submitShopForm('05')">Graphic card</a>
+                                <a class="dropdown-item" href="#" onclick="submitShopForm('06')">Harddisk</a>
+                                <!--                                <a class="dropdown-item" href="#" onclick="//submitForm('07')">Monitor</a>
+                                                                <a class="dropdown-item" href="#" onclick="//submitForm('08')">Keyboard</a>
+                                                                <a class="dropdown-item" href="#" onclick="//submitForm('09')">Mouse</a>-->
+                                <a class="dropdown-item" href="#" onclick="submitShopForm('10')">Case</a>
                             </div>
                             <input type="hidden" value="${sessionScope.productTypeId}" id="productType" name="productTypeId"/>
                             <input type="hidden" value="shoppingPage.jsp" id="backTo" name="backTo"/>
@@ -282,57 +285,57 @@
                                 </center>
                             </c:if>
                         </ul>
-<!--                        <ul>
-                            <div class="box"onclick="submitForm('07')">
-                                <span style="padding-left: 40px; font-size: 20px;">
-                                    <c:if test="${sessionScope.inSpec.get(7) == null}">
-                                        Monitor
-                                    </c:if>
-                                    ${sessionScope.inSpec.get(7).getProduct().getName()}
-                                </span>
-                            </div>
-                            <c:if test="${sessionScope.inSpec.get(7) != null}">
-                                <center>
-                                    <a href="RemoveFromSpec?index=7">
-                                        <div class="box" style="display: inline-block;width: 100px">remove</div>
-                                    </a>
-                                </center>
-                            </c:if>
-                        </ul>
-                        <ul>
-                            <div class="box"onclick="submitForm('08')">
-                                <span style="padding-left: 40px; font-size: 20px;">
-                                    <c:if test="${sessionScope.inSpec.get(8) == null}">
-                                        Keyboard
-                                    </c:if>
-                                    ${sessionScope.inSpec.get(8).getProduct().getName()}
-                                </span>
-                            </div>
-                            <c:if test="${sessionScope.inSpec.get(8) != null}">
-                                <center>
-                                    <a href="RemoveFromSpec?index=8">
-                                        <div class="box" style="display: inline-block;width: 100px">remove</div>
-                                    </a>
-                                </center>
-                            </c:if>
-                        </ul>
-                        <ul>
-                            <div class="box"onclick="submitForm('09')">
-                                <span style="padding-left: 40px; font-size: 20px;">
-                                    <c:if test="${sessionScope.inSpec.get(9) == null}">
-                                        Mouse
-                                    </c:if>
-                                    ${sessionScope.inSpec.get(9).getProduct().getName()}
-                                </span>
-                            </div>
-                            <c:if test="${sessionScope.inSpec.get(9) != null}">
-                                <center>
-                                    <a href="RemoveFromSpec?index=9">
-                                        <div class="box" style="display: inline-block;width: 100px">remove</div>
-                                    </a>
-                                </center>
-                            </c:if>
-                        </ul>-->
+                        <!--                        <ul>
+                                                    <div class="box"onclick="submitForm('07')">
+                                                        <span style="padding-left: 40px; font-size: 20px;">
+                        <c:if test="${sessionScope.inSpec.get(7) == null}">
+                            Monitor
+                        </c:if>
+                        ${sessionScope.inSpec.get(7).getProduct().getName()}
+                    </span>
+                </div>
+                        <c:if test="${sessionScope.inSpec.get(7) != null}">
+                            <center>
+                                <a href="RemoveFromSpec?index=7">
+                                    <div class="box" style="display: inline-block;width: 100px">remove</div>
+                                </a>
+                            </center>
+                        </c:if>
+                    </ul>
+                    <ul>
+                        <div class="box"onclick="submitForm('08')">
+                            <span style="padding-left: 40px; font-size: 20px;">
+                        <c:if test="${sessionScope.inSpec.get(8) == null}">
+                            Keyboard
+                        </c:if>
+                        ${sessionScope.inSpec.get(8).getProduct().getName()}
+                    </span>
+                </div>
+                        <c:if test="${sessionScope.inSpec.get(8) != null}">
+                            <center>
+                                <a href="RemoveFromSpec?index=8">
+                                    <div class="box" style="display: inline-block;width: 100px">remove</div>
+                                </a>
+                            </center>
+                        </c:if>
+                    </ul>
+                    <ul>
+                        <div class="box"onclick="submitForm('09')">
+                            <span style="padding-left: 40px; font-size: 20px;">
+                        <c:if test="${sessionScope.inSpec.get(9) == null}">
+                            Mouse
+                        </c:if>
+                        ${sessionScope.inSpec.get(9).getProduct().getName()}
+                    </span>
+                </div>
+                        <c:if test="${sessionScope.inSpec.get(9) != null}">
+                            <center>
+                                <a href="RemoveFromSpec?index=9">
+                                    <div class="box" style="display: inline-block;width: 100px">remove</div>
+                                </a>
+                            </center>
+                        </c:if>
+                    </ul>-->
                         <ul>
                             <div class="box"onclick="submitForm('10')">
                                 <span style="padding-left: 40px; font-size: 20px;">
@@ -428,40 +431,40 @@
                             </div>
                         </div>
                         <div class="box-product" style="display: inline-block;">
-                            <shortcut:select productId="${sessionScope.specProductTypeId}" search="${param.searchName}" fromPage="spec"></shortcut:select>
+                            <shortcut:select productId="${sessionScope.specProductTypeId}" search="${param.searchName}" fromPage="spec" pageNum="${sessionScope.specPageNum}"></shortcut:select>
                             </div>
                             <div class="select-pages col-12" style="padding-top: 15px; padding-left: 15px">
                                 <nav aria-label="...">
-                                    <form action="SetSessionValue?attributeName=pageNum" method="POST" id="pageNumForm">
+                                    <form action="SetSessionValue?attributeName=specPageNum" method="POST" id="pageNumForm">
                                         <ul class="pagination">
-                                        <c:if test="${sessionScope.pageNum > 1}">
+                                        <c:if test="${sessionScope.specPageNum > 1}">
                                             <li class="page-item">
-                                                <span class="page-link" onclick="submitPageNumForm(${sessionScope.pageNum - 1})">Previous</span>
+                                                <span class="page-link" onclick="submitPageNumForm(${sessionScope.specPageNum - 1})">Previous</span>
                                             </li>
                                         </c:if>
                                         <c:forEach var="i" begin="1" end="${sessionScope.allPageCount}">
-                                            <c:if test="${i == sessionScope.pageNum}">
+                                            <c:if test="${i == sessionScope.specPageNum}">
                                                 <li class="page-item active">
                                                     <span class="page-link">${i}
                                                         <span class="sr-only">(current)</span>
                                                     </span>
                                                 </li>
                                             </c:if>
-                                            <c:if test="${i != sessionScope.pageNum}">
+                                            <c:if test="${i != sessionScope.specPageNum}">
                                                 <li class="page-item">
                                                     <a class="page-link" href="#" onclick="submitPageNumForm('${i}')">${i}</a>
                                                 </li>
                                             </c:if>
                                         </c:forEach>
-                                        <c:if test="${sessionScope.pageNum < allPageCount}">
+                                        <c:if test="${sessionScope.specPageNum < allPageCount}">
                                             <li class="page-item">
-                                                <a class="page-link" href="#" onclick="submitPageNumForm('${sessionScope.pageNum + 1}')">Next</a>
+                                                <a class="page-link" href="#" onclick="submitPageNumForm('${sessionScope.specPageNum + 1}')">Next</a>
                                             </li>
                                         </c:if>
                                     </ul>
-                                    <input type="hidden" value="${sessionScope.pageNum}" id="pageNum" name="pageNum"/>
+                                    <input type="hidden" value="${sessionScope.specPageNum}" id="specPageNum" name="specPageNum"/>
                                     <input type="hidden" value="spec.jsp" id="backTo" name="backTo"/>
-                                    <input type="hidden" value="pageNum" name="attributeName"/>
+                                    <input type="hidden" value="specPageNum" name="attributeName"/>
                                 </form>
                             </nav>
                         </div>
@@ -472,6 +475,17 @@
 
         <!--java script-->
         <script>
+            function submitShopForm(type)
+            {
+                document.getElementById("productType").value = type;
+                document.getElementById("backTo").value = "shoppingPage.jsp";
+                document.getElementById("productTypeForm").submit();
+            }
+            function submitPageNumForm(num)
+            {
+                document.getElementById("specPageNum").value = num;
+                document.getElementById("pageNumForm").submit();
+            }
             function submitForm(type)
             {
                 document.getElementById("specProductType").value = type;
