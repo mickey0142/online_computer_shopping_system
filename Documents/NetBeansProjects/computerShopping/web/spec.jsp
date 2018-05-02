@@ -68,7 +68,7 @@
                     <div class="col-2 loGo">
                         <a href="index.jsp"><img src="pic/logo.png" alt="This is logo for web" class="resize"></a>
                     </div>
-                    <form action="shoppingPage.jsp" id="searchForm">
+                    <form action="spec.jsp" id="searchForm">
                         <div class="col-6 searching">
                             <div class="easy-autocomplete" style="width: 540px">
                                 <input class="form-control mr-sm-2 searchTerm" type="search" placeholder="ค้นหาสินค้าที่คุณต้องการ..." aria-label="Search" name="searchName">
@@ -478,7 +478,7 @@
             function submitShopForm(type)
             {
                 document.getElementById("productType").value = type;
-                document.getElementById("backTo").value = "shoppingPage.jsp";
+                document.getElementById("backTo").value = "spec.jsp";
                 document.getElementById("productTypeForm").submit();
             }
             function submitPageNumForm(num)
